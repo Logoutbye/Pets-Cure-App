@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Pets Cure',
+        title: 'Pets Cure App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
