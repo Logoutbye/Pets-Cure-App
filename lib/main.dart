@@ -27,10 +27,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Pets App',
         theme: ThemeData(
-          
           primarySwatch: Colors.teal,
         ),
-        home: LoginScreen(),
+        home: AllHospitals(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,

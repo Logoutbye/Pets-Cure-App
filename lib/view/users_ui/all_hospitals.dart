@@ -201,6 +201,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                 children: [
                                                                   Column(
                                                                     children: [
+                                                                      // Hospital Name
                                                                       Container(
                                                                         child:
                                                                             Padding(
@@ -218,6 +219,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                      // Hospital address
                                                                       Container(
                                                                         child:
                                                                             Row(
@@ -289,6 +291,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                       children: [
                                                         Column(
                                                           children: [
+                                                            // Hours Title and icon
                                                             Padding(
                                                               padding:
                                                                   const EdgeInsets
@@ -316,15 +319,17 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                 ),
                                                               ),
                                                             ),
+                                                            // Hospital Hours
                                                             Container(
                                                               child: Row(
                                                                 children: [
                                                                   Text(
-                                                                    '24 hour',
+                                                                    itemIndex
+                                                                        .hospitalOpeningHours!,
                                                                     style:
                                                                         TextStyle(
                                                                       fontSize:
-                                                                          8,
+                                                                          10,
                                                                     ),
                                                                   ),
                                                                 ],
@@ -332,8 +337,11 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                             ),
                                                           ],
                                                         ),
+
+                                                        // Availible Doctors
                                                         Column(
                                                           children: [
+                                                            // Avilible Doctors Title
                                                             Padding(
                                                               padding:
                                                                   const EdgeInsets
@@ -366,13 +374,14 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                 ),
                                                               ),
                                                             ),
+                                                            // availible doctors
                                                             Row(
                                                               children: [
                                                                 Text(
                                                                   "3",
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          8),
+                                                                          10),
                                                                 ),
                                                               ],
                                                             )

@@ -13,7 +13,7 @@ class AllHospitalRepository {
       List<dynamic> response =
           await _apiServeces.getGetApiResponse(AppUrl.allHospitalsUrl);
 
-      print("Json Data: $response");
+      // print("Json Data: $response");
       return response.map((e) => AllHospitalDataModel.fromJson(e)).toList();
     } catch (e) {
       throw e;
