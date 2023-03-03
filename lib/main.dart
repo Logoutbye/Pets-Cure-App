@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Pets App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          
+          primarySwatch: Colors.teal,
         ),
         home: LoginScreen(),
 
