@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,34 +32,24 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color.fromARGB(255, 92, 177, 247),
-      //Color.fromARGB(255, 206, 211, 224),
-      backgroundColor: Color.fromARGB(
-          255, 93, 180, 251), //Color.fromARGB(255, 92, 177, 247),
-      //Color.fromARGB(255, 206, 211, 224),
+     // backgroundColor: MyColors.kBg,
       appBar: AppBar(
+        backgroundColor: MyColors.kPrimary,
+        foregroundColor: MyColors.kBg,
         centerTitle: true,
-        backgroundColor: Colors.white,
         title: Text(
           'Create Account',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 20,
           ),
         ),
         leading: InkWell(
-          splashColor: Colors.blue,
           onTap: () {},
           child: Icon(
             Icons.arrow_back,
-            color: Colors.black,
           ),
         ),
       ),
-      // appBar: AppBar(
-      //   title: Text('Login Screen'),
-      //   centerTitle: true,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Welcome Container
                   Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 2, 140, 253),
+                      color: MyColors.kPrimary,
                       image: DecorationImage(
                         colorFilter:
                             ColorFilter.mode(Colors.black, BlendMode.softLight),
@@ -87,10 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Container(
                           child: Text(
-                            'Welecom!',
+                            'Welcome!',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 24,
+                              fontSize: 40,
                             ),
                           ),
                         ),
@@ -120,17 +109,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: MediaQuery.of(context).size.height / 2,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: MyColors.kSecondary,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 15,
-                              spreadRadius: 2,
-                              offset: Offset(
-                                0,
-                                5,
-                              ), // Shadow position
+                              color: MyColors.kPrimary,
+                              // blurRadius: 15,
+                              // spreadRadius: 2,
+                              // offset: Offset(
+                              //   0,
+                              //   5,
+                              // ), // Shadow position
                             ),
                           ],
                         ),
@@ -146,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     child: Text(
                                       'Login',
                                       style: TextStyle(
-                                        color: Color.fromARGB(255, 2, 140, 253),
+                                        color: MyColors.kPrimary,
                                         fontSize: 30,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -168,34 +157,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ],
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        // fontSize: 18,
                                       ),
                                       decoration: InputDecoration(
                                         hintText: '03XXXXXXXXX',
                                         labelText: 'Mobile Number',
                                         labelStyle:
-                                            TextStyle(color: Colors.black),
+                                            TextStyle(color: MyColors.kTextColor),
                                         hintStyle:
-                                            TextStyle(color: Colors.black),
+                                            TextStyle(color: MyColors.kPrimary),
                                         enabledBorder: new OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           borderSide:
-                                              BorderSide(color: Colors.black),
+                                              BorderSide(color: Color.fromARGB(255, 180, 180, 180)),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: Colors.blue),
+                                              BorderSide(color: MyColors.kPrimary),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
                                         prefixIcon: Container(
                                           width: 10,
                                           height: 10,
-                                          child: Image.asset(
-                                            'assets/images/pakflag.png',
-                                            //fit: BoxFit.contain,
-                                          ),
+                                          child:Icon(Icons.flag)
+                                          //  Image.asset(
+                                          //   'assets/images/pakflag.png',
+                                          //   //fit: BoxFit.contain,
+                                          // ),
                                         ),
                                       ),
                                     ),
@@ -210,8 +200,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       obscureText: true,
                                       onTap: () {},
                                       style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
+                                        color: MyColors.kTextColor,
+                                        // fontSize: 18,
                                       ),
                                       decoration: InputDecoration(
                                         hintText: 'Password',
@@ -219,25 +209,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                         labelStyle:
                                             TextStyle(color: Colors.black),
                                         hintStyle:
-                                            TextStyle(color: Colors.black),
+                                            TextStyle(color: MyColors.kPrimary),
                                         enabledBorder: new OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           borderSide: BorderSide(
-                                            color: Colors.black,
+                                            color: Color.fromARGB(255, 193, 198, 198),
                                             //Color.fromARGB(255, 115, 38, 38),
                                           ),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: Colors.blue),
+                                              BorderSide(color: MyColors.kPrimary),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
                                         prefixIcon: Icon(
                                           Icons.lock,
                                           color:
-                                              Color.fromARGB(255, 2, 140, 253),
+                                              MyColors.kPrimary,
                                           size: 35,
                                         ),
                                       ),
@@ -262,7 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
                                           //Color.fromARGB(255, 115, 38, 38),
-                                          Color.fromARGB(255, 2, 140, 253),
+                                          // Color.fromARGB(255, 2, 140, 253),
+                                          MyColors.kPrimary,
                                         ),
                                         shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
