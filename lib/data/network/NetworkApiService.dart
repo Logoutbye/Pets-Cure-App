@@ -18,6 +18,7 @@ class NetworkApiServece extends BaseApiServeces {
       final response =
           await http.get(Uri.parse(Url)).timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);
+      //print("type of response : " + responseJson[0]);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
     }
@@ -46,7 +47,8 @@ class NetworkApiServece extends BaseApiServeces {
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
+        var responseJson = jsonDecode(response.body);
+        //print("My Api Response Data : " + json.decode(response.body));
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());
