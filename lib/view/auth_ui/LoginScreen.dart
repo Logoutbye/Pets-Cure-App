@@ -32,10 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: MyColors.kBg,
+    //  backgroundColor: MyColors.KWhite,
       appBar: AppBar(
         backgroundColor: MyColors.kPrimary,
-        foregroundColor: MyColors.kBg,
+        foregroundColor: MyColors.KWhite,
         centerTitle: true,
         title: Text(
           'Create Account',
@@ -43,12 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             fontSize: 20,
           ),
         ),
-        leading: InkWell(
-          onTap: () {},
-          child: Icon(
-            Icons.arrow_back,
-          ),
-        ),
+       
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -64,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: MyColors.kPrimary,
                       image: DecorationImage(
                         colorFilter:
-                            ColorFilter.mode(Colors.black, BlendMode.softLight),
+                            ColorFilter.mode(MyColors.kBlack, BlendMode.softLight),
                         image: AssetImage("assets/images/pet.jpg"),
                         fit: BoxFit.cover,
                       ),
@@ -78,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Welcome!',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: MyColors.KWhite,
                               fontSize: 40,
                             ),
                           ),
@@ -90,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Find Best Doctor for your pets care and sell and buy your pet.',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: MyColors.KWhite,
                               fontSize: 11,
                             ),
                           ),
@@ -156,14 +151,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                         FilteringTextInputFormatter.digitsOnly,
                                       ],
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: MyColors.kBlack,
                                         // fontSize: 18,
                                       ),
                                       decoration: InputDecoration(
                                         hintText: '03XXXXXXXXX',
                                         labelText: 'Mobile Number',
                                         labelStyle:
-                                            TextStyle(color: MyColors.kTextColor),
+                                            TextStyle(color: MyColors.kPrimary),
                                         hintStyle:
                                             TextStyle(color: MyColors.kPrimary),
                                         enabledBorder: new OutlineInputBorder(
@@ -178,15 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        prefixIcon: Container(
-                                          width: 10,
-                                          height: 10,
-                                          child:Icon(Icons.flag)
-                                          //  Image.asset(
-                                          //   'assets/images/pakflag.png',
-                                          //   //fit: BoxFit.contain,
-                                          // ),
-                                        ),
+                                        prefixIcon: Icon(Icons.flag),
                                       ),
                                     ),
                                   ),
@@ -200,14 +187,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       obscureText: true,
                                       onTap: () {},
                                       style: TextStyle(
-                                        color: MyColors.kTextColor,
+                                        color: MyColors.kBlack,
                                         // fontSize: 18,
                                       ),
                                       decoration: InputDecoration(
                                         hintText: 'Password',
                                         labelText: 'Password',
                                         labelStyle:
-                                            TextStyle(color: Colors.black),
+                                            TextStyle(color: MyColors.kPrimary),
                                         hintStyle:
                                             TextStyle(color: MyColors.kPrimary),
                                         enabledBorder: new OutlineInputBorder(
@@ -225,10 +212,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                               BorderRadius.circular(10),
                                         ),
                                         prefixIcon: Icon(
+                                          
                                           Icons.lock,
-                                          color:
-                                              MyColors.kPrimary,
-                                          size: 35,
+                                          // color:
+                                          //     MyColors.kPrimary,
+                                          // size: 25,
                                         ),
                                       ),
                                     ),

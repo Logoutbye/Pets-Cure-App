@@ -20,7 +20,6 @@ class MyColors {
 //============================
   static const kPrimary = Color(0xFF075E54);
   static const kSecondary =Color.fromARGB(255, 238, 243, 243);
-  static const kBg = Color.fromARGB(255, 255, 255, 255);
-  static const kTextColor = Color.fromARGB(255, 0, 0, 0);
-  static const kbg = Color(0xffF5F5F5);
+  static const KWhite = Color.fromARGB(255, 255, 255, 255);
+  static const kBlack = Color.fromARGB(255, 0, 0, 0);
 }

@@ -3,7 +3,6 @@
 //import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
@@ -23,18 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 93, 180, 251),
+      backgroundColor: MyColors.KWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Color.fromARGB(255, 2, 140, 253),
-        ),
+        backgroundColor: MyColors.kPrimary,
+        foregroundColor: MyColors.KWhite,
         title: Text(
           'Pets Care',
         ),
         titleTextStyle: TextStyle(
           fontSize: 20,
-          color: Colors.black,
         ),
         centerTitle: true,
       ),
@@ -43,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            colorFilter: ColorFilter.mode(Colors.black, BlendMode.softLight),
+            colorFilter: ColorFilter.mode(MyColors.kBlack, BlendMode.softLight),
             image: AssetImage("assets/images/pet.jpg"),
             fit: BoxFit.cover,
           ),
@@ -90,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: MyColors.KWhite,
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black,
+                                        color: MyColors.kBlack,
                                         blurRadius: 15,
                                         spreadRadius: 2,
                                         offset: Offset(
@@ -109,12 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 50,
-                                          color:
-                                              Color.fromARGB(255, 2, 140, 253),
-                                        ),
+                                        Icon(Icons.person,
+                                            size: 50, color: MyColors.kPrimary),
                                         Text('All Doctors'),
                                       ],
                                     ),
@@ -143,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black,
+                                        color: MyColors.kBlack,
                                         blurRadius: 15,
                                         spreadRadius: 2,
                                         offset: Offset(
@@ -158,12 +150,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.local_hospital,
-                                          size: 50,
-                                          color:
-                                              Color.fromARGB(255, 2, 140, 253),
-                                        ),
+                                        Icon(Icons.local_hospital,
+                                            size: 50, color: MyColors.kPrimary),
                                         Text('View Hospitals'),
                                       ],
                                     ),

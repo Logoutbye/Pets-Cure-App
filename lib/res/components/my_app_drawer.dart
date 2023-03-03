@@ -17,13 +17,13 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: MyColors.KWhite,
       child: ListView(
         children: [
           DrawerHeader(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Container(
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              decoration: BoxDecoration(color: MyColors.kPrimary),
               child:
                   // waiter == false
                   //     ? Center(
@@ -178,7 +178,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
 
           Divider(
             thickness: 1,
-            color: Colors.blueAccent,
+            color: MyColors.kPrimary,
           ),
 
           SizedBox(
