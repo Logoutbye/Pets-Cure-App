@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           // useMaterial3: true
         ),
-        home: LoginScreen(),
+        home: HomeScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,

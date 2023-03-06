@@ -36,7 +36,7 @@ class _AllHospitalsState extends State<AllHospitals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.myScaffoldBackColor,
+      backgroundColor: MyColors.KWhite,
       appBar: AppBar(
         title: Text(
           'All Hospitals ',
@@ -84,7 +84,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                             child: Text(
                               '10 Million+ People Have Used Marham',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: MyColors.kBlack,
                                 fontSize: 11,
                               ),
                             ),
@@ -119,19 +119,19 @@ class _AllHospitalsState extends State<AllHospitals> {
                                   padding: const EdgeInsets.all(9),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: MyColors.kSecondary,
                                       borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black,
-                                          blurRadius: 10,
-                                          spreadRadius: 2,
-                                          offset: Offset(
-                                            0,
-                                            0,
-                                          ), // Shadow position
-                                        ),
-                                      ],
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.black,
+                                      //     blurRadius: 10,
+                                      //     spreadRadius: 2,
+                                      //     offset: Offset(
+                                      //       0,
+                                      //       0,
+                                      //     ), // Shadow position
+                                      //   ),
+                                      // ],
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -145,8 +145,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: Color.fromARGB(
-                                                    255, 244, 241, 241),
+                                                color: MyColors.kGrey,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 boxShadow: [
@@ -204,7 +203,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.only(right: 30),
+                                                                              const EdgeInsets.fromLTRB(10, 0, 30, 0),
                                                                           child:
                                                                               Text(
                                                                             itemIndex.hospitalName!,
@@ -212,11 +211,12 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                                 TextStyle(
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.bold,
-                                                                              color: Colors.blue,
+                                                                              color: MyColors.kPrimary,
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                      SizedBox(height: 2,),
                                                                       // Hospital address
                                                                       Container(
                                                                         child:
