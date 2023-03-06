@@ -97,29 +97,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * 0.085,
               ),
               RoundButton(
-                  title: 'Login',
-                  loading: authViewModel.loading,
-                  onpress: () {
-                    if (_emailController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          'Email Field is empty', context);
-                    } else if (_passwordController.text.isEmpty) {
-                      Utils.flushBarErrorMessage(
-                          'Password Field is empty', context);
-                    } else if (_passwordController.text.length < 6) {
-                      Utils.flushBarErrorMessage(
-                          'Password lenght is less then 6 characters', context);
-                    } else {
-                      // Calling the Login Api From Button
-                      Map data = {
-                        'email': _emailController.text.toString(),
-                        'password': _passwordController.text.toString(),
-                      };
-                      authViewModel.loginApi(data, context);
-                      //Navigator.pushNamed(context, RoutesName.home);
-                      print('Api hit');
-                    }
-                  }),
+                title: 'Login',
+                loading: authViewModel.loading,
+                onpress: () {
+                  if (_emailController.text.isEmpty) {
+                    Utils.flushBarErrorMessage('Email Field is empty', context);
+                  } else if (_passwordController.text.isEmpty) {
+                    Utils.flushBarErrorMessage(
+                        'Password Field is empty', context);
+                  } else if (_passwordController.text.length < 6) {
+                    Utils.flushBarErrorMessage(
+                        'Password lenght is less then 6 characters', context);
+                  } else {
+                    // Calling the Login Api From Button
+                    Map data = {
+                      'email': _emailController.text.toString(),
+                      'password': _passwordController.text.toString(),
+                    };
+                    authViewModel.loginApi(data, context);
+                    //Navigator.pushNamed(context, RoutesName.home);
+                    print('Api hit');
+                  }
+                },
+                width: 200,
+              ),
               SizedBox(
                 height: height * 0.03,
               ),

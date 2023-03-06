@@ -222,52 +222,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  // Login Button Code
-                                  Container(
-                                    width: 150,
-                                    height: 50,
-                                    //   color: MyColors.mylightBlackColor,
-                                    child: OutlinedButton(
-                                      child: Text(
-                                        'Login ',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                          //Color.fromARGB(255, 115, 38, 38),
-                                          // Color.fromARGB(255, 2, 140, 253),
-                                          MyColors.kPrimary,
-                                        ),
-                                        shape: MaterialStateProperty.all<
-                                            RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            side:
-                                                BorderSide(color: Colors.black),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        //submit();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const HomeScreen()),
-                                        );
-                                      },
-                                    ),
-                                  ),
 
                                   SizedBox(
-                                    height: 20,
+                                    height: 30,
                                   ),
                                   RoundButton(
                                     title: 'Login',
@@ -279,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 const HomeScreen()),
                                       );
                                     },
-                                    width: 130,
+                                    width: 140,
                                   ),
                                 ],
                               ),
