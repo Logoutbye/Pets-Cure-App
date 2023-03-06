@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
+import 'package:mvvm_practice_app/view/registration/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: MyColors.KWhite,
       appBar: AppBar(
         backgroundColor: MyColors.kPrimary,
-        foregroundColor: MyColors.KWhite,
+        foregroundColor: MyColors.KWhite ,
         title: Text(
           'Pets Care',
         ),
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   decoration: BoxDecoration(
-                                    color: MyColors.KWhite,
+                                    color: MyColors.kSecondary,
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
@@ -131,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: MyColors.kSecondary,
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
@@ -203,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: MyColors.kSecondary,
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
@@ -239,14 +240,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               // Share App Button
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                   Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) =>PetsRegistration()));
+                                },
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width / 2.4,
                                   height:
                                       MediaQuery.of(context).size.height / 5,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: MyColors.kSecondary,
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: [
                                       BoxShadow(
@@ -271,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color:
                                               MyColors.myIconsBackgroundColor,
                                         ),
-                                        Text('Share App'),
+                                        Text('Sell your pets'),
                                       ],
                                     ),
                                   ),
@@ -362,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             height: 90,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: MyColors.kSecondary,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(1),
                 topRight: Radius.circular(1),

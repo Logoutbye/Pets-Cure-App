@@ -42,12 +42,9 @@ class _AllHospitalsState extends State<AllHospitals> {
         ),
         titleTextStyle: TextStyle(
           fontSize: 20,
-          color: Colors.black,
         ),
-        iconTheme: IconThemeData(
-          color: Color.fromARGB(255, 2, 140, 253),
-        ),
-        backgroundColor: Colors.white,
+        foregroundColor: MyColors.KWhite,
+        backgroundColor: MyColors.kPrimary,
         centerTitle: true,
       ),
       drawer: MyAppDrawer(),
@@ -76,7 +73,7 @@ class _AllHospitalsState extends State<AllHospitals> {
                             child: Text(
                               'All Hospitals in Peshawar',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: MyColors.kPrimary,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold),
                             ),

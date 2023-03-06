@@ -32,18 +32,15 @@ class _AllDoctorsState extends State<AllDoctors> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.myScaffoldBackColor,
+      backgroundColor: MyColors.KWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Color.fromARGB(255, 2, 140, 253),
-        ),
+        backgroundColor: MyColors.kPrimary,
+        foregroundColor: MyColors.KWhite,
         title: Text(
           'All Doctors',
         ),
         titleTextStyle: TextStyle(
           fontSize: 20,
-          color: Colors.black,
         ),
         centerTitle: true,
       ),
@@ -74,18 +71,18 @@ class _AllDoctorsState extends State<AllDoctors> {
                                   padding: const EdgeInsets.all(9),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: MyColors.kSecondary,
                                       borderRadius: BorderRadius.circular(20),
                                       boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black,
-                                          blurRadius: 10,
-                                          spreadRadius: 2,
-                                          offset: Offset(
-                                            0,
-                                            0,
-                                          ), // Shadow position
-                                        ),
+                                        // BoxShadow(
+                                        //   color: Colors.black,
+                                        //   blurRadius: 10,
+                                        //   spreadRadius: 2,
+                                        //   offset: Offset(
+                                        //     0,
+                                        //     0,
+                                        //   ), // Shadow position
+                                        // ),
                                       ],
                                     ),
                                     child: Padding(
@@ -162,7 +159,7 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.only(right: 30),
+                                                                              const EdgeInsets.fromLTRB(10, 0, 30, 0),
                                                                           child:
                                                                               Text(
                                                                             indexItem.doctorName!,
@@ -170,11 +167,12 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                                 TextStyle(
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.bold,
-                                                                              color: Colors.blue,
+                                                                              color: MyColors.kPrimary,
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                      SizedBox(height: 10,),
                                                                       Container(
                                                                         child:
                                                                             Row(

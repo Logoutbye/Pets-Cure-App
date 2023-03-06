@@ -4,6 +4,7 @@ import 'package:mvvm_practice_app/utils/routes/routes_names.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
+import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:mvvm_practice_app/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
         title: 'Pets App',
         theme: ThemeData(
           primarySwatch: Colors.teal,
+          // useMaterial3: true
         ),
-        home: AllHospitals(),
+        home: LoginScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,
