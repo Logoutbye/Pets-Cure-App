@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:mvvm_practice_app/view_model/all_hospitals_view_model.dart';
@@ -441,7 +442,15 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                           ),
                                                         ),
                                                       ),
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        MyStaticComponents
+                                                            .myAppDialogBox(
+                                                                context,
+                                                                'Help Line Number',
+                                                                itemIndex
+                                                                    .hospitalHelpLine!
+                                                                    .toString());
+                                                      },
                                                     ),
                                                   ),
                                                   // view profile button

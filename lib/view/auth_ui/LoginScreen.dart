@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //  backgroundColor: MyColors.KWhite,
+      //  backgroundColor: MyColors.KWhite,
       appBar: AppBar(
         backgroundColor: MyColors.kPrimary,
         foregroundColor: MyColors.KWhite,
@@ -43,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
             fontSize: 20,
           ),
         ),
-       
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -58,8 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       color: MyColors.kPrimary,
                       image: DecorationImage(
-                        colorFilter:
-                            ColorFilter.mode(MyColors.kBlack, BlendMode.softLight),
+                        colorFilter: ColorFilter.mode(
+                            MyColors.kBlack, BlendMode.softLight),
                         image: AssetImage("assets/images/pet.jpg"),
                         fit: BoxFit.cover,
                       ),
@@ -164,12 +164,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                         enabledBorder: new OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          borderSide:
-                                              BorderSide(color: Color.fromARGB(255, 180, 180, 180)),
+                                          borderSide: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 180, 180, 180)),
                                         ),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: MyColors.kPrimary),
+                                          borderSide: BorderSide(
+                                              color: MyColors.kPrimary),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
@@ -201,18 +202,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                           borderSide: BorderSide(
-                                            color: Color.fromARGB(255, 193, 198, 198),
+                                            color: Color.fromARGB(
+                                                255, 193, 198, 198),
                                             //Color.fromARGB(255, 115, 38, 38),
                                           ),
                                         ),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: MyColors.kPrimary),
+                                          borderSide: BorderSide(
+                                              color: MyColors.kPrimary),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
                                         prefixIcon: Icon(
-                                          
                                           Icons.lock,
                                           // color:
                                           //     MyColors.kPrimary,
@@ -263,6 +264,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                         );
                                       },
                                     ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  RoundButton(
+                                    title: 'Login',
+                                    onpress: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeScreen()),
+                                      );
+                                    },
+                                    width: 130,
                                   ),
                                 ],
                               ),

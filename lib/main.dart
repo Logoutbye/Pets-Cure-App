@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.teal,
         ),
-        home: AllHospitals(),
+        home: LoginScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,
