@@ -1,13 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mvvm_practice_app/res/my_app_colors.dart';
 
 class MyStaticComponents {
-  static myAppDialogBox(BuildContext context) {
+  static myAppDialogBox(BuildContext context, String title, String content) {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(''),
+            backgroundColor: MyColors.kSecondary,
+            title: Center(child: Text(title.toString())),
+            content: SelectableText(
+              content.toString(),
+              showCursor: true,
+              textAlign: TextAlign.center,
+              //toolbarOptions:
+              // ToolbarOptions(copy: true),
+            ),
+            //actionsAlignment: MainAxisAlignment.center,
+
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  child: Text(
+                    'Cancel',
+                    //style: TextStyle(color: MyColors.kSecondary),
+                  ),
+                ),
+              ),
+            ],
           );
         });
   }

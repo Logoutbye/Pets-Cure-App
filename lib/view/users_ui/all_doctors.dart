@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:provider/provider.dart';
@@ -126,7 +127,7 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                           MainAxisAlignment
                                                               .center,
                                                       children: [
-                                                        // Image of Hospital
+                                                        // Image of Doctor
                                                         Container(
                                                           width: 100,
                                                           height: 100,
@@ -140,10 +141,16 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            radius: 100,
-                                                            backgroundImage:
-                                                                AssetImage(
-                                                              'assets/images/pakflag.png',
+                                                            radius: 50,
+                                                            child: ClipOval(
+                                                              child:
+                                                                  Image.network(
+                                                                indexItem
+                                                                    .doctorImage!
+                                                                    .toString(),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -378,7 +385,15 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                           ),
                                                         ),
                                                       ),
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        MyStaticComponents
+                                                            .myAppDialogBox(
+                                                                context,
+                                                                'Mobile Number',
+                                                                indexItem
+                                                                    .doctorMobileNo!
+                                                                    .toLowerCase());
+                                                      },
                                                     ),
                                                   ),
                                                 ],
