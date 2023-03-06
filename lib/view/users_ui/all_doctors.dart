@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
+import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:provider/provider.dart';
@@ -150,6 +151,16 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                     .toString(),
                                                                 fit: BoxFit
                                                                     .cover,
+                                                                errorBuilder:
+                                                                    (context,
+                                                                        error,
+                                                                        stackTrace) {
+                                                                  return Icon(
+                                                                    Icons.error,
+                                                                    color: Colors
+                                                                        .red,
+                                                                  );
+                                                                },
                                                               ),
                                                             ),
                                                           ),
@@ -165,8 +176,11 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                       Container(
                                                                         child:
                                                                             Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.fromLTRB(10, 0, 30, 0),
+                                                                          padding: const EdgeInsets.fromLTRB(
+                                                                              10,
+                                                                              0,
+                                                                              30,
+                                                                              0),
                                                                           child:
                                                                               Text(
                                                                             indexItem.doctorName!,
@@ -179,7 +193,10 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      SizedBox(height: 10,),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            10,
+                                                                      ),
                                                                       Container(
                                                                         child:
                                                                             Row(
@@ -350,42 +367,9 @@ class _AllDoctorsState extends State<AllDoctors> {
                                               child: Column(
                                                 children: [
                                                   // Book Appointment or contact doctor
-                                                  Container(
-                                                    //color: Colors.white,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            2,
-                                                    child: OutlinedButton(
-                                                      child: Text(
-                                                        'Contact Doctor',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all<Color>(MyColors
-                                                                    .myButtonsBackgroundColor),
-                                                        shape: MaterialStateProperty
-                                                            .all<
-                                                                RoundedRectangleBorder>(
-                                                          RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            side: BorderSide(
-                                                                color: Colors
-                                                                    .black),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
+                                                  RoundButton(
+                                                      title: 'Contact Doctor',
+                                                      onpress: () {
                                                         MyStaticComponents
                                                             .myAppDialogBox(
                                                                 context,
@@ -394,8 +378,7 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                                     .doctorMobileNo!
                                                                     .toLowerCase());
                                                       },
-                                                    ),
-                                                  ),
+                                                      width: 150),
                                                 ],
                                               ),
                                             ),

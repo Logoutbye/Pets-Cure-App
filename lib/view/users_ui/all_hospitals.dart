@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
+import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:mvvm_practice_app/view_model/all_hospitals_view_model.dart';
@@ -404,91 +405,18 @@ class _AllHospitalsState extends State<AllHospitals> {
                                               child: Column(
                                                 children: [
                                                   // call helpline button
-                                                  Container(
-                                                    //color: Colors.white,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            2,
-                                                    child: OutlinedButton(
-                                                      child: Text(
-                                                        'Call Helpline',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all<Color>(MyColors
-                                                                    .myButtonsBackgroundColor),
-                                                        shape: MaterialStateProperty
-                                                            .all<
-                                                                RoundedRectangleBorder>(
-                                                          RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            side: BorderSide(
-                                                                color: Colors
-                                                                    .black),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
+                                                  RoundButton(
+                                                      title: 'Helpline',
+                                                      onpress: () {
                                                         MyStaticComponents
                                                             .myAppDialogBox(
                                                                 context,
-                                                                'Help Line Number',
+                                                                'Helpline Number',
                                                                 itemIndex
                                                                     .hospitalHelpLine!
                                                                     .toString());
                                                       },
-                                                    ),
-                                                  ),
-                                                  // view profile button
-                                                  Container(
-                                                    //color: Colors.white,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            2,
-                                                    child: OutlinedButton(
-                                                      child: Text(
-                                                        'View Profile ',
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                      ),
-                                                      style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all<Color>(MyColors
-                                                                    .myButtonsBackgroundColor),
-                                                        shape: MaterialStateProperty
-                                                            .all<
-                                                                RoundedRectangleBorder>(
-                                                          RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            side: BorderSide(
-                                                                color: Colors
-                                                                    .black),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                    ),
-                                                  )
+                                                      width: 150),
                                                 ],
                                               ),
                                             ),

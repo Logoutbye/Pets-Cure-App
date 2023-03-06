@@ -95,6 +95,7 @@ class _SignUpViewState extends State<SignUpView> {
                 height: height * 0.085,
               ),
               RoundButton(
+                  width: 200,
                   title: 'SignUp',
                   loading: authViewModel.signUploading,
                   onpress: () {
