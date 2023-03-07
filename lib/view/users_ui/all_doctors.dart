@@ -8,6 +8,7 @@ import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/view/users_ui/chat_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -374,18 +375,36 @@ class _AllDoctorsState extends State<AllDoctors> {
                                               child: Column(
                                                 children: [
                                                   // Book Appointment or contact doctor
-                                                  RoundButton(
-                                                      title: 'Contact Doctor',
-                                                      onpress: () {
-                                                        MyStaticComponents
-                                                            .myAppDialogBox(
-                                                                context,
-                                                                'Mobile Number',
-                                                                indexItem
-                                                                    .doctorMobileNo!
-                                                                    .toLowerCase());
-                                                      },
-                                                      width: 150),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      RoundButton(
+                                                          title:
+                                                              'Contact Doctor',
+                                                          onpress: () {
+                                                            MyStaticComponents
+                                                                .myAppDialogBox(
+                                                                    context,
+                                                                    'Mobile Number',
+                                                                    indexItem
+                                                                        .doctorMobileNo!
+                                                                        .toLowerCase());
+                                                          },
+                                                          width: 150),
+                                                          SizedBox(width: 10,),
+                                                      RoundButton(
+                                                          title: 'Chat',
+                                                          onpress: () {
+                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatScreen()));
+                                                          },
+                                                          width: 50),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ),
