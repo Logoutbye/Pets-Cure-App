@@ -8,4 +8,5 @@ class AppUrl {
   static var allDoctorsUrl = petsCureBaseUrl + 'doc';
 
   static var allHospitalsUrl = petsCureBaseUrl + 'hosp';
+  static var allPetsMarketUrl = petsCureBaseUrl + 'pets';
 }
