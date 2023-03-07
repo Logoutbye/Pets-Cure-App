@@ -20,7 +20,8 @@ class NetworkApiServece extends BaseApiServeces {
       responseJson = returnResponse(response);
       //print("type of response : " + responseJson[0]);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
+      throw FetchDataException(
+          ' No Internet Connection \n Check your connection, then refresh the page.');
     }
 
     return responseJson;
@@ -38,7 +39,8 @@ class NetworkApiServece extends BaseApiServeces {
       );
       responseJson = returnResponse(response);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
+      throw FetchDataException(
+          ' No Internet Connection \n Check your connection, then refresh the page.');
     }
 
     return responseJson;
@@ -56,7 +58,7 @@ class NetworkApiServece extends BaseApiServeces {
         throw UnAuthorizedException(response.body.toString());
       default:
         throw FetchDataException(
-            'Error Occured while Comunicating with server with Status Code ${response.statusCode.toString()}');
+            ' Error Occured while Comunicating with server with Status Code ${response.statusCode.toString()}');
     }
   }
 }

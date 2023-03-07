@@ -70,25 +70,12 @@ class _AllHospitalsState extends State<AllHospitals> {
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 150),
-                            child: Text(
-                              'All Hospitals in Peshawar',
-                              style: TextStyle(
-                                  color: MyColors.kPrimary,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 150),
-                            child: Text(
-                              '10 Million+ People Have Used Marham',
-                              style: TextStyle(
-                                color: MyColors.kBlack,
-                                fontSize: 11,
-                              ),
-                            ),
+                          Text(
+                            'Chosse Hospital',
+                            style: TextStyle(
+                                color: MyColors.kPrimary,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -203,8 +190,11 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                       Container(
                                                                         child:
                                                                             Padding(
-                                                                          padding:
-                                                                              const EdgeInsets.fromLTRB(10, 0, 30, 0),
+                                                                          padding: const EdgeInsets.fromLTRB(
+                                                                              10,
+                                                                              0,
+                                                                              30,
+                                                                              0),
                                                                           child:
                                                                               Text(
                                                                             itemIndex.hospitalName!,
@@ -217,7 +207,10 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      SizedBox(height: 2,),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            2,
+                                                                      ),
                                                                       // Hospital address
                                                                       Container(
                                                                         child:
