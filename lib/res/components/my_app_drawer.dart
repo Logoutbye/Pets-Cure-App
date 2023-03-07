@@ -5,6 +5,7 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
+import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 
 class MyAppDrawer extends StatefulWidget {
   const MyAppDrawer({super.key});
@@ -35,6 +36,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                   Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Profile Image
                   Container(
                     width: 80,
                     height: 80,
@@ -43,6 +45,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                       backgroundImage: AssetImage('assets/images/pet.jpg'),
                     ),
                   ),
+                  // USer Name
                   Text(
                     'Idrees Afridi',
                     style: TextStyle(
@@ -51,6 +54,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                       color: Colors.white,
                     ),
                   ),
+                  // Gmail
                   Text(
                     'idrees@gmail.com',
                     style: TextStyle(
@@ -64,40 +68,44 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             ),
           ),
           // Divider(),
-          // privacy Policy
+          // Dashboard
           ListTile(
             focusColor: Colors.red,
             hoverColor: Colors.amberAccent,
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
             leading: Icon(
-              Icons.privacy_tip,
+              Icons.dashboard_outlined,
               color: MyColors.myButtonsBackgroundColor,
             ),
             title: Text(
-              "Privacy Policy",
+              "Dashboard",
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
-              // Navigator.of(context).pop();
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) {
-              //   return searchKeywordScreen();
-              // }));
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return HomeScreen();
+              }));
             },
           ), //Dashboard
-          // search Doctor
+          // All Doctor
           ListTile(
             focusColor: Colors.red,
             hoverColor: Colors.amberAccent,
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
-            leading: Icon(
-              Icons.person,
-              color: MyColors.myButtonsBackgroundColor,
+            leading: ImageIcon(
+              AssetImage("assets/images/doctor.png"),
+              size: 33,
+              color: MyColors.kPrimary,
             ),
+            // Icon(
+            //   Icons.person,
+            //   color: MyColors.myButtonsBackgroundColor,
+            // ),
             title: Text(
-              "Search Doctor",
+              "All Doctors",
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
@@ -113,9 +121,10 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             hoverColor: Colors.amberAccent,
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
-            leading: Icon(
-              Icons.local_hospital,
-              color: MyColors.myButtonsBackgroundColor,
+            leading: ImageIcon(
+              AssetImage("assets/images/hospitalk.png"),
+              size: 27,
+              color: MyColors.kPrimary,
             ),
             title: Text(
               "View Hospitals",
@@ -134,9 +143,10 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             hoverColor: Colors.amberAccent,
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
-            leading: Icon(
-              Icons.pets,
-              color: MyColors.myButtonsBackgroundColor,
+            leading: ImageIcon(
+              AssetImage("assets/images/pets-market.png"),
+              size: 30,
+              color: MyColors.kPrimary,
             ),
             title: Text(
               "Pets Market",
@@ -192,7 +202,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
             leading: Icon(
-              Icons.contact_page_sharp,
+              Icons.contact_page_outlined,
               color: MyColors.myButtonsBackgroundColor,
             ),
             title: Text(
@@ -215,7 +225,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
             leading: Icon(
-              Icons.star,
+              Icons.star_outline,
               color: MyColors.myButtonsBackgroundColor,
             ),
             title: Text(
@@ -238,11 +248,34 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             selectedColor: Colors.white,
             selectedTileColor: Colors.green,
             leading: Icon(
-              Icons.share,
+              Icons.share_outlined,
               color: MyColors.myButtonsBackgroundColor,
             ),
             title: Text(
               "Share",
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+            onTap: () {
+              // Navigator.of(context).pop();
+              // Navigator.of(context)
+              //     .push(MaterialPageRoute(builder: (context) {
+              //   return searchKeywordScreen();
+              // }));
+            },
+          ), //Dashboard
+
+          // privacy Policy
+          ListTile(
+            focusColor: Colors.red,
+            hoverColor: Colors.amberAccent,
+            selectedColor: Colors.white,
+            selectedTileColor: Colors.green,
+            leading: Icon(
+              Icons.privacy_tip_outlined,
+              color: MyColors.myButtonsBackgroundColor,
+            ),
+            title: Text(
+              "Privacy Policy",
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {

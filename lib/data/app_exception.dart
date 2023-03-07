@@ -12,21 +12,21 @@ class AppException implements Exception {
 // Time expired error while communication
 class FetchDataException extends AppException {
   FetchDataException([String? message])
-      : super(message, 'Error During Communication');
+      : super(message, 'Error During Communication:');
 }
 
 // invlid url or route
 class BadRequestException extends AppException {
-  BadRequestException([String? message]) : super(message, 'Invlid Request');
+  BadRequestException([String? message]) : super(message, 'Invlid Request:');
 }
 
 // invalid token for authorization
 class UnAuthorizedException extends AppException {
   UnAuthorizedException([String? message])
-      : super(message, 'Un-Authorized Request');
+      : super(message, 'Un-Authorized Request:');
 }
 
 // invalid input data
 class InvilidInputException extends AppException {
-  InvilidInputException([String? message]) : super(message, 'Invalid Input');
+  InvilidInputException([String? message]) : super(message, 'Invalid Input:');
 }
