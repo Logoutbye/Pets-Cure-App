@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: MyColors.KWhite,
       appBar: AppBar(
         backgroundColor: MyColors.kPrimary,
-        foregroundColor: MyColors.KWhite ,
+        foregroundColor: MyColors.KWhite,
         title: Text(
           'Pets Care',
         ),
@@ -106,8 +106,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(Icons.person,
-                                            size: 50, color: MyColors.kPrimary),
+                                        ImageIcon(
+                                          AssetImage(
+                                              "assets/images/doctor.png"),
+                                          size: 72,
+                                          color: MyColors.kPrimary,
+                                        ),
+                                         SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              70,
+                                        ),
                                         Text('All Doctors'),
                                       ],
                                     ),
@@ -151,8 +161,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(Icons.local_hospital,
-                                            size: 50, color: MyColors.kPrimary),
+                                        ImageIcon(
+                                          AssetImage(
+                                              "assets/images/hospitalk.png"),
+                                          size: 72,
+                                          color: MyColors.kPrimary,
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              70,
+                                        ),
                                         Text('View Hospitals'),
                                       ],
                                     ),
@@ -223,12 +243,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.pets,
-                                          size: 50,
-                                          color:
-                                              MyColors.myIconsBackgroundColor,
+                                        ImageIcon(
+                                          AssetImage(
+                                              "assets/images/pets-market.png"),
+                                          size: 72,
+                                          color: MyColors.kPrimary,
                                         ),
+                                         SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              70,
+                                        ),
+                                        
                                         Text('Pets Market'),
                                       ],
                                     ),
@@ -241,8 +268,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               // Share App Button
                               InkWell(
                                 onTap: () {
-                                   Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) =>PetsRegistration()));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          PetsRegistration()));
                                 },
                                 child: Container(
                                   width:
@@ -269,11 +297,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.share,
-                                          size: 50,
-                                          color:
-                                              MyColors.myIconsBackgroundColor,
+                                        ImageIcon(
+                                          AssetImage(
+                                              "assets/images/acquisition.png"),
+                                          size: 72,
+                                          color: MyColors.kPrimary,
+                                        ),
+                                         SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              70,
                                         ),
                                         Text('Sell your pets'),
                                       ],
@@ -301,91 +335,92 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomSheet: BottomSheet(
-        backgroundColor: MyColors.myScaffoldBackColor,
-        onClosing: () {},
-        builder: (context) {
-          return Container(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              //height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  top: 20,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'About US',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SingleChildScrollView(
-                      // scrollDirection: Axis.horizontal,
-                      child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            child: Image.asset(
-                                'assets/images/aboutusImages/youtubeIcon.png'),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                            width: 35,
-                            height: 35,
-                            child: Image.asset(
-                                'assets/images/aboutusImages/facebookIcon.png'),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                            width: 35,
-                            height: 35,
-                            child: Image.asset(
-                                'assets/images/aboutusImages/kawishIcon.png'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            height: 90,
-            decoration: BoxDecoration(
-              color: MyColors.kSecondary,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(1),
-                topRight: Radius.circular(1),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                  offset: Offset(
-                    0,
-                    5,
-                  ), // Shadow position
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+      // bottomSheet: BottomSheet(
+      //   backgroundColor: MyColors.myScaffoldBackColor,
+      //   onClosing: () {},
+      //   builder: (context) {
+      //     return Container(
+      //       child: Container(
+      //         width: MediaQuery.of(context).size.width,
+      //         //height: 120,
+      //         child: Padding(
+      //           padding: const EdgeInsets.only(
+      //             left: 20,
+      //             top: 20,
+      //           ),
+      //           child: Column(
+      //             children: [
+      //               Row(
+      //                 children: [
+      //                   Text(
+      //                     'About US',
+      //                     style: TextStyle(
+      //                       fontWeight: FontWeight.bold,
+      //                       color: Colors.black,
+      //                       fontSize: 16,
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //               SingleChildScrollView(
+      //                 // scrollDirection: Axis.horizontal,
+      //                 child: Row(
+      //                   //mainAxisAlignment: MainAxisAlignment.start,
+      //                   children: [
+      //                     Container(
+      //                       width: 50,
+      //                       height: 50,
+      //                       child: Image.asset(
+      //                           'assets/images/aboutusImages/youtubeIcon.png'),
+      //                     ),
+      //                     SizedBox(
+      //                       width: 15,
+      //                     ),
+      //                     Container(
+      //                       width: 35,
+      //                       height: 35,
+      //                       child: Image.asset(
+      //                           'assets/images/aboutusImages/facebookIcon.png'),
+      //                     ),
+      //                     SizedBox(
+      //                       width: 15,
+      //                     ),
+      //                     Container(
+      //                       width: 35,
+      //                       height: 35,
+      //                       child: Image.asset(
+      //                           'assets/images/aboutusImages/kawishIcon.png'),
+      //                     ),
+      //                   ],
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //       ),
+      //       height: 90,
+      //       decoration: BoxDecoration(
+      //         color: MyColors.kSecondary,
+      //         borderRadius: BorderRadius.only(
+      //           topLeft: Radius.circular(1),
+      //           topRight: Radius.circular(1),
+      //         ),
+      //         boxShadow: [
+      //           BoxShadow(
+      //             color: Colors.black,
+      //             blurRadius: 15,
+      //             spreadRadius: 2,
+      //             offset: Offset(
+      //               0,
+      //               5,
+      //             ), // Shadow position
+      //           ),
+      //         ],
+      //       ),
+      //     );
+      //   },
+      // ),
+   
     );
   }
 }
