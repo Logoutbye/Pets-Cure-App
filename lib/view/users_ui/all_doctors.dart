@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
@@ -52,7 +53,13 @@ class _AllDoctorsState extends State<AllDoctors> {
         child: Consumer<AllDoctorsViewModel>(builder: (context, value, child) {
           switch (value.allDoctorList.status!) {
             case Status.LOADING:
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                child: Lottie.asset(
+                  'assets/lottie/loading.json',
+                  width: 100,
+                  fit: BoxFit.fill,
+                ),
+              );
             case Status.COMPLETED:
               return SingleChildScrollView(
                 child: Column(
@@ -405,7 +412,26 @@ class _AllDoctorsState extends State<AllDoctors> {
             case Status.ERROR:
               print(value.allDoctorList.message.toString());
               return Center(
-                  child: Text(value.allDoctorList.message.toString()));
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(value.allDoctorList.message.toString()),
+                  TextButton(
+                      onPressed: () {
+                        allDoctorsViewModel.fetchAllDoctorsDataFromApiFunc();
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width/5,
+                        decoration: BoxDecoration(
+                          color: MyColors.kSecondary,
+                          border: Border.all(width: 1,color: MyColors.kPrimary),borderRadius: BorderRadius.all(Radius.circular(29))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(child: Text("Refresh",style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold),)),
+                        ))),
+                ],
+              ));
           }
         }),
       ),

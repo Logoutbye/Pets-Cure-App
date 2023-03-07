@@ -2,6 +2,8 @@
 
 //import 'dart:ffi';
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
@@ -118,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .height /
                                               70,
                                         ),
-                                        Text('All Doctors'),
+                                        Text('All Doctors',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold),),
                                       ],
                                     ),
                                   ),
@@ -173,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .height /
                                               70,
                                         ),
-                                        Text('View Hospitals'),
+                                        Text('View Hospitals',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),
@@ -256,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               70,
                                         ),
                                         
-                                        Text('Pets Market'),
+                                        Text('Pets Market',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),
@@ -309,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .height /
                                               70,
                                         ),
-                                        Text('Sell your pets'),
+                                        Text('Sell your pets',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),

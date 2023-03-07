@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
@@ -55,8 +56,13 @@ class _AllHospitalsState extends State<AllHospitals> {
         child: Consumer<AllHospitalViewModel>(builder: (context, value, child) {
           switch (value.allHospitals.status!) {
             case Status.LOADING:
-              return Center(child: CircularProgressIndicator());
-
+              return  Center(
+                child: Lottie.asset(
+                  'assets/lottie/loading.json',
+                  width: 100,
+                  fit: BoxFit.fill,
+                ),
+              );
             case Status.COMPLETED:
               return SingleChildScrollView(
                 child: Column(
