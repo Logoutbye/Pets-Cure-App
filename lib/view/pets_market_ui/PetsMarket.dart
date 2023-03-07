@@ -31,18 +31,17 @@ class _PetsMarketState extends State<PetsMarket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.myScaffoldBackColor,
+      backgroundColor: MyColors.KWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Color.fromARGB(255, 2, 140, 253),
-        ),
+        backgroundColor: MyColors.kPrimary,
+        foregroundColor: MyColors.KWhite,
+       
         title: Text(
           'Pets Market',
         ),
         titleTextStyle: TextStyle(
           fontSize: 20,
-          color: Colors.black,
+          
         ),
         centerTitle: true,
       ),
@@ -71,19 +70,19 @@ class _PetsMarketState extends State<PetsMarket> {
                       child: Text(
                         usersName[index],
                         style: TextStyle(
-                          color: Colors.white,
+                          color: MyColors.KWhite,
                         ),
                       ),
                     ),
                     subtitle: Container(
                       child: Text(
                         '1 Day Ago',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: MyColors.KWhite),
                       ),
                     ),
                     trailing: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: MyColors.kSecondary,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Padding(
@@ -99,7 +98,7 @@ class _PetsMarketState extends State<PetsMarket> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Colors.white,
+                    color: MyColors.kSecondary,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black,
@@ -164,7 +163,7 @@ class _PetsMarketState extends State<PetsMarket> {
                                           'Rs10,000',
                                           style: TextStyle(
                                             fontSize: 16,
-                                            color: Colors.white,
+                                            color: MyColors.KWhite,
                                           ),
                                         ),
                                       ),
