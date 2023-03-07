@@ -421,15 +421,24 @@ class _AllDoctorsState extends State<AllDoctors> {
                         allDoctorsViewModel.fetchAllDoctorsDataFromApiFunc();
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width/5,
-                        decoration: BoxDecoration(
-                          color: MyColors.kSecondary,
-                          border: Border.all(width: 1,color: MyColors.kPrimary),borderRadius: BorderRadius.all(Radius.circular(29))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(child: Text("Refresh",style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold),)),
-                        ))),
+                          margin: EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width / 5,
+                          decoration: BoxDecoration(
+                              color: MyColors.kSecondary,
+                              border: Border.all(
+                                  width: 1, color: MyColors.kPrimary),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(29))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                              "Refresh",
+                              style: TextStyle(
+                                  color: MyColors.kPrimary,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                          ))),
                 ],
               ));
           }
