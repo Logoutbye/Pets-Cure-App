@@ -11,17 +11,25 @@ import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:mvvm_practice_app/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main()async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  final showHome = prefs.getBool('showHome') ?? false;
+  runApp(MyApp(showHome: showHome));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool showHome;
+
+  const MyApp({super.key, required  this.showHome});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
@@ -35,7 +43,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           // useMaterial3: true
         ),
-        home: LoginScreen(),
+        home: showHome ? HomeScreen():LoginScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,

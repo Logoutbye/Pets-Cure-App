@@ -7,6 +7,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/view/chats/all_chats_screen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
@@ -36,6 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
           fontSize: 20,
         ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AllChatScreen()));
+            }, icon: Icon(Icons.chat)),
+          )
+        ],
       ),
       drawer: MyAppDrawer(),
       body: Container(
