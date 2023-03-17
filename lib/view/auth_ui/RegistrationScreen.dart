@@ -1,27 +1,22 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
-import 'package:mvvm_practice_app/view/auth_ui/RegistrationScreen.dart';
-import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
-import 'package:mvvm_practice_app/view_model/login_get_api_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController mobileNumber = TextEditingController();
-  TextEditingController Password = TextEditingController();
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  TextEditingController mobileNumberTextController = TextEditingController();
+  TextEditingController PasswordTextController = TextEditingController();
+  TextEditingController nameTextControl = TextEditingController();
   bool _showSpinner = false;
 
   //Function to send OTP to User
@@ -49,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         foregroundColor: MyColors.KWhite,
         centerTitle: true,
         title: Text(
-          'Login to your Account',
+          'Create Account',
           style: TextStyle(
             fontSize: 20,
           ),
@@ -146,10 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     // Login Text
                                     Container(
                                       child: Text(
-                                        'Login',
+                                        'It\'s quick and easy !',
                                         style: TextStyle(
                                           color: MyColors.kPrimary,
-                                          fontSize: 30,
+                                          fontSize: 25,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -161,8 +156,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Container(
                                       // color: Colors.red,
                                       child: TextField(
-                                        controller: mobileNumber,
-                                        // maxLength: 11,
+                                        controller: nameTextControl,
+                                        maxLength: 11,
+                                        onTap: () {},
+                                        keyboardType: TextInputType.name,
+                                        // inputFormatters: [
+                                        //   FilteringTextInputFormatter.digitsOnly,
+                                        // ],
+                                        style: TextStyle(
+                                          color: MyColors.kBlack,
+                                          // fontSize: 18,
+                                        ),
+                                        decoration: InputDecoration(
+                                          // hintText: 'User',
+                                          labelText: 'Name',
+                                          labelStyle: TextStyle(
+                                              color: MyColors.kPrimary),
+                                          hintStyle: TextStyle(
+                                              color: MyColors.kPrimary),
+                                          enabledBorder: new OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 180, 180, 180)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: MyColors.kPrimary),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          prefixIcon: Icon(Icons.flag),
+                                        ),
+                                      ),
+                                    ),
+
+                                    Container(
+                                      // color: Colors.red,
+                                      child: TextField(
+                                        controller: mobileNumberTextController,
+                                        maxLength: 88,
                                         onTap: () {},
                                         keyboardType:
                                             TextInputType.emailAddress,
@@ -204,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Container(
                                       // color: Colors.red,
                                       child: TextField(
-                                        controller: Password,
+                                        controller: PasswordTextController,
                                         obscureText: true,
                                         onTap: () {},
                                         style: TextStyle(
@@ -247,64 +281,41 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 30,
                                     ),
                                     RoundButton(
-                                      title: 'Login',
+                                      title: 'Sign Up',
                                       onpress: () {
-                                        // mobileNumber.text.isEmpty
+                                        // nameTextControl.text.length < 1
                                         //     ? Utils.flushBarErrorMessage(
-                                        //         "Please Enter Phone Number",
-                                        //         context)
-                                        //     : mobileNumber.text.length < 11
+                                        //         "Name cannot be empty ", context)
+                                        //     : mobileNumberTextController
+                                        //             .text.isEmpty
                                         //         ? Utils.flushBarErrorMessage(
-                                        //             "Please Enter Full Phone Number",
-                                        //             context)
-                                        //         : Password.text.length == 0
+                                        //             "Please Enter Phone Number", context)
+                                        //         : mobileNumberTextController
+                                        //                     .text.length <
+                                        //                 11
                                         //             ? Utils.flushBarErrorMessage(
-                                        //                 "Please Enter Password",
-                                        //                 context)
-                                        //             : Password.text.length < 6
+                                        //                 "Please Enter Full Phone Number", context)
+                                        //             : PasswordTextController
+                                        //                         .text.length ==
+                                        //                     0
                                         //                 ? Utils.flushBarErrorMessage(
-                                        //                     "Please Enter Minimum of 6 Characters",
+                                        //                     "Please Enter Password",
                                         //                     context)
-                                        //                 :
-                                        SignIn(mobileNumber, Password);
+                                        //                 : PasswordTextController
+                                        //                             .text
+                                        //                             .length <
+                                        //                         6
+                                        //                     ? Utils.flushBarErrorMessage(
+                                        //                         "Please Enter Minimum of 6 Characters",
+                                        //                         context)
+                                        //                     : 
+                                        SignUP(
+                                                                nameTextControl.text,
+                                                                mobileNumberTextController.text,
+                                                                PasswordTextController.text);
                                       },
                                       width: 140,
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    RegistrationScreen()));
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 30),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text("Dont have an account? "),
-                                                Text(
-                                                  "Create Now",
-                                                  style: TextStyle(
-                                                      color: MyColors.kPrimary,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
@@ -324,91 +335,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Future<void> getData(var name, var phone) async {
-  //   var url =
-  //       Uri.parse('https://kawiishapps.com/api/signup');
-  //   var response = await http.get(url);
-  //   if (response.statusCode == 200) {
-  //     // Success
-  //     var data = json.decode(response.body);
-  //     print("${data['mobile_no']}");
-  //     // Check if data exists in database
-  //     // Allow user to login if data exists
-  //   } else {
-  //     // Error
-  //     print('Error: ${response.reasonPhrase}');
-  //   }
-  // }
-
-  SignIn(var mobile_number, var password) async {
+  SignUP( var name, var mobile_number, var password) async {
     setState(() {
       _showSpinner = true;
     });
     try {
-      var request =
-          http.Request('GET', Uri.parse('https://kawiishapps.com/api/signup'));
+      Response response = await post(
+        // Uri.parse("https://reqres.in/api/register"),
+        Uri.parse("https://kawiishapps.com/api/postsignup"),
 
-      http.StreamedResponse response = await request.send();
-
+        body: {'name': name,'mobile_no':mobile_number,  'token': password},
+      );
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
-        // var data = jsonDecode(await response.stream.bytesToString());
-        // print("data from api ${data[0]},");
+        print("/////////////////DATA in DAtabase");
 
-        // if (data['mobile_no'] == mobile_number && data['token'] == password) {
-        Utils.toastMessage("Login In Successful");
-        var prefs = await SharedPreferences.getInstance();
-        prefs.setBool('showHome', true);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
-        // } else {
-        //   Utils.flushBarErrorMessage("Please enter correct fileds", context);
-        // }
+        Utils.toastMessage("Account Created Successfully");
+        Navigator.pop(context);
       } else {
-        print(response.reasonPhrase);
-        Utils.flushBarErrorMessage("Log In Failed", context);
+        Utils.flushBarErrorMessage("Failed", context);
       }
     } catch (e) {
       print("Exception::${e}");
-      Utils.flushBarErrorMessage("Sorry try again", context);
+      Utils.flushBarErrorMessage("Sign Up Failed", context);
     }
     setState(() {
       _showSpinner = false;
     });
   }
-
-  // List<LoginGetApiModel> model = [];
-  // Future<List<LoginGetApiModel>> getPostApi(
-  //     var mobile_number, var password) async {
-  //   setState(() {
-  //     _showSpinner = true;
-  //   });
-  //   try {
-  //     final reponse =
-  //         await http.get(Uri.parse("https://kawiishapps.com/api/signup"));
-  //     if (reponse.statusCode == 200) {
-  //       var data = jsonDecode(reponse.body);
-  //       print(data['mobile_no']);
-  //       for (var i in data) {
-  //         model.add(LoginGetApiModel.fromJson(i));
-  //       }
-  //       print("llllll${model.length}");
-  //       setState(() {
-  //         _showSpinner = false;
-  //       });
-  //       return model;
-  //     } else {
-  //       return model;
-  //     }
-  //   } catch (e) {
-  //     print("Exception::${e}");
-  //     Utils.flushBarErrorMessage("Log In Failed", context);
-  //   }
-  //   setState(() {
-  //     _showSpinner = false;
-  //   });
-  //   return model;
-  // }
 }

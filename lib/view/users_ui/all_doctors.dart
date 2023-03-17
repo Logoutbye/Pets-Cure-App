@@ -8,7 +8,7 @@ import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
-import 'package:mvvm_practice_app/view/users_ui/chat_screen.dart';
+import 'package:mvvm_practice_app/view/chats/chat_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +22,10 @@ class AllDoctors extends StatefulWidget {
 class _AllDoctorsState extends State<AllDoctors> {
   // creating object of viewmodel class to then fetch all the doctors from api
   AllDoctorsViewModel allDoctorsViewModel = AllDoctorsViewModel();
+
+
+
+  
 
   @override
   void initState() {
@@ -400,7 +404,9 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                       RoundButton(
                                                           title: 'Chat',
                                                           onpress: () {
-                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatScreen()));
+                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatScreen(
+                                                              Name:indexItem.doctorName!,
+                                                              Pic:indexItem.doctorImage!,)));
                                                           },
                                                           width: 50),
                                                     ],

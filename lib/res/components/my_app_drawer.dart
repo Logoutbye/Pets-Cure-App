@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAppDrawer extends StatefulWidget {
   const MyAppDrawer({super.key});
@@ -84,9 +86,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             ),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return HomeScreen();
-              }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              //   return HomeScreen();
+              // }));
             },
           ), //Dashboard
           // All Doctor
@@ -286,6 +288,32 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               // }));
             },
           ), //Dashboard
+
+               ListTile(
+            focusColor: Colors.red,
+            hoverColor: Colors.amberAccent,
+            selectedColor: Colors.white,
+            selectedTileColor: Colors.green,
+            leading: Icon(
+              Icons.logout,
+              color: MyColors.myButtonsBackgroundColor,
+            ),
+            title: Text(
+              "Logout",
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+            onTap: () async{
+              var prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('showHome', false);
+              Navigator.of(context).pop();
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                return LoginScreen();
+              }));
+            },
+          ), 
+
+
         ],
       ),
     );
