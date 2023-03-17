@@ -13,6 +13,7 @@ class AllPetsMarketRepository {
       List<dynamic> response =
           await _apiServeces.getGetApiResponse(AppUrl.allPetsMarketUrl);
 
+      // print('$response');
       return response.map((e) => PetsMarketModel.fromJson(e)).toList();
     } catch (e) {
       throw e;

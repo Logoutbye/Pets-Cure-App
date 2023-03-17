@@ -46,9 +46,14 @@ dependencies:
   grouped_list: ^5.1.2
   intl: ^0.18.0
 
+  image_picker: ^0.8.6+4
+
+  modal_progress_hud_nsn: ^0.3.0
+
 
   flutter_launcher_icons: ^0.12.0
   flutter_native_splash: ^2.2.18
+  ndialog: ^4.3.0
   
 
 dev_dependencies:

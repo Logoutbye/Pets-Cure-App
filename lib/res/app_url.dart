@@ -9,4 +9,6 @@ class AppUrl {
 
   static var allHospitalsUrl = petsCureBaseUrl + 'hosp';
   static var allPetsMarketUrl = petsCureBaseUrl + 'pets';
+
+  static var AddPetUsingPostApiUrl = petsCureBaseUrl + 'postpets';
 }

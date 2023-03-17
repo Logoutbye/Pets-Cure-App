@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
-import 'package:mvvm_practice_app/view/registration/pets_registration.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 
@@ -114,13 +114,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                           size: 72,
                                           color: MyColors.kPrimary,
                                         ),
-                                         SizedBox(
+                                        SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
                                               70,
                                         ),
-                                        Text('All Doctors',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold),),
+                                        Text(
+                                          'All Doctors',
+                                          style: TextStyle(
+                                              color: MyColors.kPrimary,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -175,7 +180,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .height /
                                               70,
                                         ),
-                                        Text('View Hospitals',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
+                                        Text('View Hospitals',
+                                            style: TextStyle(
+                                                color: MyColors.kPrimary,
+                                                fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),
@@ -251,14 +259,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           size: 72,
                                           color: MyColors.kPrimary,
                                         ),
-                                         SizedBox(
+                                        SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
                                               70,
                                         ),
-                                        
-                                        Text('Pets Market',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
+                                        Text('Pets Market',
+                                            style: TextStyle(
+                                                color: MyColors.kPrimary,
+                                                fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),
@@ -305,13 +315,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           size: 72,
                                           color: MyColors.kPrimary,
                                         ),
-                                         SizedBox(
+                                        SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
                                               70,
                                         ),
-                                        Text('Sell your pets',style: TextStyle(color: MyColors.kPrimary,fontWeight: FontWeight.bold)),
+                                        Text('Sell your pets',
+                                            style: TextStyle(
+                                                color: MyColors.kPrimary,
+                                                fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ),
@@ -422,7 +435,6 @@ class _HomeScreenState extends State<HomeScreen> {
       //     );
       //   },
       // ),
-   
     );
   }
 }

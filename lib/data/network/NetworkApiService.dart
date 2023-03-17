@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:mvvm_practice_app/data/app_exception.dart';
 import 'package:mvvm_practice_app/data/network/BaseApiService.dart';
@@ -45,6 +46,66 @@ class NetworkApiServece extends BaseApiServeces {
     }
 
     return responseJson;
+  }
+
+  // post data using api with file uploading
+
+  @override
+  Future getPostApiResponseWithFile(String Url, data, File? file) async {
+    dynamic responseJson;
+
+    try {
+      var stream = new http.ByteStream(file!.openRead());
+
+      stream.cast();
+
+      var length = await file.length();
+
+      var uri = Uri.parse('https://kawiishapps.com/api/postpets');
+
+      var request = new http.MultipartRequest('POST', uri);
+
+      request.fields.addAll(data);
+
+      request.files
+          .add(await http.MultipartFile.fromPath('file', '${file.path}'));
+
+      var response = await request.send();
+
+      print(response.stream.toString());
+      if (response.statusCode == 200) {
+        // decoding StreamResponse body and then returning in responseJson variable
+        response.stream.listen((dataa) {
+          final decodedData = utf8.decode(dataa);
+
+          responseJson = decodedData;
+        });
+
+        return responseJson;
+
+        if (kDebugMode) {
+          print('image uploaded');
+        }
+      } else {
+        if (kDebugMode) {
+          print('failed');
+          print("My Status Code : ${response.statusCode}");
+          throw FetchDataException(
+              ' Some Thing went wrong with  ${response.statusCode.toString()}');
+        }
+      }
+
+      // Response response = await post(
+      //   Uri.parse(Url),
+      //   body: data,
+      // );
+      // responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException(
+          ' No Internet Connection \n Check your connection, then refresh the page.');
+    }
+
+    //return responseJson;
   }
 
   dynamic returnResponse(http.Response response) {

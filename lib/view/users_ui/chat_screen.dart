@@ -77,8 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
-            itemBuilder: (context, Message message) =>
-             Align(
+            itemBuilder: (context, Message message) => Align(
               alignment: message.issentByMe
                   ? Alignment.centerRight
                   : Alignment.centerLeft,
@@ -91,22 +90,22 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           )),
-
-          
           Container(
             color: MyColors.kSecondary,
             child: Row(
-              children:<Widget> [
+              children: <Widget>[
                 Expanded(
                   child: TextField(
                     controller: textController,
                     decoration: InputDecoration(
-                      fillColor: MyColors.kSecondary,
+                        fillColor: MyColors.kSecondary,
                         contentPadding: EdgeInsets.all(8),
                         hintText: "Type your message here"),
                     onSubmitted: (text) {
                       final messages = Message(
-                          text: text, dateTime: DateTime.now(), issentByMe: true);
+                          text: text,
+                          dateTime: DateTime.now(),
+                          issentByMe: true);
                       setState(() => message.add(messages));
                     },
                   ),
