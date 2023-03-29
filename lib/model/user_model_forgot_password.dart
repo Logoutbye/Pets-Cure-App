@@ -1,15 +1,18 @@
-class LoginGetApiModel {
+class UserModelForForgotPassword {
   int? id;
   String? name;
-  int? mobileNo;
+  String? mobileNo;
+  String? email;
   String? token;
 
-  LoginGetApiModel({this.id, this.name, this.mobileNo, this.token});
+  UserModelForForgotPassword(
+      {this.id, this.name, this.mobileNo, this.email, this.token});
 
-  LoginGetApiModel.fromJson(Map<String, dynamic> json) {
+  UserModelForForgotPassword.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     mobileNo = json['mobile_no'];
+    email = json['email'];
     token = json['token'];
   }
 
@@ -18,6 +21,7 @@ class LoginGetApiModel {
     data['id'] = this.id;
     data['name'] = this.name;
     data['mobile_no'] = this.mobileNo;
+    data['email'] = this.email;
     data['token'] = this.token;
     return data;
   }

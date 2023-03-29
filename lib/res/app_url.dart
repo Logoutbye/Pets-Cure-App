@@ -11,4 +11,10 @@ class AppUrl {
   static var allPetsMarketUrl = petsCureBaseUrl + 'pets';
 
   static var AddPetUsingPostApiUrl = petsCureBaseUrl + 'postpets';
+
+  static var signUpUserUrl = petsCureBaseUrl + 'postsignup';
+
+  static var forgotPasswordUrl = petsCureBaseUrl + 'forgotpassword/';
+
+  static var signInUrl = petsCureBaseUrl + 'signin/';
 }

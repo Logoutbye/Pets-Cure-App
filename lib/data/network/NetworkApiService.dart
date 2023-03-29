@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:http/http.dart';
 import 'package:mvvm_practice_app/data/app_exception.dart';
 import 'package:mvvm_practice_app/data/network/BaseApiService.dart';
@@ -112,12 +113,18 @@ class NetworkApiServece extends BaseApiServeces {
     switch (response.statusCode) {
       case 200:
         var responseJson = jsonDecode(response.body);
-        //print("My Api Response Data : " + json.decode(response.body));
+        if (kDebugMode) {
+          print("My Api Response Data In Netwrok Layer :  + $responseJson");
+        }
+
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());
       case 404:
         throw UnAuthorizedException(response.body.toString());
+      case 500:
+        throw InvalidConfigException(
+            'Mobile number is already resgistered! please use other');
       default:
         throw FetchDataException(
             ' Error Occured while Comunicating with server with Status Code ${response.statusCode.toString()}');

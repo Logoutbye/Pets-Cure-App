@@ -9,7 +9,8 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/auth_ui/RegistrationScreen.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
-import 'package:mvvm_practice_app/view_model/login_get_api_model.dart';
+import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -42,282 +43,401 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //  backgroundColor: MyColors.KWhite,
-      appBar: AppBar(
-        backgroundColor: MyColors.kPrimary,
-        foregroundColor: MyColors.KWhite,
-        centerTitle: true,
-        title: Text(
-          'Login to your Account',
-          style: TextStyle(
-            fontSize: 20,
+    var authViewModel = Provider.of<AuthViewModel>(context);
+    return ModalProgressHUD(
+      inAsyncCall: authViewModel.forgotLoading,
+      progressIndicator: Lottie.asset(
+        "assets/lottie/loading.json",
+        width: 100,
+        fit: BoxFit.fill,
+      ),
+      child: Scaffold(
+        //  backgroundColor: MyColors.KWhite,
+        appBar: AppBar(
+          backgroundColor: MyColors.kPrimary,
+          foregroundColor: MyColors.KWhite,
+          centerTitle: true,
+          title: Text(
+            'Login to your Account',
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
-      ),
-      body: ModalProgressHUD(
-        inAsyncCall: _showSpinner,
-        progressIndicator: Lottie.asset(
-          "assets/lottie/loading.json",
-          width: 100,
-          fit: BoxFit.fill,
-        ),
-        dismissible: true,
-        child: SingleChildScrollView(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height,
-                child: Stack(
-                  children: [
-                    // Welcome Container
-                    Container(
-                      decoration: BoxDecoration(
-                        color: MyColors.kPrimary,
-                        image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
-                              MyColors.kBlack, BlendMode.softLight),
-                          image: AssetImage("assets/images/pet.jpg"),
-                          fit: BoxFit.cover,
+        body: ModalProgressHUD(
+          inAsyncCall: _showSpinner,
+          progressIndicator: Lottie.asset(
+            "assets/lottie/loading.json",
+            width: 100,
+            fit: BoxFit.fill,
+          ),
+          dismissible: true,
+          child: SingleChildScrollView(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Stack(
+                    children: [
+                      // Welcome Container
+                      Container(
+                        decoration: BoxDecoration(
+                          color: MyColors.kPrimary,
+                          image: DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                                MyColors.kBlack, BlendMode.softLight),
+                            image: AssetImage("assets/images/pet.jpg"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: Text(
+                                'Welcome!',
+                                style: TextStyle(
+                                  color: MyColors.KWhite,
+                                  fontSize: 40,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              child: Text(
+                                'Find Best Doctor for your pets care and sell and buy your pet.',
+                                style: TextStyle(
+                                  color: MyColors.KWhite,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Text(
-                              'Welcome!',
-                              style: TextStyle(
-                                color: MyColors.KWhite,
-                                fontSize: 40,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              'Find Best Doctor for your pets care and sell and buy your pet.',
-                              style: TextStyle(
-                                color: MyColors.KWhite,
-                                fontSize: 11,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Coplete Login Form
-                    Positioned(
-                      top: MediaQuery.of(context).size.height / 3.8,
-                      left: MediaQuery.of(context).size.height / 24,
+                      // Coplete Login Form
+                      Positioned(
+                        top: MediaQuery.of(context).size.height / 3.8,
+                        left: MediaQuery.of(context).size.height / 24,
 
-                      // Main form Container
-                      child: Center(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 1.2,
-                          height: MediaQuery.of(context).size.height / 2,
-                          decoration: BoxDecoration(
-                            color: MyColors.kSecondary,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: MyColors.kPrimary,
-                                // blurRadius: 15,
-                                // spreadRadius: 2,
-                                // offset: Offset(
-                                //   0,
-                                //   5,
-                                // ), // Shadow position
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Center(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // Login Text
-                                    Container(
-                                      child: Text(
-                                        'Login',
-                                        style: TextStyle(
-                                          color: MyColors.kPrimary,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                        // Main form Container
+                        child: Center(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            height: MediaQuery.of(context).size.height / 1.9,
+                            decoration: BoxDecoration(
+                              color: MyColors.kSecondary,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: MyColors.kPrimary,
+                                  // blurRadius: 15,
+                                  // spreadRadius: 2,
+                                  // offset: Offset(
+                                  //   0,
+                                  //   5,
+                                  // ), // Shadow position
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Center(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // Login Text
+                                      Container(
+                                        child: Text(
+                                          'Login',
+                                          style: TextStyle(
+                                            color: MyColors.kPrimary,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    // Mobile Number Textfield
-                                    Container(
-                                      // color: Colors.red,
-                                      child: TextField(
-                                        controller: mobileNumber,
-                                        // maxLength: 11,
-                                        onTap: () {},
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        // inputFormatters: [
-                                        //   FilteringTextInputFormatter.digitsOnly,
-                                        // ],
-                                        style: TextStyle(
-                                          color: MyColors.kBlack,
-                                          // fontSize: 18,
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      // Mobile Number Textfield
+                                      Container(
+                                        // color: Colors.red,
+                                        child: TextField(
+                                          controller: mobileNumber,
+                                          // maxLength: 11,
+                                          onTap: () {},
+                                          keyboardType: TextInputType.number,
+                                          // inputFormatters: [
+                                          //   FilteringTextInputFormatter.digitsOnly,
+                                          // ],
+                                          style: TextStyle(
+                                            color: MyColors.kBlack,
+                                            // fontSize: 18,
+                                          ),
+                                          decoration: InputDecoration(
+                                            hintText: '03XXXXXXXXX',
+                                            labelText: 'Mobile Number',
+                                            labelStyle: TextStyle(
+                                                color: MyColors.kPrimary),
+                                            hintStyle: TextStyle(
+                                                color: MyColors.kPrimary),
+                                            enabledBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 180, 180, 180)),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: MyColors.kPrimary),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            prefixIcon: Icon(Icons.flag),
+                                          ),
                                         ),
-                                        decoration: InputDecoration(
-                                          hintText: '03XXXXXXXXX',
-                                          labelText: 'Mobile Number',
-                                          labelStyle: TextStyle(
-                                              color: MyColors.kPrimary),
-                                          hintStyle: TextStyle(
-                                              color: MyColors.kPrimary),
-                                          enabledBorder: new OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      // Password TextField
+                                      Container(
+                                        // color: Colors.red,
+                                        child: TextField(
+                                          controller: Password,
+                                          obscureText: true,
+                                          onTap: () {},
+                                          style: TextStyle(
+                                            color: MyColors.kBlack,
+                                            // fontSize: 18,
+                                          ),
+                                          decoration: InputDecoration(
+                                            hintText: 'Password',
+                                            labelText: 'Password',
+                                            labelStyle: TextStyle(
+                                                color: MyColors.kPrimary),
+                                            hintStyle: TextStyle(
+                                                color: MyColors.kPrimary),
+                                            enabledBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
                                                 color: Color.fromARGB(
-                                                    255, 180, 180, 180)),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: MyColors.kPrimary),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          prefixIcon: Icon(Icons.flag),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    // Password TextField
-                                    Container(
-                                      // color: Colors.red,
-                                      child: TextField(
-                                        controller: Password,
-                                        obscureText: true,
-                                        onTap: () {},
-                                        style: TextStyle(
-                                          color: MyColors.kBlack,
-                                          // fontSize: 18,
-                                        ),
-                                        decoration: InputDecoration(
-                                          hintText: 'Password',
-                                          labelText: 'Password',
-                                          labelStyle: TextStyle(
-                                              color: MyColors.kPrimary),
-                                          hintStyle: TextStyle(
-                                              color: MyColors.kPrimary),
-                                          enabledBorder: new OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  255, 193, 198, 198),
-                                              //Color.fromARGB(255, 115, 38, 38),
+                                                    255, 193, 198, 198),
+                                                //Color.fromARGB(255, 115, 38, 38),
+                                              ),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: MyColors.kPrimary),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            prefixIcon: Icon(
+                                              Icons.lock,
+                                              // color:
+                                              //     MyColors.kPrimary,
+                                              // size: 25,
                                             ),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: MyColors.kPrimary),
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          prefixIcon: Icon(
-                                            Icons.lock,
-                                            // color:
-                                            //     MyColors.kPrimary,
-                                            // size: 25,
-                                          ),
                                         ),
                                       ),
-                                    ),
 
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    RoundButton(
-                                      title: 'Login',
-                                      onpress: () {
-                                        // mobileNumber.text.isEmpty
-                                        //     ? Utils.flushBarErrorMessage(
-                                        //         "Please Enter Phone Number",
-                                        //         context)
-                                        //     : mobileNumber.text.length < 11
-                                        //         ? Utils.flushBarErrorMessage(
-                                        //             "Please Enter Full Phone Number",
-                                        //             context)
-                                        //         : Password.text.length == 0
-                                        //             ? Utils.flushBarErrorMessage(
-                                        //                 "Please Enter Password",
-                                        //                 context)
-                                        //             : Password.text.length < 6
-                                        //                 ? Utils.flushBarErrorMessage(
-                                        //                     "Please Enter Minimum of 6 Characters",
-                                        //                     context)
-                                        //                 :
-                                        SignIn(mobileNumber, Password);
-                                      },
-                                      width: 140,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    RegistrationScreen()));
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 30),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text("Dont have an account? "),
-                                                Text(
-                                                  "Create Now",
-                                                  style: TextStyle(
-                                                      color: MyColors.kPrimary,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                      // forgot password
+                                      Container(
+                                        child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: TextButton(
+                                            onPressed: () async {
+                                              if (mobileNumber.text.isEmpty) {
+                                                Utils.flushBarErrorMessage(
+                                                    'Pleas put your mobile number',
+                                                    context);
+                                              } else {
+                                                await authViewModel
+                                                    .fetchUserDataForForgotPasswordFromRepository(
+                                                        mobileNumber.text
+                                                            .trim(),
+                                                        context);
+
+                                                var userEmail;
+                                                var userPasword;
+                                                var userName;
+
+                                                Future.delayed(
+                                                    Duration(seconds: 6),
+                                                    () async {
+                                                  print(
+                                                      "statement print after 10 sec");
+                                                  // print(
+                                                  //     "My List Length in View : ${authViewModel.userDataForForgotPassword.data!.length}");
+                                                  if (authViewModel
+                                                      .isEmailSend) {
+                                                    // Utils.flushBarErrorMessage(
+                                                    //     "Mobile number is not registor",
+                                                    //     context);
+
+                                                    var userFetchedData =
+                                                        await authViewModel
+                                                            .userDataForForgotPassword
+                                                            .data![0];
+
+                                                    userEmail = userFetchedData
+                                                        .email
+                                                        .toString();
+                                                    userPasword =
+                                                        userFetchedData.token
+                                                            .toString();
+                                                    userName = userFetchedData
+                                                        .name
+                                                        .toString();
+
+                                                    await sendForgotPasswordEmail(
+                                                        userEmail,
+                                                        userPasword,
+                                                        userName);
+                                                  }
+                                                });
+                                                // fech data from api list
+
+                                              }
+                                            },
+                                            child: Text('Forgot password!'),
+                                          ),
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      RoundButton(
+                                        title: 'Login',
+                                        onpress: () async {
+                                          // mobileNumber.text.isEmpty
+                                          //     ? Utils.flushBarErrorMessage(
+                                          //         "Please Enter Phone Number",
+                                          //         context)
+                                          //     : mobileNumber.text.length < 11
+                                          //         ? Utils.flushBarErrorMessage(
+                                          //             "Please Enter Full Phone Number",
+                                          //             context)
+                                          //         : Password.text.length == 0
+                                          //             ? Utils.flushBarErrorMessage(
+                                          //                 "Please Enter Password",
+                                          //                 context)
+                                          //             : Password.text.length < 6
+                                          //                 ? Utils.flushBarErrorMessage(
+                                          //                     "Please Enter Minimum of 6 Characters",
+                                          //                     context)
+                                          //                 :
+                                          //SignIn(mobileNumber, Password);
+                                          if (mobileNumber.text.isEmpty) {
+                                            Utils.flushBarErrorMessage(
+                                                'Pleas put your mobile number',
+                                                context);
+                                          } else if (Password.text.isEmpty) {
+                                            Utils.flushBarErrorMessage(
+                                                'Pleas put your Password number',
+                                                context);
+                                          } else {
+                                            await authViewModel
+                                                .getLoginDatafromAuthRepository(
+                                                    mobileNumber.text.trim(),
+                                                    Password.text.trim(),
+                                                    context);
+                                            Future.delayed(Duration(seconds: 6),
+                                                () async {
+                                              if (mobileNumber ==
+                                                      authViewModel
+                                                          .userDataForLogin
+                                                          .data![0]
+                                                          .mobileNo &&
+                                                  Password ==
+                                                      authViewModel
+                                                          .userDataForLogin
+                                                          .data![0]
+                                                          .token) {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return Container(
+                                                    child: Center(
+                                                      child:
+                                                          Text("hello world"),
+                                                    ),
+                                                  );
+                                                }));
+                                              } else {
+                                                Utils.flushBarErrorMessage(
+                                                    "Invilid Credentials",
+                                                    context);
+                                              }
+                                            });
+                                          }
+                                        },
+                                        width: 140,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      RegistrationScreen()));
+                                        },
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 30),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                      "Dont have an account? "),
+                                                  Text(
+                                                    "Create Now",
+                                                    style: TextStyle(
+                                                        color:
+                                                            MyColors.kPrimary,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              // Main Form Container
-            ],
+                // Main Form Container
+              ],
+            ),
           ),
         ),
       ),
@@ -411,4 +531,34 @@ class _LoginScreenState extends State<LoginScreen> {
   //   });
   //   return model;
   // }
+
+  Future<Map<String, dynamic>> sendForgotPasswordEmail(
+      String userEmail, String userPassword, String userName) async {
+    String apiKey =
+        "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";
+    String url = "https://api.sendinblue.com/v3/smtp/email";
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+    };
+
+    String body = jsonEncode({
+      "sender": {"email": "petscure@gmail.com", "name": "Pets Cure App"},
+      "to": [
+        {"email": "$userEmail", "name": "$userName"}
+      ],
+      "subject": "Pets Cure Forgot Password",
+      "htmlContent":
+          "<h3> Your Pets Cure App login passwors is: </h3> <p>$userPassword@</p>",
+    });
+
+    http.Response response =
+        await http.post(Uri.parse(url), headers: headers, body: body);
+
+    late Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+    print("My json Response : $jsonResponse");
+
+    return jsonResponse;
+  }
 }

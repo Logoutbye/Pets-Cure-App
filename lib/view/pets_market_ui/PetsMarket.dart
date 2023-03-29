@@ -81,8 +81,8 @@ class _PetsMarketState extends State<PetsMarket> {
                   final itemIndex =
                       allPetsMarketViewModel.allMarketPets.data![index];
                   //Uint8List bytes = utf8.encode(itemIndex.petImage);
-                  Uint8List uint8list2 = Uint8List.fromList(
-                      utf8.encode(itemIndex.petImage!.toString()));
+                  // Uint8List uint8list2 = Uint8List.fromList(
+                  //     utf8.encode(itemIndex.petImage!.toString()));
                   return Container(
                     child: Column(
                       children: [
@@ -97,7 +97,7 @@ class _PetsMarketState extends State<PetsMarket> {
                               height: 60,
                               child: CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                  imagesLink[index],
+                                  imagesLink[0],
                                 ),
                               ),
                             ),
@@ -105,7 +105,7 @@ class _PetsMarketState extends State<PetsMarket> {
                             // User Name
                             title: Container(
                               child: Text(
-                                usersName[index],
+                                usersName[0],
                                 style: TextStyle(
                                   color: MyColors.KWhite,
                                 ),

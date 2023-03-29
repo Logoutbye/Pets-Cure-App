@@ -3,9 +3,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:mvvm_practice_app/res/app_url.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +50,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
   // variables for conditions down in dropdown conditions
   // String selectedMotivatinalBookType = '';
   // String selectedMotivatinalBookLanguage = '';
-  String selectedAvalability = '';
+  String selectedAvalability = "";
   // String selectedIslamicBookType = '';
   // String selectedIslamicBookLanguage = '';
   // var finalSelectedBookType = '';
@@ -56,7 +58,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
 
 // for post api image picking and sending using post api
 
-  File? image;
+  File? image = null;
   final _picker = ImagePicker();
   bool showSpinner = false;
 
@@ -74,6 +76,12 @@ class _PetsRegistrationState extends State<PetsRegistration> {
 
     return ModalProgressHUD(
       inAsyncCall: allPetsMarketPostPetViewModel.loading,
+      progressIndicator: Lottie.asset(
+        "assets/lottie/loading.json",
+        width: 100,
+        fit: BoxFit.fill,
+      ),
+      dismissible: false,
       child: Scaffold(
           backgroundColor: MyColors.KWhite,
           appBar: AppBar(
@@ -201,6 +209,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedAvalability = newValue!;
+                                  print(selectedAvalability);
                                 });
                               }),
                         )),
@@ -372,26 +381,45 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                           ),
                       child: TextButton(
                           onPressed: () async {
-                            Map<String, String> data = {
-                              'pet_name': "Donkey",
-                              'pet_status': "1",
-                              'pet_description':
-                                  "Best Choise for you to buy this cat, cute cate, good cat, Alpha, Beta and Gemma.",
-                              'pet_price': "66666"
-                            };
+                            /////////////////////////////////////////
 
-                            // allPetsMarketPostPetViewModel
-                            //     .getPetMarketPostResultFromApi(data);
-
-                            //uploadImage();
-                            // progressDialog.dismiss();
-
-                            allPetsMarketPostPetViewModel
-                                .getPetMarketPostResultFromApi(
-                              data,
-                              image,
-                              context,
-                            );
+                            if (petsNameController.text.trim().isEmpty) {
+                              Utils.flushBarErrorMessage(
+                                  "Pet's name field cannot be empty", context);
+                            } else if (petsPriceController.text
+                                .trim()
+                                .isEmpty) {
+                              Utils.flushBarErrorMessage(
+                                  "Pet's price field cannot be empty", context);
+                            } else if (selectedAvalability ==
+                                "Is Your pet available for selling") {
+                              Utils.flushBarErrorMessage(
+                                  "Is Your pet availible for selling? Please select",
+                                  context);
+                            } else if (petDiscriptioncontroller.text
+                                .trim()
+                                .isEmpty) {
+                              Utils.flushBarErrorMessage(
+                                  "Pet's description field cannot be empty",
+                                  context);
+                            } else if (image == null) {
+                              Utils.flushBarErrorMessage(
+                                  "pleas select pet image to post", context);
+                            } else {
+                              Map<String, String> data = {
+                                'pet_name': petsNameController.text,
+                                'pet_status': selectedAvalability,
+                                'pet_description':
+                                    petDiscriptioncontroller.text,
+                                'pet_price': petsPriceController.text,
+                              };
+                              allPetsMarketPostPetViewModel
+                                  .getPetMarketPostResultFromApi(
+                                data,
+                                image,
+                                context,
+                              );
+                            }
                           },
                           child: Text(
                             'Post',

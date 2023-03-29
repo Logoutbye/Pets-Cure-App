@@ -30,3 +30,8 @@ class UnAuthorizedException extends AppException {
 class InvilidInputException extends AppException {
   InvilidInputException([String? message]) : super(message, 'Invalid Input:');
 }
+
+// USer Already Registered 
+// class InternalServerErrorException extends AppException {
+//   InternalServerErrorException([String? message]) : super(message, 'Invalid Input:');
+// }
