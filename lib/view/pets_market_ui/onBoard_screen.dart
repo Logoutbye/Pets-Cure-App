@@ -196,7 +196,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                               ),
                               SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height / 13,
+                                      MediaQuery.of(context).size.height / 18,
                                   // width: MediaQuery.of(context).size.width / 1.6,
                                   child: SingleChildScrollView(
                                       physics: BouncingScrollPhysics(),

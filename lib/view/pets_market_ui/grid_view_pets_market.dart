@@ -84,8 +84,8 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OnBoardScreen(
                               petimage: itemIndex.petImage.toString(),
-                              userimage: imagesLink[index],
-                              username: usersName[index],
+                              userimage: imagesLink[0],
+                              username: usersName[0],
                               petname: itemIndex.petName,
                               petDescription: itemIndex.petDescription,
                               petAvalability: itemIndex.petStatus!.toString(),
@@ -106,14 +106,14 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                 ),
                                 color: MyColors.kSecondary),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: const EdgeInsets.all(12),
                               child: Column(
                                 children: [
                                   Container(
                                     width:
                                         MediaQuery.of(context).size.width / 1,
                                     height:
-                                        MediaQuery.of(context).size.width / 6,
+                                        MediaQuery.of(context).size.height / 15,
                                     child: Image.network(
                                       itemIndex.petImage.toString(),
                                       fit: BoxFit.cover,
@@ -128,17 +128,15 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                     ),
                                   ),
                                   Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                       SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              99,
-                                        ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                99,
+                                      ),
                                       Row(
                                         children: [
                                           Text('${itemIndex.petName}',
@@ -148,7 +146,8 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                               )),
                                           Spacer(),
                                           Text(
-                                             itemIndex.petStatus!.toString() == '1'
+                                              itemIndex.petStatus!.toString() ==
+                                                      '1'
                                                   ? "Available"
                                                   : "Not Available",
                                               style: Theme.of(context)
@@ -156,26 +155,23 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                                   .caption)
                                         ],
                                       ),
-                                       SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            95,
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                95,
                                       ),
                                       Text(
                                         '${itemIndex.petDescription}'
                                             .toString(),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .caption,
+                                        style:
+                                            Theme.of(context).textTheme.caption,
                                       ),
                                       SizedBox(
-                                        height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                            70,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                70,
                                       ),
                                       Row(
                                         children: [
