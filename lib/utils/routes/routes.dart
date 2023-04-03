@@ -9,17 +9,17 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.home:
-        return MaterialPageRoute(builder: (context) {
-          return HomeScreen();
-        });
+      // return MaterialPageRoute(builder: (context) {
+      //   return HomeScreen();
+      // });
       case RoutesName.login:
-        return MaterialPageRoute(builder: (context) {
-          return LoginScreen();
-        });
+      // return MaterialPageRoute(builder: (context) {
+      //   return LoginScreen();
+      // });
       case RoutesName.signup:
-        return MaterialPageRoute(builder: (context) {
-          return LoginScreen();
-        });
+      // return MaterialPageRoute(builder: (context) {
+      //   return LoginScreen();
+      // });
       case RoutesName.splash:
         return MaterialPageRoute(builder: (context) {
           return SplashView();

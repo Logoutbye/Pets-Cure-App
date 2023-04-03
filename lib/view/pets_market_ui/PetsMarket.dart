@@ -15,7 +15,7 @@ import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_view_model.dart
 import 'package:provider/provider.dart';
 
 class PetsMarket extends StatefulWidget {
-  const PetsMarket({super.key});
+  PetsMarket({super.key});
 
   @override
   State<PetsMarket> createState() => _PetsMarketState();

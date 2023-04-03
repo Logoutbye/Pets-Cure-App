@@ -8,6 +8,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:mvvm_practice_app/res/app_url.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
+import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
@@ -82,359 +83,378 @@ class _PetsRegistrationState extends State<PetsRegistration> {
         fit: BoxFit.fill,
       ),
       dismissible: false,
-      child: Scaffold(
-          backgroundColor: MyColors.KWhite,
-          appBar: AppBar(
-            title: Text(
-              "Sell Your pet ",
-              style: TextStyle(color: MyColors.KWhite),
-            ),
-            backgroundColor: MyColors.kPrimary,
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
+      child: WillPopScope(
+        onWillPop: () async {
+          while (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          }
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return HomeScreen();
+          }));
+          return false;
+        },
+        child: Scaffold(
+            backgroundColor: MyColors.KWhite,
+            appBar: AppBar(
+              title: Text(
+                "Sell Your pet ",
+                style: TextStyle(color: MyColors.KWhite),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              backgroundColor: MyColors.kPrimary,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return HomeScreen();
+                  }));
+                },
+              ),
+              centerTitle: true,
             ),
-            centerTitle: true,
-          ),
-          body: Container(
-            width: double.infinity,
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: AssetImage('assets/images/bg_bg.png'),
-            //     alignment: Alignment.topCenter,
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // Book title Container
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(29),
-                        color: MyColors.kSecondary,
-                        // border: Border.all(color: Colors.grey)
-                      ),
-                      padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
-                      child: TextFormField(
-                        controller: petsNameController,
-                        decoration: InputDecoration(
-                            labelText: 'Enter Pet\'s Name',
-                            border: InputBorder.none),
-                        keyboardType: TextInputType.name,
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            title = value;
-                          });
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter name of your pet!';
-                          }
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    // Price Container
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(29),
-                        color: MyColors.kSecondary,
-                        // border: Border.all(color: Colors.grey)
-                      ),
-                      padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
-                      child: TextFormField(
-                        controller: petsPriceController,
-                        decoration: InputDecoration(
-                            labelText: 'Enter Price', border: InputBorder.none),
-                        keyboardType: TextInputType.number,
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            title = value;
-                          });
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter price for you pet!';
-                          }
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    // Dropdown for selecting Book Catagory
-                    Container(
-                        width: double.infinity,
+            body: Container(
+              width: double.infinity,
+              // decoration: BoxDecoration(
+              //   image: DecorationImage(
+              //     image: AssetImage('assets/images/bg_bg.png'),
+              //     alignment: Alignment.topCenter,
+              //     fit: BoxFit.fill,
+              //   ),
+              // ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // Book title Container
+                      Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(29),
                           color: MyColors.kSecondary,
                           // border: Border.all(color: Colors.grey)
                         ),
-                        height: 75,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: DropdownButton(
-                              //elevation: 30,
-                              //alignment: AlignmentDirectional.center,
-                              //elevation: 80,
-                              isDense: true,
-                              iconSize: 40,
-                              isExpanded: true,
-                              dropdownColor: MyColors.kSecondary,
-                              style: TextStyle(
-                                color: MyColors.kBlack,
-                              ),
-                              value: selectedAvalability,
-                              items: Avalability.map((String itemss) {
-                                return DropdownMenuItem(
-                                  value: itemss,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(16, 16, 8, 8),
-                                    child: Text(itemss),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedAvalability = newValue!;
-                                  print(selectedAvalability);
-                                });
-                              }),
-                        )),
-
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    //Discription Field
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(29),
-                        color: MyColors.kSecondary,
-                        // border: Border.all(color: Colors.grey)
+                        padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
+                        child: TextFormField(
+                          controller: petsNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Enter Pet\'s Name',
+                              border: InputBorder.none),
+                          keyboardType: TextInputType.name,
+                          onFieldSubmitted: (value) {
+                            setState(() {
+                              title = value;
+                            });
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter name of your pet!';
+                            }
+                          },
+                        ),
                       ),
-                      padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
-                      child: TextFormField(
-                        controller: petDiscriptioncontroller,
-                        textAlign: TextAlign.start,
-                        maxLength: 430,
-                        maxLines: 5,
-                        decoration: InputDecoration(
-                            labelText: 'Enter Description',
-                            border: InputBorder.none),
-                        keyboardType: TextInputType.text,
-                        //obscureText: true,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Please enter the Description!';
-                          }
-                        },
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            description = value;
-                          });
-                        },
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
 
-                    ///////////////////////////////////////////
-
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    // Container That shows file upload button
-
-                    // Container That shows image is slected or not
-                    isPdfUploaded
-                        ? Container(
-                            height: 65,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(29),
-                              color: MyColors.kSecondary,
-                              // border: Border.all(color: Colors.grey)
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                child: Text('Selected file : ${fileName}'),
-                              ),
-                            ),
-                          )
-                        : Container(),
-
-                    /////////////////////////
-
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    // Container That shows image upload button
-                    InkWell(
-                      //splashColor: Colors.red,
-                      onTap: () async {
-                        getImage();
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 15,
-                        width: MediaQuery.of(context).size.height / 4,
+                      // Price Container
+                      Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(29),
-                          color: MyColors.kPrimary,
+                          color: MyColors.kSecondary,
                           // border: Border.all(color: Colors.grey)
                         ),
-                        child: Center(
-                          child: Container(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  // Text container
-                                  Container(
-                                    child: Center(
-                                      child: Text(
-                                        'Select Pet\'s Picture',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
+                        padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
+                        child: TextFormField(
+                          controller: petsPriceController,
+                          decoration: InputDecoration(
+                              labelText: 'Enter Price',
+                              border: InputBorder.none),
+                          keyboardType: TextInputType.number,
+                          onFieldSubmitted: (value) {
+                            setState(() {
+                              title = value;
+                            });
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter price for you pet!';
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      // Dropdown for selecting Book Catagory
+                      Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(29),
+                            color: MyColors.kSecondary,
+                            // border: Border.all(color: Colors.grey)
+                          ),
+                          height: 75,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton(
+                                //elevation: 30,
+                                //alignment: AlignmentDirectional.center,
+                                //elevation: 80,
+                                isDense: true,
+                                iconSize: 40,
+                                isExpanded: true,
+                                dropdownColor: MyColors.kSecondary,
+                                style: TextStyle(
+                                  color: MyColors.kBlack,
+                                ),
+                                value: selectedAvalability,
+                                items: Avalability.map((String itemss) {
+                                  return DropdownMenuItem(
+                                    value: itemss,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(16, 16, 8, 8),
+                                      child: Text(itemss),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedAvalability = newValue!;
+                                    print(selectedAvalability);
+                                  });
+                                }),
+                          )),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      //Discription Field
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(29),
+                          color: MyColors.kSecondary,
+                          // border: Border.all(color: Colors.grey)
+                        ),
+                        padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
+                        child: TextFormField(
+                          controller: petDiscriptioncontroller,
+                          textAlign: TextAlign.start,
+                          maxLength: 430,
+                          maxLines: 5,
+                          decoration: InputDecoration(
+                              labelText: 'Enter Description',
+                              border: InputBorder.none),
+                          keyboardType: TextInputType.text,
+                          //obscureText: true,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter the Description!';
+                            }
+                          },
+                          onFieldSubmitted: (value) {
+                            setState(() {
+                              description = value;
+                            });
+                          },
+                        ),
+                      ),
+
+                      ///////////////////////////////////////////
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      // Container That shows file upload button
+
+                      // Container That shows image is slected or not
+                      isPdfUploaded
+                          ? Container(
+                              height: 65,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(29),
+                                color: MyColors.kSecondary,
+                                // border: Border.all(color: Colors.grey)
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Text('Selected file : ${fileName}'),
+                                ),
+                              ),
+                            )
+                          : Container(),
+
+                      /////////////////////////
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      // Container That shows image upload button
+                      InkWell(
+                        //splashColor: Colors.red,
+                        onTap: () async {
+                          getImage();
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 15,
+                          width: MediaQuery.of(context).size.height / 4,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(29),
+                            color: MyColors.kPrimary,
+                            // border: Border.all(color: Colors.grey)
+                          ),
+                          child: Center(
+                            child: Container(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    // Text container
+                                    Container(
+                                      child: Center(
+                                        child: Text(
+                                          'Select Pet\'s Picture',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  // Icon container
-                                  Container(
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.image,
-                                        color: Colors.white,
-                                        size: 40,
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    // Icon container
+                                    Container(
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.image,
+                                          color: Colors.white,
+                                          size: 40,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
-                    SizedBox(
-                      height: 20,
-                    ),
+                      SizedBox(
+                        height: 20,
+                      ),
 
-                    // show image which is slelected
-                    image != null
-                        ? Container(
-                            height: MediaQuery.of(context).size.height / 2.5,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: MyColors.kSecondary,
-                              // border: Border.all(color: Colors.grey)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Image.file(
-                                File(image!.path).absolute,
-                                fit: BoxFit.cover,
+                      // show image which is slelected
+                      image != null
+                          ? Container(
+                              height: MediaQuery.of(context).size.height / 2.5,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: MyColors.kSecondary,
+                                // border: Border.all(color: Colors.grey)
                               ),
-                            ),
-                          )
-                        : Container(),
-                    /////////
-                    ///
-                    SizedBox(
-                      height: 20,
-                    ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Image.file(
+                                  File(image!.path).absolute,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      /////////
+                      ///
+                      SizedBox(
+                        height: 20,
+                      ),
 
-                    // Upload button
-                    Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: MyColors.kPrimary,
-                          border: Border.all(color: Colors.white)
-                          // border: Border.all(color: Colors.grey)
-                          ),
-                      child: TextButton(
-                          onPressed: () async {
-                            /////////////////////////////////////////
-
-                            if (petsNameController.text.trim().isEmpty) {
-                              Utils.flushBarErrorMessage(
-                                  "Pet's name field cannot be empty", context);
-                            } else if (petsPriceController.text
-                                .trim()
-                                .isEmpty) {
-                              Utils.flushBarErrorMessage(
-                                  "Pet's price field cannot be empty", context);
-                            } else if (selectedAvalability ==
-                                "Is Your pet available for selling") {
-                              Utils.flushBarErrorMessage(
-                                  "Is Your pet availible for selling? Please select",
-                                  context);
-                            } else if (petDiscriptioncontroller.text
-                                .trim()
-                                .isEmpty) {
-                              Utils.flushBarErrorMessage(
-                                  "Pet's description field cannot be empty",
-                                  context);
-                            } else if (image == null) {
-                              Utils.flushBarErrorMessage(
-                                  "pleas select pet image to post", context);
-                            } else {
-                              Map<String, String> data = {
-                                'pet_name': petsNameController.text,
-                                'pet_status': selectedAvalability,
-                                'pet_description':
-                                    petDiscriptioncontroller.text,
-                                'pet_price': petsPriceController.text,
-                              };
-                              allPetsMarketPostPetViewModel
-                                  .getPetMarketPostResultFromApi(
-                                data,
-                                image,
-                                context,
-                              );
-                            }
-                          },
-                          child: Text(
-                            'Post',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                      // Upload button
+                      Container(
+                        width: MediaQuery.of(context).size.width / 2,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: MyColors.kPrimary,
+                            border: Border.all(color: Colors.white)
+                            // border: Border.all(color: Colors.grey)
                             ),
-                          )),
-                    ),
-                  ],
+                        child: TextButton(
+                            onPressed: () async {
+                              /////////////////////////////////////////
+
+                              if (petsNameController.text.trim().isEmpty) {
+                                Utils.flushBarErrorMessage(
+                                    "Pet's name field cannot be empty",
+                                    context);
+                              } else if (petsPriceController.text
+                                  .trim()
+                                  .isEmpty) {
+                                Utils.flushBarErrorMessage(
+                                    "Pet's price field cannot be empty",
+                                    context);
+                              } else if (selectedAvalability ==
+                                  "Is Your pet available for selling") {
+                                Utils.flushBarErrorMessage(
+                                    "Is Your pet availible for selling? Please select",
+                                    context);
+                              } else if (petDiscriptioncontroller.text
+                                  .trim()
+                                  .isEmpty) {
+                                Utils.flushBarErrorMessage(
+                                    "Pet's description field cannot be empty",
+                                    context);
+                              } else if (image == null) {
+                                Utils.flushBarErrorMessage(
+                                    "pleas select pet image to post", context);
+                              } else {
+                                Map<String, String> data = {
+                                  'pet_name': petsNameController.text,
+                                  'pet_status': selectedAvalability,
+                                  'pet_description':
+                                      petDiscriptioncontroller.text,
+                                  'pet_price': petsPriceController.text,
+                                };
+                                allPetsMarketPostPetViewModel
+                                    .getPetMarketPostResultFromApi(
+                                  data,
+                                  image,
+                                  context,
+                                );
+                              }
+                            },
+                            child: Text(
+                              'Post',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 

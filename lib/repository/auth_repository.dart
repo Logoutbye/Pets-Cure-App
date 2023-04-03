@@ -51,12 +51,16 @@ class AuthRepository {
   Future<List<UserModelForForgotPassword>> signInApi(
       String mobile_number, String passord) async {
     try {
-      List<UserModelForForgotPassword> response = await _apiServeces
+      List<dynamic> response = await _apiServeces
           .getGetApiResponse("${AppUrl.signInUrl}${mobile_number}/${passord}");
+      //"https://kawiishapps.com/api/signin/00000000000/12345678");
+      //;
       if (kDebugMode) {
         print(' My Json Data in Repository : ${response}');
       }
-      return response;
+      return response
+          .map((e) => UserModelForForgotPassword.fromJson(e))
+          .toList();
     } catch (e) {
       throw e;
     }
