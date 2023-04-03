@@ -75,7 +75,7 @@ flutter_icons:
 
 flutter_native_splash:
   #background_image: assets/images/SplashBackground.png
-  color: "#000000"
+  color: "#FFFFFF"
   image: "assets/images/luncherIcon.png"
   android: true
   ios: true

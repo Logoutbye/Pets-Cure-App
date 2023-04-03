@@ -10,6 +10,7 @@ import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/model/all_pets_petsmarket_data_model.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/onBoard_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -61,7 +62,8 @@ class _PetsMarketState extends State<PetsMarket> {
         centerTitle: true,
       ),
       drawer: MyAppDrawer(),
-      body: ChangeNotifierProvider<AllPetsMarketViewModel>(
+      body:
+       ChangeNotifierProvider<AllPetsMarketViewModel>(
         create: (_) => allPetsMarketViewModel,
         child:
             Consumer<AllPetsMarketViewModel>(builder: (context, value, child) {
@@ -84,167 +86,185 @@ class _PetsMarketState extends State<PetsMarket> {
                   // Uint8List uint8list2 = Uint8List.fromList(
                   //     utf8.encode(itemIndex.petImage!.toString()));
                   return Container(
-                    child: Column(
-                      children: [
-                        // Container Containe Listtile show all the user informaton header of the post
-                        Container(
-                          color: MyColors.kPrimary,
-                          //Color.fromARGB(255, 194, 172, 172),
-                          child: ListTile(
-                            // User Profile Url
-                            leading: Container(
-                              width: 60,
-                              height: 60,
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  imagesLink[0],
-                                ),
-                              ),
-                            ),
-
-                            // User Name
-                            title: Container(
-                              child: Text(
-                                usersName[0],
-                                style: TextStyle(
-                                  color: MyColors.KWhite,
-                                ),
-                              ),
-                            ),
-
-                            // Post time
-                            subtitle: Container(
-                              child: Text(
-                                '1 Day Ago',
-                                style: TextStyle(color: MyColors.KWhite),
-                              ),
-                            ),
-
-                            // Pet availible or not
-                            trailing: Container(
-                              decoration: BoxDecoration(
-                                color: MyColors.KWhite,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: itemIndex.petStatus!.toString() == '1'
-                                    ? Text('Availible')
-                                    : Text('Not-Availible'),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        // Container that Contains image of the pet and discription of the pet
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: MyColors.KWhite,
-                            boxShadow: [
-                              BoxShadow(
-                                color: MyColors.kBlack,
-                                blurRadius: 15,
-                                spreadRadius: 0.5,
-                                offset: Offset(
-                                  0,
-                                  0,
-                                ), // Shadow position
-                              ),
-                            ],
-                          ),
-                          //height: MediaQuery.of(context).size.height / 3,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                // Image of the pet container
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  height:
-                                      MediaQuery.of(context).size.height / 4.8,
-                                  child: Image.network(
-                                    itemIndex.petImage.toString(),
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Icon(
-                                        Icons.error,
-                                        color: Colors.red,
-                                        size: 50,
-                                      );
-                                    },
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OnBoardScreen(
+                                petimage: itemIndex.petImage.toString(),
+                                userimage: imagesLink[index],
+                                username: usersName[index],
+                                petname: itemIndex.petName,
+                                petDescription: itemIndex.petDescription,
+                                petAvalability: itemIndex.petStatus!.toString(),
+                                price: itemIndex.petPrice,
+                              ))),
+                      child:
+                       Column(
+                        children: [
+                          // Container Containe Listtile show all the user informaton header of the post
+                          Container(
+                            color: MyColors.kPrimary,
+                            //Color.fromARGB(255, 194, 172, 172),
+                            child: ListTile(
+                              // User Profile Url
+                              leading: Container(
+                                width: 60,
+                                height: 60,
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                    imagesLink[0],
                                   ),
                                 ),
+                              ),
 
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  height:
-                                      MediaQuery.of(context).size.height / 4,
-                                  //color: Colors.red,
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            //Discription container
-                                            Container(
-                                              child: Text(
-                                                '${itemIndex.petName}' +
-                                                    ' : ' +
-                                                    '${itemIndex.petDescription!}'
-                                                        .toString(),
-                                                style: TextStyle(
-                                                  color: MyColors.kBlack,
-                                                ),
-                                              ),
-                                            ),
+                              // User Name
+                              title: Container(
+                                child: Text(
+                                  usersName[0],
+                                  style: TextStyle(
+                                    color: MyColors.KWhite,
+                                  ),
+                                ),
+                              ),
 
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            // Price Container
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                color: MyColors.kPrimary,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(6),
+                              // Post time
+                              subtitle: Container(
+                                child: Text(
+                                  '1 Day Ago',
+                                  style: TextStyle(color: MyColors.KWhite),
+                                ),
+                              ),
+
+                              // Pet availible or not
+                              trailing: Container(
+                                decoration: BoxDecoration(
+                                  color: MyColors.KWhite,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: itemIndex.petStatus!.toString() == '1'
+                                      ? Text('Availible')
+                                      : Text('Not-Availible'),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // Container that Contains image of the pet and discription of the pet
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: MyColors.KWhite,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: MyColors.kBlack,
+                                  blurRadius: 15,
+                                  spreadRadius: 0.5,
+                                  offset: Offset(
+                                    0,
+                                    0,
+                                  ), // Shadow position
+                                ),
+                              ],
+                            ),
+                            //height: MediaQuery.of(context).size.height / 3,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  // Image of the pet container
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    height: MediaQuery.of(context).size.height /
+                                        4.8,
+                                    child: Image.network(
+                                      itemIndex.petImage.toString(),
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Icon(
+                                          Icons.error,
+                                          color: Colors.red,
+                                          size: 50,
+                                        );
+                                      },
+                                    ),
+                                  ),
+
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    height:
+                                        MediaQuery.of(context).size.height / 4,
+                                    //color: Colors.red,
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              //Discription container
+                                              Container(
                                                 child: Text(
-                                                  'PKR: ' + itemIndex.petPrice!,
+                                                  '${itemIndex.petName}' +
+                                                      ' : ' +
+                                                      '${itemIndex.petDescription!}'
+                                                          .toString(),
                                                   style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: MyColors.KWhite,
+                                                    color: MyColors.kBlack,
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              // Price Container
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: MyColors.kPrimary,
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(6),
+                                                  child: Text(
+                                                    'PKR: ' +
+                                                        itemIndex.petPrice!,
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: MyColors.KWhite,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
 
-                        SizedBox(
-                          height: 6,
-                        ),
+                          SizedBox(
+                            height: 6,
+                          ),
 
-                        Divider(
-                          thickness: 1,
-                          color: Colors.white,
-                        ),
-                      ],
+                          Divider(
+                            thickness: 1,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    
                     ),
                   );
                 },

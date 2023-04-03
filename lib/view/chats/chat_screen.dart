@@ -30,108 +30,46 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Message> message = [
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 6),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 6),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 6),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 6),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime(2023, 3, 7),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime.now(),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text  ",
-          dateTime: DateTime.now(),
-          issentByMe: true),
-      Message(
-          text:
-              "text text text text text text text text text text text text text text text text text text text text text text text ",
-          dateTime: DateTime.now(),
-          issentByMe: false),
-      Message(
-          text:
-              "text text text text text text text text text text text text text text text text text text text text text text text ",
-          dateTime: DateTime.now(),
-          issentByMe: false),
-    ];
+ List<Message> message = [
+    
+    //adding data into model for Today date
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message and testing long thread for this i hope this will work', isMe: true),
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message',  isMe: false),
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message', isMe: true),
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message', isMe: false),
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message', isMe: true),
+    Message(timeStamp: DateTime.now()  , message: 'Hello Today Message', isMe: false),
+
+    //adding data into model for yesterday date
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 )  , message: 'Yesterday Message', isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 )  , message: 'Yesterday Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 11,30 )  , message: 'Yesterday Message', isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 )  , message: 'Yesterday Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 )  , message: 'Yesterday Message',  isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-1, 14,30 )  , message: 'Yesterday Message',  isMe: false),
+
+    //adding data into model date
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 )  , message: 'Some Message',  isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 )  , message: 'Some Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 )  , message: 'Some Message',  isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 )  , message: 'Some Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-2, 14,30 )  , message: 'Some Message',  isMe: true),
+
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 )  , message: 'Some Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 )  , message: 'Some Message',  isMe: true),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 )  , message: 'Some Message',  isMe: false),
+    Message(timeStamp: DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day-3, 14,30 )  , message: 'Some Message',  isMe: true),
+
+
+    Message(timeStamp: DateTime(2023,02,08, 15,20 ) , message: 'Feb 8th Message' , isMe: true),
+    Message(timeStamp: DateTime(2023,02,08, 15,20 ) , message: 'Feb 8th Message' , isMe: false),
+    Message(timeStamp: DateTime(2023,02,08, 15,20 ) , message: 'Feb 8th Message' , isMe: true),
+    Message(timeStamp: DateTime(2023,01,20, 15,20 ) , message: '20 JanMessage' , isMe: true),
+    Message(timeStamp: DateTime(2023,01,20, 15,20 ) , message: '20 JanMessage' , isMe: false),
+    Message(timeStamp: DateTime(2023,01,20, 15,20 ) , message: '20 JanMessage' , isMe: true),
+    Message(timeStamp: DateTime(2023,01,20, 15,20 ) , message: '20 JanMessage' , isMe: false),
+
+  ];
 
     return Scaffold(
       appBar: AppBar(
@@ -216,8 +154,8 @@ class _ChatScreenState extends State<ChatScreen> {
             useStickyGroupSeparators: true,
             floatingHeader: true,
             elements: message,
-            groupBy: (message) => DateTime(message.dateTime.year,
-                message.dateTime.month, message.dateTime.day),
+            groupBy: (message) => DateTime(message.timeStamp.year,
+                message.timeStamp.month, message.timeStamp.day),
             groupHeaderBuilder: (Message message) => SizedBox(
               height: 40,
               child: Center(
@@ -226,7 +164,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      DateFormat.yMMMd().format(message.dateTime),
+                      DateFormat.yMMMd().format(message.timeStamp),
                       style: TextStyle(color: MyColors.KWhite),
                     ),
                   ),
@@ -234,19 +172,19 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             itemBuilder: (context, Message message) => Align(
-              alignment: message.issentByMe
+              alignment: message.isMe
                   ? Alignment.centerRight
                   : Alignment.centerLeft,
               child: Padding(
-                padding: message.issentByMe
+                padding: message.isMe
                     ? EdgeInsets.fromLTRB(50, 8, 0, 8)
                     : EdgeInsets.fromLTRB(0, 8, 50, 8),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: message.issentByMe
+                      color: message.isMe
                           ? MyColors.kPrimary
                           : MyColors.kSecondary,
-                      borderRadius: message.issentByMe
+                      borderRadius: message.isMe
                           ? BorderRadius.only(
                               bottomRight: Radius.circular(29),
                               bottomLeft: Radius.circular(29),
@@ -258,9 +196,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Padding(
                     padding: EdgeInsets.all(12),
                     child: Text(
-                      message.text,
+                      message.message,
                       style: TextStyle(
-                          color: message.issentByMe
+                          color: message.isMe
                               ? MyColors.KWhite
                               : MyColors.kBlack),
                     ),
@@ -297,9 +235,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       onSubmitted: (text) {
                         print("check");
                         final messages = Message(
-                            text: text,
-                            dateTime: DateTime.now(),
-                            issentByMe: true);
+                            message: text,
+                            timeStamp: DateTime.now(),
+                            isMe: true);
                         setState() {
                           message.add(messages);
                         }
@@ -318,9 +256,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
                     print("check");
                     final messages = Message(
-                        text: textController.text,
-                        dateTime: DateTime.now(),
-                        issentByMe: true);
+                        message: textController.text,
+                        timeStamp: DateTime.now(),
+                        isMe: true);
                     setState() {
                       message.add(messages);
                       // message.add(Message(

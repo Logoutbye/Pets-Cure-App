@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/utils/routes/routes.dart';
 import 'package:mvvm_practice_app/utils/routes/routes_names.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
+import 'package:mvvm_practice_app/view/chats/all_chats_screen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/grid_view_pets_market.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           // useMaterial3: true
         ),
-        home: showHome ? HomeScreen() : LoginScreen(),
+        home: showHome ? HomeScreen() : HomeScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,

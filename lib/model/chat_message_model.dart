@@ -1,12 +1,12 @@
 class Message{
-    final String text ;
-    final DateTime dateTime ;
-    final bool issentByMe ;
+    final String message ;
+    final DateTime timeStamp ;
+    final bool isMe ;
     
   const  Message ({
-        required this.text,
-        required this.dateTime,
-        required this.issentByMe
+        required this.message,
+        required this.timeStamp,
+        required this.isMe, 
     });
     
 }
