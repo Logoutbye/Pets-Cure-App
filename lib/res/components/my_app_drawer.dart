@@ -10,7 +10,7 @@ import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAppDrawer extends StatefulWidget {
-  const MyAppDrawer({super.key});
+  MyAppDrawer({super.key});
 
   @override
   State<MyAppDrawer> createState() => _MyAppDrawerState();
@@ -289,7 +289,8 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             },
           ), //Dashboard
 
-               ListTile(
+          // logout
+          ListTile(
             focusColor: Colors.red,
             hoverColor: Colors.amberAccent,
             selectedColor: Colors.white,
@@ -302,18 +303,17 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               "Logout",
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
-            onTap: () async{
+            onTap: () async {
               var prefs = await SharedPreferences.getInstance();
-                  prefs.setBool('showHome', false);
+              prefs.setBool('isLogedIn', false);
+              prefs.setInt("userId", 0);
               Navigator.of(context).pop();
               Navigator.of(context)
                   .pushReplacement(MaterialPageRoute(builder: (context) {
                 return LoginScreen();
               }));
             },
-          ), 
-
-
+          ),
         ],
       ),
     );

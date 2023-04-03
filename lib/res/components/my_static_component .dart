@@ -37,6 +37,14 @@ class MyStaticComponents {
   }
 }
 
+class MySharedPrefencesSessionHandling {
+  // shared preferences variables for session handling
+  static bool isUserLogedIn = false;
+  static int userId = 0;
+
+  static String navigateToPage = "HomeScreen";
+}
+
 
 
     //showDialog(

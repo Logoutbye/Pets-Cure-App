@@ -1,20 +1,23 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lottie/lottie.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/auth_ui/RegistrationScreen.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -171,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         // color: Colors.red,
                                         child: TextField(
                                           controller: mobileNumber,
-                                          // maxLength: 11,
+                                          maxLength: 11,
                                           onTap: () {},
                                           keyboardType: TextInputType.number,
                                           // inputFormatters: [
@@ -346,42 +349,76 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 context);
                                           } else if (Password.text.isEmpty) {
                                             Utils.flushBarErrorMessage(
-                                                'Pleas put your Password number',
+                                                'Pleas put your Password',
                                                 context);
                                           } else {
+                                            // hit login api
                                             await authViewModel
                                                 .getLoginDatafromAuthRepository(
-                                                    mobileNumber.text.trim(),
-                                                    Password.text.trim(),
+                                                    //mobileNumber.text.trim(),
+                                                    mobileNumber.text,
+                                                    Password.text,
+                                                    //Password.text.trim(),
                                                     context);
-                                            Future.delayed(Duration(seconds: 6),
-                                                () async {
-                                              if (mobileNumber ==
-                                                      authViewModel
+                                            Future.delayed(
+                                              Duration(seconds: 4),
+                                              () async {
+                                                if (kDebugMode) {
+                                                  print(
+                                                      "Print message after 4 sec");
+                                                }
+                                                if (authViewModel
+                                                    .isUserLoginDataFetched) {
+                                                  var userFetchedData =
+                                                      await authViewModel
                                                           .userDataForLogin
-                                                          .data![0]
-                                                          .mobileNo &&
-                                                  Password ==
-                                                      authViewModel
-                                                          .userDataForLogin
-                                                          .data![0]
-                                                          .token) {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return Container(
-                                                    child: Center(
-                                                      child:
-                                                          Text("hello world"),
-                                                    ),
-                                                  );
-                                                }));
-                                              } else {
-                                                Utils.flushBarErrorMessage(
-                                                    "Invilid Credentials",
-                                                    context);
-                                              }
-                                            });
+                                                          .data![0];
+
+                                                  if (mobileNumber.text ==
+                                                          userFetchedData
+                                                              .mobileNo &&
+                                                      Password.text ==
+                                                          userFetchedData
+                                                              .token) {
+                                                    // Shared prefrences code
+                                                    var prefs =
+                                                        await SharedPreferences
+                                                            .getInstance();
+                                                    await prefs.setBool(
+                                                        'isLogedIn', true);
+                                                    await prefs.setInt('userId',
+                                                        userFetchedData.id!);
+
+                                                    // stroing true in static variable for session
+                                                    MySharedPrefencesSessionHandling
+                                                        .isUserLogedIn = true;
+
+                                                    //Navigator.of(context).pop();
+                                                    String navigateToPage =
+                                                        MySharedPrefencesSessionHandling
+                                                            .navigateToPage;
+                                                    Navigator.of(context)
+                                                        .pushReplacement(
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) {
+                                                      return navigateToPage ==
+                                                              "HomeScreen"
+                                                          ? HomeScreen()
+                                                          : navigateToPage ==
+                                                                  "PetsRegistration"
+                                                              ? PetsRegistration()
+                                                              : HomeScreen();
+                                                    }));
+                                                  }
+                                                }
+                                                // else {
+                                                //   Utils.flushBarErrorMessage(
+                                                //       "Invilid Credentials",
+                                                //       context);
+                                                // }
+                                              },
+                                            );
                                           }
                                         },
                                         width: 140,
@@ -479,10 +516,10 @@ class _LoginScreenState extends State<LoginScreen> {
         Utils.toastMessage("Login In Successful");
         var prefs = await SharedPreferences.getInstance();
         prefs.setBool('showHome', true);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) =>  HomeScreen()),
+        // );
         // } else {
         //   Utils.flushBarErrorMessage("Please enter correct fileds", context);
         // }

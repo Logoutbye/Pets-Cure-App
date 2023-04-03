@@ -79,7 +79,10 @@ class AuthViewModel with ChangeNotifier {
   }
 
 // Signup api function which is called from UI
-  Future<void> SignUpApi(dynamic data, BuildContext context) async {
+  Future<void> SignUpApi(
+    dynamic data,
+    BuildContext context,
+  ) async {
     setSignUpLoading(true);
 
     _myRepo.signUpApi(data).then((value) {
@@ -159,15 +162,24 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isUserLoginDataFetched = false;
+
+  bool get isUserLoginDataFetched => _isUserLoginDataFetched;
+
+  void userLoginDataFetched(bool value) {
+    _isUserLoginDataFetched = value;
+    notifyListeners();
+  }
+
   Future<void> getLoginDatafromAuthRepository(
       String mobile_number, String password, BuildContext context) async {
     setUserLoginData(ApiListResponse.loading());
     setForgotPasswordLoading(true);
-    _myRepo
-        .signInApi(mobile_number.toString(), password.toString())
-        .then((value) {
+    _myRepo.signInApi(mobile_number, password).then((value) {
       setUserLoginData(ApiListResponse.completed(value));
       setForgotPasswordLoading(false);
+      userLoginDataFetched(true);
+
       if (kDebugMode) {
         Utils.flushBarErrorMessage("Login Success", context);
         print('my value in View Model is : $value');
@@ -175,9 +187,10 @@ class AuthViewModel with ChangeNotifier {
       }
     }).onError((error, stackTrace) {
       setForgotPasswordLoading(false);
+      userLoginDataFetched(false);
       setUserLoginData(ApiListResponse.error(error.toString()));
       Utils.flushBarErrorMessage(
-          "Server error or your mobile number is not register", context);
+          "Mobile number or password is incorrect", context);
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/utils/routes/routes.dart';
 import 'package:mvvm_practice_app/utils/routes/routes_names.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
@@ -17,18 +18,29 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool('showHome') ?? false;
-  runApp(MyApp(showHome: showHome));
+  final showHome = prefs.getBool('isLogedIn') ?? false;
+  final userId = await prefs.getInt('userId') ?? 0;
+  runApp(MyApp(
+    isUserLogedIn: showHome,
+    userId: userId,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  final bool showHome;
+  final bool isUserLogedIn;
+  final int userId;
 
-  const MyApp({super.key, required this.showHome});
+  const MyApp({super.key, required this.isUserLogedIn, required this.userId});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // assigning shared prefereces variable to static variables
+    MySharedPrefencesSessionHandling.isUserLogedIn = isUserLogedIn;
+    MySharedPrefencesSessionHandling.userId = userId;
+
+    print("${MySharedPrefencesSessionHandling.isUserLogedIn = isUserLogedIn}");
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
@@ -42,7 +54,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           // useMaterial3: true
         ),
-        home: showHome ? HomeScreen() : LoginScreen(),
+        home: HomeScreen(),
 
         // it will be used later
         // initialRoute: RoutesName.splash,

@@ -6,7 +6,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/chats/all_chats_screen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
@@ -16,7 +18,7 @@ import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 //import 'package:flutter/src/widgets/framework.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -40,9 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AllChatScreen()));
-            }, icon: Icon(Icons.chat)),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AllChatScreen()));
+                },
+                icon: Icon(Icons.chat)),
           )
         ],
       ),
@@ -286,12 +291,23 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: 15,
                               ),
-                              // Share App Button
+                              // Sell your pet Button
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          PetsRegistration()));
+                                  if (MySharedPrefencesSessionHandling
+                                      .isUserLogedIn) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PetsRegistration()));
+                                  } else {
+                                    MySharedPrefencesSessionHandling
+                                        .navigateToPage = "PetsRegistration";
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LoginScreen()));
+                                  }
                                 },
                                 child: Container(
                                   width:
