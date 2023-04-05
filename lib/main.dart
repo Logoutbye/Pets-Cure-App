@@ -58,7 +58,10 @@ class MyApp extends StatelessWidget {
           // useMaterial3: true
         ),
         home: HomeScreen(),
+<<<<<<< HEAD
 
+=======
+>>>>>>> d1af56aa5c0386afd6ce64899c96ac16be9501c1
         // it will be used later
         // initialRoute: RoutesName.splash,
         // onGenerateRoute: Routes.generateRoute,
