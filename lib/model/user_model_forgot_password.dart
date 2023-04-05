@@ -4,9 +4,15 @@ class UserModelForForgotPassword {
   String? mobileNo;
   String? email;
   String? token;
+  String? userImage;
 
   UserModelForForgotPassword(
-      {this.id, this.name, this.mobileNo, this.email, this.token});
+      {this.id,
+      this.name,
+      this.mobileNo,
+      this.email,
+      this.token,
+      this.userImage});
 
   UserModelForForgotPassword.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -14,6 +20,7 @@ class UserModelForForgotPassword {
     mobileNo = json['mobile_no'];
     email = json['email'];
     token = json['token'];
+    userImage = json['user_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,6 +30,7 @@ class UserModelForForgotPassword {
     data['mobile_no'] = this.mobileNo;
     data['email'] = this.email;
     data['token'] = this.token;
+    data['user_image'] = this.userImage;
     return data;
   }
 }

@@ -4,7 +4,7 @@ class PetsMarketModel {
   String? petImage;
   String? petStatus;
   String? petDescription;
-  String? petPrice;
+  int? petPrice;
 
   PetsMarketModel(
       {this.id,

@@ -89,7 +89,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                               petname: itemIndex.petName,
                               petDescription: itemIndex.petDescription,
                               petAvalability: itemIndex.petStatus!.toString(),
-                              price: itemIndex.petPrice,
+                              price: itemIndex.petPrice!,
                             ))),
                     child: Container(
                       // color: MyColors.kSecondary,
@@ -188,7 +188,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                           SingleChildScrollView(
                                               scrollDirection: Axis.vertical,
                                               child: Text(
-                                                itemIndex.petPrice!,
+                                                itemIndex.petPrice!.toString(),
                                                 style: TextStyle(
                                                   color: MyColors.kPrimary,
                                                   fontWeight: FontWeight.bold,

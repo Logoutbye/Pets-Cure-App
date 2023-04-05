@@ -62,8 +62,7 @@ class _PetsMarketState extends State<PetsMarket> {
         centerTitle: true,
       ),
       drawer: MyAppDrawer(),
-      body:
-       ChangeNotifierProvider<AllPetsMarketViewModel>(
+      body: ChangeNotifierProvider<AllPetsMarketViewModel>(
         create: (_) => allPetsMarketViewModel,
         child:
             Consumer<AllPetsMarketViewModel>(builder: (context, value, child) {
@@ -95,10 +94,9 @@ class _PetsMarketState extends State<PetsMarket> {
                                 petname: itemIndex.petName,
                                 petDescription: itemIndex.petDescription,
                                 petAvalability: itemIndex.petStatus!.toString(),
-                                price: itemIndex.petPrice,
+                                price: itemIndex.petPrice!,
                               ))),
-                      child:
-                       Column(
+                      child: Column(
                         children: [
                           // Container Containe Listtile show all the user informaton header of the post
                           Container(
@@ -235,7 +233,8 @@ class _PetsMarketState extends State<PetsMarket> {
                                                       const EdgeInsets.all(6),
                                                   child: Text(
                                                     'PKR: ' +
-                                                        itemIndex.petPrice!,
+                                                        itemIndex.petPrice!
+                                                            .toString(),
                                                     style: TextStyle(
                                                       fontSize: 16,
                                                       color: MyColors.KWhite,
@@ -264,7 +263,6 @@ class _PetsMarketState extends State<PetsMarket> {
                           ),
                         ],
                       ),
-                    
                     ),
                   );
                 },

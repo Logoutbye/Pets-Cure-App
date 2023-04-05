@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyStaticComponents {
   static myAppDialogBox(BuildContext context, String title, String content) {
@@ -43,6 +44,13 @@ class MySharedPrefencesSessionHandling {
   static int userId = 0;
 
   static String navigateToPage = "HomeScreen";
+
+  static void sessionHandling() async {
+    // shared prefrences sesson handling
+    final prefs = await SharedPreferences.getInstance();
+    userId = await prefs.getInt('userId') ?? 0;
+    isUserLogedIn = prefs.getBool('isLogedIn') ?? false;
+  }
 }
 
 

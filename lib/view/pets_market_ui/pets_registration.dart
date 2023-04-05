@@ -6,12 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:lottie/lottie.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:mvvm_practice_app/res/app_url.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PetsRegistration extends StatefulWidget {
   const PetsRegistration({super.key});
@@ -66,7 +68,8 @@ class _PetsRegistrationState extends State<PetsRegistration> {
   @override
   void initState() {
     selectedAvalability = Avalability[0];
-    // TODO: implement initState
+    MySharedPrefencesSessionHandling.sessionHandling();
+    print("my user id : ${MySharedPrefencesSessionHandling.userId}");
     super.initState();
   }
 
@@ -431,6 +434,9 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                                   'pet_description':
                                       petDiscriptioncontroller.text,
                                   'pet_price': petsPriceController.text,
+                                  'user_id': MySharedPrefencesSessionHandling
+                                      .userId
+                                      .toString(),
                                 };
                                 allPetsMarketPostPetViewModel
                                     .getPetMarketPostResultFromApi(
@@ -439,6 +445,9 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                                   context,
                                 );
                               }
+
+                              print(
+                                  "My user id :  ${MySharedPrefencesSessionHandling.userId}");
                             },
                             child: Text(
                               'Post',

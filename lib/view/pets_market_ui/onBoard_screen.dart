@@ -12,7 +12,7 @@ class OnBoardScreen extends StatefulWidget {
   var petname;
   var petDescription;
   var petAvalability;
-  var price;
+  int price;
 
   OnBoardScreen(
       {required this.petimage,
@@ -67,7 +67,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   width: double.infinity,
                   child: Image.network(
                     widget.petimage,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return Icon(
                         Icons.error,
@@ -223,7 +223,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                                   SingleChildScrollView(
                                       scrollDirection: Axis.vertical,
                                       child: Text(
-                                        widget.price,
+                                        widget.price.toString(),
                                         style: TextStyle(
                                           color: MyColors.kPrimary,
                                           fontSize: 20,
