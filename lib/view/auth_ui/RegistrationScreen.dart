@@ -69,7 +69,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             fit: BoxFit.fill,
           ),
           dismissible: true,
-          child: SingleChildScrollView(
+          child: 
+          SingleChildScrollView(
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
               children: [

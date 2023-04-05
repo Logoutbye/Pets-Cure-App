@@ -6,6 +6,7 @@ import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
+import 'package:mvvm_practice_app/view/users_ui/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,47 +26,61 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
         children: [
           DrawerHeader(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: Container(
-              decoration: BoxDecoration(color: MyColors.kPrimary),
-              child:
-                  // waiter == false
-                  //     ? Center(
-                  //         child: CircularProgressIndicator(
-                  //           color: Colors.black,
-                  //         ),
-                  //       )
-                  //     :
-                  Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Profile Image
-                  Container(
-                    width: 80,
-                    height: 80,
-                    child: CircleAvatar(
-                      radius: 100,
-                      backgroundImage: AssetImage('assets/images/pet.jpg'),
+            child: GestureDetector(
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => EditProfile())),
+              child: Container(
+                decoration: BoxDecoration(color: MyColors.kPrimary),
+                child:
+                    // waiter == false
+                    //     ? Center(
+                    //         child: CircularProgressIndicator(
+                    //           color: Colors.black,
+                    //         ),
+                    //       )
+                    //     :
+                    Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Profile Image
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage: AssetImage('assets/images/pet.jpg'),
+                        child: Stack(children: [
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: CircleAvatar(
+                              radius: 18,
+                              backgroundColor: MyColors.kSecondary,
+                              child: Icon(Icons.edit),
+                            ),
+                          ),
+                        ]),
+                      ),
                     ),
-                  ),
-                  // USer Name
-                  Text(
-                    'Idrees Afridi',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    // USer Name
+                    Text(
+                      'Idrees Afridi',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  // Gmail
-                  Text(
-                    'idrees@gmail.com',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
+                    // Gmail
+                    Text(
+                      'idrees@gmail.com',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

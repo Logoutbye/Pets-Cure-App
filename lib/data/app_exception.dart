@@ -17,7 +17,7 @@ class FetchDataException extends AppException {
 
 // invlid url or route
 class BadRequestException extends AppException {
-  BadRequestException([String? message]) : super(message, 'Invlid Request:');
+  BadRequestException([String? message]) : super(message, 'Invalid Request:');
 }
 
 // invalid token for authorization
