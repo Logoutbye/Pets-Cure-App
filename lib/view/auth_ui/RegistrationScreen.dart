@@ -69,8 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             fit: BoxFit.fill,
           ),
           dismissible: true,
-          child: 
-          SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -372,7 +371,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             'mobile_no':
                                                 mobileNumberTextController.text,
                                             'email': emailTextController.text,
-                                            'token': PasswordTextController.text
+                                            'token':
+                                                PasswordTextController.text,
+                                            'user_image': '',
                                           };
 
                                           authViewModel.SignUpApi(
