@@ -17,4 +17,6 @@ class AppUrl {
   static var forgotPasswordUrl = petsCureBaseUrl + 'forgotpassword/';
 
   static var signInUrl = petsCureBaseUrl + 'signin/';
+
+  static var getUserById = petsCureBaseUrl + 'getuserbyid/';
 }

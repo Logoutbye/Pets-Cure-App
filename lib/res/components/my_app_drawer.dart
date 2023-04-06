@@ -6,7 +6,7 @@ import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
-import 'package:mvvm_practice_app/view/users_ui/edit_profile.dart';
+import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,8 +27,11 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
           DrawerHeader(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: GestureDetector(
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => EditProfile())),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => EditProfile()));
+              },
               child: Container(
                 decoration: BoxDecoration(color: MyColors.kPrimary),
                 child:
