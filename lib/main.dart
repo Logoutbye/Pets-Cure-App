@@ -9,7 +9,7 @@ import 'package:mvvm_practice_app/view/pets_market_ui/grid_view_pets_market.dart
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
-import 'package:mvvm_practice_app/view/users_ui/edit_profile.dart';
+import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
@@ -58,10 +58,6 @@ class MyApp extends StatelessWidget {
           // useMaterial3: true
         ),
         home: HomeScreen(),
-<<<<<<< HEAD
-
-=======
->>>>>>> d1af56aa5c0386afd6ce64899c96ac16be9501c1
         // it will be used later
         // initialRoute: RoutesName.splash,
         // onGenerateRoute: Routes.generateRoute,
