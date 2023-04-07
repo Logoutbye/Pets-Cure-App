@@ -14,6 +14,7 @@ import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view_model/update_user_profile_image_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../res/components/my_static_component .dart';
 import 'full_screen_profile_pictre.dart';
 
 class EditProfile extends StatefulWidget {
