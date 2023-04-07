@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -349,7 +350,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                                         child: Icon(
                                           Icons.image,
                                           color: Colors.white,
-                                          size: 40,
+                                          size: 30,
                                         ),
                                       ),
                                     ),
@@ -497,7 +498,9 @@ class _PetsRegistrationState extends State<PetsRegistration> {
       //print(image!.path);
       setState(() {});
     } else {
-      print('no image selected');
+      if (kDebugMode) {
+        print('no image selected');
+      }
     }
   }
 

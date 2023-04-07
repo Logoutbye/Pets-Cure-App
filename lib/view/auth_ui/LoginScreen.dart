@@ -393,6 +393,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
 
+                                                    MySharedPrefencesSessionHandling
+                                                            .userId =
+                                                        userFetchedData.id!;
+
                                                     //Navigator.of(context).pop();
                                                     String navigateToPage =
                                                         MySharedPrefencesSessionHandling

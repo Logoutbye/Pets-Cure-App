@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
@@ -322,9 +323,13 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () async {
+              // session hadnling
               var prefs = await SharedPreferences.getInstance();
               prefs.setBool('isLogedIn', false);
               prefs.setInt("userId", 0);
+              MySharedPrefencesSessionHandling.isUserLogedIn = false;
+              MySharedPrefencesSessionHandling.userId = 0;
+              // Navigating to loginscreen
               Navigator.of(context).pop();
               Navigator.of(context)
                   .pushReplacement(MaterialPageRoute(builder: (context) {

@@ -62,7 +62,8 @@ class NetworkApiServece extends BaseApiServeces {
 
       var length = await file.length();
 
-      var uri = Uri.parse('https://kawiishapps.com/api/postpets');
+      //var uri = Uri.parse('https://kawiishapps.com/api/postpets');
+      var uri = Uri.parse(Url);
 
       var request = new http.MultipartRequest('POST', uri);
 
