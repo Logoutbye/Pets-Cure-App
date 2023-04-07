@@ -13,6 +13,7 @@ import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
+import 'package:mvvm_practice_app/view_model/get_user_by_id_view_model.dart';
 import 'package:mvvm_practice_app/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => AllPetsMarketPostPetViewModel()),
+        ChangeNotifierProvider(create: (_) => GetUserByIdViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -13,7 +13,7 @@ import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/user_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthViewModel with ChangeNotifier {
+class  AuthViewModel with ChangeNotifier {
   final _myRepo = AuthRepository();
 
   // for login

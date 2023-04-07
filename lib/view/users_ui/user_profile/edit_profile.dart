@@ -6,7 +6,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:http/http.dart' as http;
+import 'package:mvvm_practice_app/view_model/get_user_by_id_view_model.dart';
+import 'package:provider/provider.dart';
 
+import '../../../res/components/my_static_component .dart';
 import 'full_screen_profile_pictre.dart';
 
 class EditProfile extends StatefulWidget {
@@ -27,17 +30,21 @@ class _EditProfileState extends State<EditProfile> {
   final _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
+    var getUserByIdViewModel = Provider.of<GetUserByIdViewModel>(context);
+    var id = MySharedPrefencesSessionHandling.userId;
+    getUserByIdViewModel.getUserByIdDatafromRepository(id, context);
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: MyColors.kPrimary,
-        foregroundColor: MyColors.KWhite,
-        title: Text("Edit Profile"),
-      ),
-      body:  SingleChildScrollView(
-              child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: MyColors.kPrimary,
+          foregroundColor: MyColors.KWhite,
+          title: Text("Edit Profile"),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               // Profile Image
               Center(
                 child: Padding(
@@ -74,9 +81,10 @@ class _EditProfileState extends State<EditProfile> {
                                             top: Radius.circular(25))),
                                     context: context,
                                     builder: (context) => Container(
-                                          height:
-                                              MediaQuery.of(context).size.height /
-                                                  7,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              7,
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 80),
@@ -90,7 +98,8 @@ class _EditProfileState extends State<EditProfile> {
                                                   children: [
                                                     IconButton(
                                                         onPressed: () {
-                                                          Navigator.pop(context);
+                                                          Navigator.pop(
+                                                              context);
                                                           getImageFromCamera();
                                                         },
                                                         icon: Icon(
@@ -117,8 +126,9 @@ class _EditProfileState extends State<EditProfile> {
                                                   children: [
                                                     IconButton(
                                                         onPressed: () {
-                                                          Navigator.pop(context);
-            
+                                                          Navigator.pop(
+                                                              context);
+
                                                           getImageFromGallery();
                                                         },
                                                         icon: Icon(
@@ -173,11 +183,11 @@ class _EditProfileState extends State<EditProfile> {
               SizedBox(
                 height: 22,
               ),
-            
+
               Positioned(
                 top: MediaQuery.of(context).size.height / 3.8,
                 left: MediaQuery.of(context).size.height / 24,
-            
+
                 // Main form Container
                 child: Center(
                   child: Container(
@@ -244,8 +254,8 @@ class _EditProfileState extends State<EditProfile> {
                                     enabledBorder: new OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 180, 180, 180)),
+                                          color: Color.fromARGB(
+                                              255, 180, 180, 180)),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
@@ -256,7 +266,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                               ),
-            
+
                               // Mobile number text field
                               Container(
                                 // color: Colors.red,
@@ -282,8 +292,8 @@ class _EditProfileState extends State<EditProfile> {
                                     enabledBorder: new OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 180, 180, 180)),
+                                          color: Color.fromARGB(
+                                              255, 180, 180, 180)),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
@@ -294,7 +304,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                               ),
-            
+
                               // Email  Textfield
                               Container(
                                 // color: Colors.red,
@@ -320,8 +330,8 @@ class _EditProfileState extends State<EditProfile> {
                                     enabledBorder: new OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 180, 180, 180)),
+                                          color: Color.fromARGB(
+                                              255, 180, 180, 180)),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
@@ -332,7 +342,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                               ),
-            
+
                               // Password TextField
                               Container(
                                 // color: Colors.red,
@@ -354,7 +364,8 @@ class _EditProfileState extends State<EditProfile> {
                                     enabledBorder: new OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 193, 198, 198),
+                                        color:
+                                            Color.fromARGB(255, 193, 198, 198),
                                         //Color.fromARGB(255, 115, 38, 38),
                                       ),
                                     ),
@@ -372,14 +383,13 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                               ),
-            
+
                               SizedBox(
                                 height: 30,
                               ),
                               RoundButton(
                                 title: 'Update',
                                 onpress: () {
-            
                                   // GetUserByIdModel();
                                   // nameTextControl.text.length < 1
                                   //     ? Utils.flushBarErrorMessage(
@@ -408,19 +418,20 @@ class _EditProfileState extends State<EditProfile> {
                                   //                         context)
                                   //                     :
                                   ///////////////////
-            
+
                                   Map data = {
                                     'name': nameTextControl.text,
-                                    'mobile_no': mobileNumberTextController.text,
+                                    'mobile_no':
+                                        mobileNumberTextController.text,
                                     'email': emailTextController.text,
                                     'token': PasswordTextController.text
                                   };
-            
+
                                   // authViewModel.SignUpApi(
                                   //     data, context);
-            
-                    //                         //////////////////
-            
+
+                                  //                         //////////////////
+
                                   // SignUP(
                                   //     nameTextControl.text,
                                   //     mobileNumberTextController.text,
@@ -436,10 +447,10 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
               ),
-                      ],
-                    ),
-            )
-        
+            ],
+          ),
+        )
+
         // child: Column(
         //   // mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
@@ -831,8 +842,8 @@ class _EditProfileState extends State<EditProfile> {
         //     ),
         //   ],
         // ),
-      
-    );
+
+        );
   }
 
   Future getImageFromCamera() async {
@@ -860,6 +871,4 @@ class _EditProfileState extends State<EditProfile> {
       print('no image selected');
     }
   }
-
- 
 }
