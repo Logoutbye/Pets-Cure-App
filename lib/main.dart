@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/utils/routes/routes.dart';
@@ -24,17 +26,40 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('isLogedIn') ?? false;
   final userId = await prefs.getInt('userId') ?? 0;
+  //to get user data by id
+  // final String? name = prefs.getString('name');
+  // final String? mobile_no = prefs.getString('mobile_no');
+  // final String? email = prefs.getString('email');
+  // final String? user_image = prefs.getString('user_image');
+
   runApp(MyApp(
     isUserLogedIn: showHome,
     userId: userId,
+    // name: name,
+    // mobile_no: mobile_no,
+    // email: email,
+    // user_image: user_image,
   ));
 }
 
 class MyApp extends StatelessWidget {
   final bool isUserLogedIn;
   final int userId;
+  //to get user data by id
+  // final String? name;
+  // final String? mobile_no;
+  // final String? email;
+  // final String? user_image;
 
-  const MyApp({super.key, required this.isUserLogedIn, required this.userId});
+  const MyApp(
+      {super.key,
+      required this.isUserLogedIn,
+      required this.userId,
+      // required this.name,
+      // required this.mobile_no,
+      // required this.email,
+      // required this.user_image
+      });
 
   // This widget is the root of your application.
   @override

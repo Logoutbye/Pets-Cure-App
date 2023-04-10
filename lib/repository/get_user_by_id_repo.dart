@@ -9,15 +9,19 @@ class GetUserByIdRepository {
   BaseApiServeces _apiServeces = NetworkApiServece();
 
 // function to hit GetUser By Id
-  Future<dynamic> GetUserByIdApi(var id) async {
+  Future<List<UserModelForForgotPassword>> GetUserByIdApi(var id) async {
     try {
-      dynamic response =
-          _apiServeces.getGetApiResponse('${AppUrl.getUserById}$id}');
-          if(kDebugMode){
-            print("$response");
-          }
-      return response;
+      List<dynamic> response =
+          await _apiServeces.getGetApiResponse('${AppUrl.getUserById}$id}');
+      if (kDebugMode) {
+        print("i am a sucessful reponse in repository layer of get user by id which is: $response");
+      }
+      return response
+          .map((e) => UserModelForForgotPassword.fromJson(e))
+          .toList();
+      // return response;
     } catch (e) {
+      print("i am a unsucessful in repository layer of get user by id");
       throw e;
     }
   }

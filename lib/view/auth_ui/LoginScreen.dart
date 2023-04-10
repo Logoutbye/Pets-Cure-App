@@ -13,6 +13,7 @@ import 'package:mvvm_practice_app/view/auth_ui/RegistrationScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
+import 'package:mvvm_practice_app/view_model/get_user_by_id_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,6 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var authViewModel = Provider.of<AuthViewModel>(context);
+    final getUserByIdViewModel = Provider.of<GetUserByIdViewModel>(context);
+
     return ModalProgressHUD(
       inAsyncCall: authViewModel.forgotLoading,
       progressIndicator: Lottie.asset(
@@ -360,6 +363,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     Password.text,
                                                     //Password.text.trim(),
                                                     context);
+                                            //hit get user by id api to store data in shared prefrences so that we can later get the user data where needed
+                                            var id =
+                                                MySharedPrefencesSessionHandling
+                                                    .userId;
+                                            await getUserByIdViewModel
+                                                .getUserByIdDatafromRepository(
+                                                    id, context);
                                             Future.delayed(
                                               Duration(seconds: 4),
                                               () async {
@@ -392,7 +402,37 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     // stroing true in static variable for session
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
-
+                                                    //storing data of get data by user id
+                                                    MySharedPrefencesSessionHandling
+                                                            .name =
+                                                        getUserByIdViewModel
+                                                            .getUSerDataById
+                                                            .data?[0]
+                                                            .name;
+                                                    MySharedPrefencesSessionHandling
+                                                            .mobile_no =
+                                                        getUserByIdViewModel
+                                                            .getUSerDataById
+                                                            .data?[0]
+                                                            .mobileNo;
+                                                    MySharedPrefencesSessionHandling
+                                                            .email =
+                                                        getUserByIdViewModel
+                                                            .getUSerDataById
+                                                            .data?[0]
+                                                            .email;
+                                                    MySharedPrefencesSessionHandling
+                                                            .user_image =
+                                                        getUserByIdViewModel
+                                                            .getUSerDataById
+                                                            .data?[0]
+                                                            .userImage;
+                                                    if (kDebugMode) {
+                                                      print(
+                                                          "storing User data by id ::${getUserByIdViewModel.getUSerDataById.data?[0].name},${getUserByIdViewModel.getUSerDataById.data?[0].mobileNo},${getUserByIdViewModel.getUSerDataById.data?[0].email}, ${getUserByIdViewModel.getUSerDataById.data?[0].userImage}");
+                                                      print(
+                                                          "User data by id stored in sharedPrefrences successfulyy");
+                                                    }
                                                     //Navigator.of(context).pop();
                                                     String navigateToPage =
                                                         MySharedPrefencesSessionHandling

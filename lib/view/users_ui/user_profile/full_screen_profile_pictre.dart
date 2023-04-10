@@ -53,7 +53,7 @@ class _FullScreenProfilePictureState extends State<FullScreenProfilePicture> {
                       File(widget.pictureSrc).absolute,
                       fit: BoxFit.cover,
                     )
-                  : Image.asset(widget.pictureSrc)),
+                  : Image.network(widget.pictureSrc)),
         ),
       ),
     );

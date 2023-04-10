@@ -29,6 +29,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
+                // Future.delayed(Duration(seconds: 4), () async {});
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => EditProfile()));
               },
