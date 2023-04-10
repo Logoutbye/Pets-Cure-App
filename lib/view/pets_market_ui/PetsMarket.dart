@@ -89,12 +89,13 @@ class _PetsMarketState extends State<PetsMarket> {
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => OnBoardScreen(
                                 petimage: itemIndex.petImage.toString(),
-                                userimage: imagesLink[index],
                                 username: usersName[index],
                                 petname: itemIndex.petName,
                                 petDescription: itemIndex.petDescription,
                                 petAvalability: itemIndex.petStatus!.toString(),
                                 price: itemIndex.petPrice!,
+                                userId: itemIndex.userId!,
+                                userImage: itemIndex.userImage!,
                               ))),
                       child: Column(
                         children: [

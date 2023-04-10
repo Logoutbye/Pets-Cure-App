@@ -49,6 +49,25 @@ class NetworkApiServece extends BaseApiServeces {
     return responseJson;
   }
 
+  // put data using api
+  @override
+  Future getPutApiResponse(String Url, data) async {
+    dynamic responseJson;
+
+    try {
+      Response response = await put(
+        Uri.parse(Url),
+        body: data,
+      );
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException(
+          ' No Internet Connection \n Check your connection, then refresh the page.');
+    }
+
+    return responseJson;
+  }
+
   // post data using api with file uploading
 
   @override

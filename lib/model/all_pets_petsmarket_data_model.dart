@@ -5,6 +5,8 @@ class PetsMarketModel {
   String? petStatus;
   String? petDescription;
   int? petPrice;
+  int? userId;
+  String? userImage;
 
   PetsMarketModel(
       {this.id,
@@ -12,7 +14,9 @@ class PetsMarketModel {
       this.petImage,
       this.petStatus,
       this.petDescription,
-      this.petPrice});
+      this.petPrice,
+      this.userId,
+      this.userImage});
 
   PetsMarketModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -21,6 +25,8 @@ class PetsMarketModel {
     petStatus = json['pet_status'];
     petDescription = json['pet_description'];
     petPrice = json['pet_price'];
+    userId = json['user_id'];
+    userImage = json['user_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +37,9 @@ class PetsMarketModel {
     data['pet_status'] = this.petStatus;
     data['pet_description'] = this.petDescription;
     data['pet_price'] = this.petPrice;
+    data['user_id'] = this.userId;
+    data['user_image'] = this.userImage;
+
     return data;
   }
 }

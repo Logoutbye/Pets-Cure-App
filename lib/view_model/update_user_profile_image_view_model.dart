@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mvvm_practice_app/repository/all_pets_petsmarket_post_repo.dart';
-import 'package:mvvm_practice_app/repository/update_user_profile_image_repo.dart';
+import 'package:mvvm_practice_app/repository/update_user_profile_image_and_data_repo.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 
 class UpdateUserProfileImageViewModel with ChangeNotifier {

@@ -84,12 +84,13 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OnBoardScreen(
                               petimage: itemIndex.petImage.toString(),
-                              userimage: imagesLink[0],
                               username: usersName[0],
                               petname: itemIndex.petName,
                               petDescription: itemIndex.petDescription,
                               petAvalability: itemIndex.petStatus!.toString(),
                               price: itemIndex.petPrice!,
+                              userId: itemIndex.userId!,
+                              userImage: itemIndex.userImage!,
                             ))),
                     child: Container(
                       // color: MyColors.kSecondary,
@@ -188,7 +189,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                           SingleChildScrollView(
                                               scrollDirection: Axis.vertical,
                                               child: Text(
-                                                itemIndex.petPrice!.toString(),
+                                                itemIndex.petPrice.toString(),
                                                 style: TextStyle(
                                                   color: MyColors.kPrimary,
                                                   fontWeight: FontWeight.bold,

@@ -7,21 +7,24 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 
 class OnBoardScreen extends StatefulWidget {
   final petimage;
-  var userimage;
+
   var username;
   var petname;
   var petDescription;
   var petAvalability;
   int price;
+  int userId;
+  String userImage;
 
   OnBoardScreen(
       {required this.petimage,
-      required this.userimage,
       required this.username,
       required this.petname,
       required this.petDescription,
       required this.petAvalability,
       required this.price,
+      required this.userId,
+      required this.userImage,
       super.key});
 
   @override
@@ -35,6 +38,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   var petDescription;
   var petAvalability;
   var price;
+  var userImage;
+  var userid;
 
   @override
   void initState() {
@@ -44,6 +49,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     petDescription = widget.petDescription;
     petAvalability = widget.petAvalability;
     price = widget.price;
+    userid = widget.userId;
+    userImage = widget.userImage;
     // TODO: implement initState
     super.initState();
   }
@@ -131,9 +138,13 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          widget.userimage,
-                        ),
+                        backgroundImage:
+                            widget.userImage == null || widget.userImage == "no"
+                                ? AssetImage('assets/images/pet.jpg')
+                                    as ImageProvider<Object>
+                                : NetworkImage(
+                                    widget.userImage,
+                                  ),
                         radius: 40,
                       ),
                     ),
