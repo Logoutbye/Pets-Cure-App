@@ -402,7 +402,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     // stroing true in static variable for session
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
-<<<<<<< HEAD
                                                     //storing data of get data by user id
                                                     MySharedPrefencesSessionHandling
                                                             .name =
@@ -434,13 +433,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       print(
                                                           "User data by id stored in sharedPrefrences successfulyy");
                                                     }
-=======
-
-                                                    MySharedPrefencesSessionHandling
-                                                            .userId =
-                                                        userFetchedData.id!;
-
->>>>>>> e571ec66b8dd17e72bf20de5fb2c6af32f00029b
                                                     //Navigator.of(context).pop();
                                                     String navigateToPage =
                                                         MySharedPrefencesSessionHandling
