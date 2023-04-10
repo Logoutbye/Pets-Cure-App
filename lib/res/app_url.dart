@@ -21,4 +21,6 @@ class AppUrl {
   static var getUserById = petsCureBaseUrl + 'getuserbyid/';
 
   static var updateUSerProfileImage = petsCureBaseUrl + 'updateprofileimage/';
+
+  static var updateUSerProfileinfo = petsCureBaseUrl + 'updateuserinfo/';
 }

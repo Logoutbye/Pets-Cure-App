@@ -373,7 +373,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             'email': emailTextController.text,
                                             'token':
                                                 PasswordTextController.text,
-                                            'user_image': '',
+                                            'user_image': 'no',
                                           };
 
                                           authViewModel.SignUpApi(
