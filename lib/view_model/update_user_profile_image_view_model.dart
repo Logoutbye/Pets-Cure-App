@@ -38,4 +38,28 @@ class UpdateUserProfileImageViewModel with ChangeNotifier {
       //getAllPetsMarketPostResult(ApiResponse.error(error.toString()));
     });
   }
+
+// update user profile info
+
+  Future<void> getUpdateUserProfileInfodataFromRepository(
+      dynamic data, int id, BuildContext context) async {
+    setLoading(true);
+    //getAllPetsMarketPostResult(ApiResponse.loading());
+
+    _myRepo.updateUserProfileInfo(data, id).then((value) {
+      setLoading(false);
+      Utils.flushBarErrorMessage('Success', context);
+      //getAllPetsMarketPostResult(ApiResponse.completed(value));
+      if (kDebugMode) {
+        print("$value My value in view model");
+      }
+    }).onError((error, stackTrace) {
+      setLoading(false);
+      if (kDebugMode) {
+        print("$error");
+      }
+      Utils.flushBarErrorMessage(error.toString(), context);
+      //getAllPetsMarketPostResult(ApiResponse.error(error.toString()));
+    });
+  }
 }

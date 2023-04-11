@@ -84,7 +84,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OnBoardScreen(
                               petimage: itemIndex.petImage.toString(),
-                              username: usersName[0],
+                              username: itemIndex.petName,
                               petname: itemIndex.petName,
                               petDescription: itemIndex.petDescription,
                               petAvalability: itemIndex.petStatus!.toString(),

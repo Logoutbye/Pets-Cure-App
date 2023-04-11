@@ -70,12 +70,12 @@ class MySharedPrefencesSessionHandling {
   //   await prefs.setString('user_image', '$user_image');
   // }
 
-  static  getUserDataFromSharedPreferences() async {
+  static getUserDataFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     name = prefs.getString('name');
-     mobile_no = prefs.getString('mobile_no');
+    mobile_no = prefs.getString('mobile_no');
     email = prefs.getString('email');
-     user_image = prefs.getString('user_image');
+    user_image = prefs.getString('user_image');
   }
 }
 
