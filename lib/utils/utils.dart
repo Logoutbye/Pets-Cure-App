@@ -7,6 +7,7 @@ import 'package:mvvm_practice_app/res/colors.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 
 class Utils {
+  
   static void fieldfocusChange(
       BuildContext context, FocusNode current, FocusNode next) {
     current.unfocus();
@@ -34,6 +35,24 @@ class Utils {
           message: message,
           duration: Duration(seconds: 5),
           flushbarPosition: FlushbarPosition.BOTTOM,
+        )..show(context));
+  } // flutter flushbar
+
+  static flushBarErrorMessageWithAction(String message,VoidCallback _onpress, BuildContext context) {
+    showFlushbar(
+        context: context,
+        flushbar: Flushbar(
+          positionOffset: 50,padding: EdgeInsets.all(26),
+          borderRadius: BorderRadius.circular(20),
+          backgroundColor: MyColors.kSecondary,
+          messageColor: MyColors.kPrimary,
+          message: message,
+          duration: Duration(seconds: 5),
+          flushbarPosition: FlushbarPosition.TOP,
+          mainButton: IconButton(
+            icon: Icon(Icons.login_outlined,),
+            onPressed: _onpress,
+          ),
         )..show(context));
   }
 }

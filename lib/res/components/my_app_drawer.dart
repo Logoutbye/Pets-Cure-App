@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
@@ -29,10 +30,19 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
-                // Future.delayed(Duration(seconds: 4), () async {});
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => EditProfile()));
+                if (MySharedPrefencesSessionHandling.name == null) {
+                  Utils.flushBarErrorMessageWithAction(
+                      "Please log in to continue", () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                    print("object");
+                  }, context);
+                } else {
+                  Navigator.pop(context);
+                  // Future.delayed(Duration(seconds: 4), () async {});
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => EditProfile()));
+                }
               },
               child: Container(
                 decoration: BoxDecoration(color: MyColors.kPrimary),
@@ -53,7 +63,12 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                       height: 80,
                       child: CircleAvatar(
                         radius: 100,
-                        backgroundImage: AssetImage('assets/images/pet.jpg'),
+                        backgroundImage:MySharedPrefencesSessionHandling.user_image == null 
+                        || MySharedPrefencesSessionHandling.user_image =='no' 
+                        ? AssetImage('assets/images/user.png',)
+                        // ? Image.asset('assets/images/user.png',fit,).image
+                        : Image.network(
+                                '${MySharedPrefencesSessionHandling.user_image}').image,
                         child: Stack(children: [
                           Align(
                             alignment: Alignment.bottomRight,
@@ -66,9 +81,12 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                         ]),
                       ),
                     ),
+                    SizedBox(height: 5,),
                     // USer Name
                     Text(
-                      'Idrees Afridi',
+                      MySharedPrefencesSessionHandling.name ==null? 
+                     'Guest User'
+                      :'${MySharedPrefencesSessionHandling.name }',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -77,7 +95,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                     ),
                     // Gmail
                     Text(
-                      'idrees@gmail.com',
+                       MySharedPrefencesSessionHandling.email ==null?
+                       ''
+                       :'${MySharedPrefencesSessionHandling.email}',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,

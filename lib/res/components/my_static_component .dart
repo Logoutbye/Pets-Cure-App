@@ -50,6 +50,8 @@ class MySharedPrefencesSessionHandling {
 
   static String navigateToPage = "HomeScreen";
 
+  static String? token = "";
+
   static void sessionHandling() async {
     // shared prefrences sesson handling
     final prefs = await SharedPreferences.getInstance();
@@ -60,22 +62,43 @@ class MySharedPrefencesSessionHandling {
   static int useridd = 0;
 
   // storing data{name,images etc} of loggedin user
-  // static void storingUserDataInSharedPreferences(
-  //     var name, var mobile_no, var email, var user_image) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.setString('name', '$name');
-  //   await prefs.setString('mobile_no', '$mobile_no');
-  //   await prefs.setString('email', '$email');
-  //   // await prefs.setString('token', '$token');
-  //   await prefs.setString('user_image', '$user_image');
-  // }
+  static void setUserDataInSharedPreferences(
+      var namepassed,
+      var mobile_no_passed,
+      var email_passed,
+      var user_image_passed,
+      var user_token_passed) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('name', '$namepassed');
+    await prefs.setString('mobile_no', '$mobile_no_passed');
+    await prefs.setString('email', '$email_passed');
+    await prefs.setString('token', '$user_token_passed');
+    await prefs.setString('user_image', '$user_image_passed');
+    name = namepassed;
 
-  static  getUserDataFromSharedPreferences() async {
+    mobile_no = mobile_no_passed;
+    email = email_passed;
+
+    user_image = user_image_passed;
+    token = user_token_passed;
+  }
+
+  static getUserDataFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     name = prefs.getString('name');
-     mobile_no = prefs.getString('mobile_no');
+    mobile_no = prefs.getString('mobile_no');
     email = prefs.getString('email');
-     user_image = prefs.getString('user_image');
+    user_image = prefs.getString('user_image');
+    token = prefs.getString('token');
+  }
+
+  static removeUserDataFromSharedPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('name');
+    await prefs.remove('mobile_no');
+    await prefs.remove('email');
+    await prefs.remove('user_image');
+    await prefs.remove('token');
   }
 }
 
@@ -101,7 +124,6 @@ class MySharedPrefencesSessionHandling {
     //                 } else {
     //                   provider.updateHasData(box.isNotEmpty);
     //                 }
-
     //                 Navigator.pop(context);
     //               },
     //               child: Text("Yes", style: TextStyle(color: AppColors.kBlack)))

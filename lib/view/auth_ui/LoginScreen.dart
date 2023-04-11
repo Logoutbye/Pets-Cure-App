@@ -364,12 +364,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     //Password.text.trim(),
                                                     context);
                                             //hit get user by id api to store data in shared prefrences so that we can later get the user data where needed
-                                            var id =
-                                                MySharedPrefencesSessionHandling
-                                                    .userId;
-                                            await getUserByIdViewModel
-                                                .getUserByIdDatafromRepository(
-                                                    id, context);
+
                                             Future.delayed(
                                               Duration(seconds: 4),
                                               () async {
@@ -403,33 +398,54 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
                                                     //storing data of get data by user id
+                                                    //MySharedPrefencesSessionHandling
+                                                    //.userId;
+
+                                                    var id = userFetchedData.id;
+                                                    print("check::${id}");
+
+                                                    // await getUserByIdViewModel
+                                                    //     .getUserByIdDatafromRepository(
+                                                    //         id, context);
                                                     MySharedPrefencesSessionHandling
-                                                            .name =
-                                                        getUserByIdViewModel
-                                                            .getUSerDataById
-                                                            .data?[0]
-                                                            .name;
-                                                    MySharedPrefencesSessionHandling
-                                                            .mobile_no =
-                                                        getUserByIdViewModel
-                                                            .getUSerDataById
-                                                            .data?[0]
-                                                            .mobileNo;
-                                                    MySharedPrefencesSessionHandling
-                                                            .email =
-                                                        getUserByIdViewModel
-                                                            .getUSerDataById
-                                                            .data?[0]
-                                                            .email;
-                                                    MySharedPrefencesSessionHandling
-                                                            .user_image =
-                                                        getUserByIdViewModel
-                                                            .getUSerDataById
-                                                            .data?[0]
-                                                            .userImage;
+                                                        .setUserDataInSharedPreferences(
+                                                            userFetchedData
+                                                                .name,
+                                                            userFetchedData
+                                                                .mobileNo,
+                                                            userFetchedData
+                                                                .email,
+                                                            userFetchedData
+                                                                .userImage,
+                                                            userFetchedData
+                                                                .token);
+                                                    // MySharedPrefencesSessionHandling
+                                                    //         .name =
+                                                    //     getUserByIdViewModel
+                                                    //         .getUSerDataById
+                                                    //         .data?[0]
+                                                    //         .name;
+                                                    // MySharedPrefencesSessionHandling
+                                                    //         .mobile_no =
+                                                    //     getUserByIdViewModel
+                                                    //         .getUSerDataById
+                                                    //         .data?[0]
+                                                    //         .mobileNo;
+                                                    // MySharedPrefencesSessionHandling
+                                                    //         .email =
+                                                    //     getUserByIdViewModel
+                                                    //         .getUSerDataById
+                                                    //         .data?[0]
+                                                    //         .email;
+                                                    // MySharedPrefencesSessionHandling
+                                                    //         .user_image =
+                                                    //     getUserByIdViewModel
+                                                    //         .getUSerDataById
+                                                    //         .data?[0]
+                                                    //         .userImage;
                                                     if (kDebugMode) {
                                                       print(
-                                                          "storing User data by id ::${getUserByIdViewModel.getUSerDataById.data?[0].name},${getUserByIdViewModel.getUSerDataById.data?[0].mobileNo},${getUserByIdViewModel.getUSerDataById.data?[0].email}, ${getUserByIdViewModel.getUSerDataById.data?[0].userImage}");
+                                                          "storing User data by id ::${MySharedPrefencesSessionHandling.name}");
                                                       print(
                                                           "User data by id stored in sharedPrefrences successfulyy");
                                                     }

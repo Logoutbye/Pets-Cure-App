@@ -37,12 +37,13 @@ class _FullScreenProfilePictureState extends State<FullScreenProfilePicture> {
         title: Text("Profile Photo"),
         backgroundColor: MyColors.kPrimary,
         foregroundColor: MyColors.kSecondary,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Icon(Icons.delete),
-          )
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 8.0),
+        //     child: Icon(Icons.delete),
+        //   )
+        // ],
+      
       ),
       body: Center(
         child: Padding(
