@@ -45,13 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
   //   );
   // }
 
+  bool islogedInbuttonPressed = false;
+
   @override
   Widget build(BuildContext context) {
     var authViewModel = Provider.of<AuthViewModel>(context);
     final getUserByIdViewModel = Provider.of<GetUserByIdViewModel>(context);
 
     return ModalProgressHUD(
-      inAsyncCall: authViewModel.forgotLoading,
+      inAsyncCall: authViewModel.forgotLoading || islogedInbuttonPressed,
       progressIndicator: Lottie.asset(
         "assets/lottie/loading.json",
         width: 100,
@@ -355,6 +357,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 'Pleas put your Password',
                                                 context);
                                           } else {
+                                            // start loading
+                                            setState(() {
+                                              islogedInbuttonPressed = true;
+                                            });
                                             // hit login api
                                             await authViewModel
                                                 .getLoginDatafromAuthRepository(
@@ -452,6 +458,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       print(
                                                           "User data by id stored in sharedPrefrences successfulyy");
                                                     }
+
                                                     //Navigator.of(context).pop();
                                                     String navigateToPage =
                                                         MySharedPrefencesSessionHandling
@@ -469,6 +476,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                               ? PetsRegistration()
                                                               : HomeScreen();
                                                     }));
+                                                    setState(() {
+                                                      islogedInbuttonPressed =
+                                                          false;
+                                                    });
                                                   }
                                                 }
                                                 // else {
@@ -478,6 +489,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 // }
                                               },
                                             );
+                                            setState(() {
+                                              islogedInbuttonPressed = false;
+                                            });
                                           }
                                         },
                                         width: 140,
