@@ -63,12 +63,18 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                       height: 80,
                       child: CircleAvatar(
                         radius: 100,
-                        backgroundImage:MySharedPrefencesSessionHandling.user_image == null 
-                        || MySharedPrefencesSessionHandling.user_image =='no' 
-                        ? AssetImage('assets/images/user.png',)
-                        // ? Image.asset('assets/images/user.png',fit,).image
-                        : Image.network(
-                                '${MySharedPrefencesSessionHandling.user_image}').image,
+                        backgroundImage: MySharedPrefencesSessionHandling
+                                        .user_image ==
+                                    null ||
+                                MySharedPrefencesSessionHandling.user_image ==
+                                    'no'
+                            ? AssetImage(
+                                'assets/images/user.png',
+                              )
+                            // ? Image.asset('assets/images/user.png',fit,).image
+                            : Image.network(
+                                    '${MySharedPrefencesSessionHandling.user_image}')
+                                .image,
                         child: Stack(children: [
                           Align(
                             alignment: Alignment.bottomRight,
@@ -81,12 +87,14 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                         ]),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     // USer Name
                     Text(
-                      MySharedPrefencesSessionHandling.name ==null? 
-                     'Guest User'
-                      :'${MySharedPrefencesSessionHandling.name }',
+                      MySharedPrefencesSessionHandling.name == null
+                          ? 'Guest User'
+                          : '${MySharedPrefencesSessionHandling.name}',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -95,9 +103,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                     ),
                     // Gmail
                     Text(
-                       MySharedPrefencesSessionHandling.email ==null?
-                       ''
-                       :'${MySharedPrefencesSessionHandling.email}',
+                      MySharedPrefencesSessionHandling.email == null
+                          ? ''
+                          : '${MySharedPrefencesSessionHandling.email}',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -346,10 +354,12 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             onTap: () async {
               // session hadnling
               var prefs = await SharedPreferences.getInstance();
-              prefs.setBool('isLogedIn', false);
-              prefs.setInt("userId", 0);
+              await prefs.setBool('isLogedIn', false);
+              await prefs.setInt("userId", 0);
               MySharedPrefencesSessionHandling.isUserLogedIn = false;
               MySharedPrefencesSessionHandling.userId = 0;
+              await MySharedPrefencesSessionHandling
+                  .removeUserDataFromSharedPreferences();
               // Navigating to loginscreen
               Navigator.of(context).pop();
               Navigator.of(context)

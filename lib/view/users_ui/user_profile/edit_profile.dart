@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view_model/update_user_profile_image_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../res/components/my_static_component .dart';
 import 'full_screen_profile_pictre.dart';
@@ -25,10 +26,14 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  TextEditingController mobileNumberTextController = TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
-  TextEditingController PasswordTextController = TextEditingController(text: MySharedPrefencesSessionHandling.token);
-  TextEditingController nameTextControl = TextEditingController(text: MySharedPrefencesSessionHandling.name);
-  TextEditingController emailTextController = TextEditingController(text: MySharedPrefencesSessionHandling.email);
+  TextEditingController mobileNumberTextController =
+      TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
+  TextEditingController PasswordTextController =
+      TextEditingController(text: MySharedPrefencesSessionHandling.token);
+  TextEditingController nameTextControl =
+      TextEditingController(text: MySharedPrefencesSessionHandling.name);
+  TextEditingController emailTextController =
+      TextEditingController(text: MySharedPrefencesSessionHandling.email);
   bool _showSpinner = false;
 
   File? image = null;
@@ -60,29 +65,29 @@ class _EditProfileState extends State<EditProfile> {
             foregroundColor: MyColors.KWhite,
             title: Text("Edit Profile"),
             actions: [
-              IconButton(
-                  onPressed: () async {
-                    if (image != null) {
-                      Map<String, String> data = {
-                        '_method': "PUT",
-                      };
-                      print(("i m befor fucntion calling"));
-                      await updateUserProfileImageViewModel
-                          .getUpdateUserProfileImagedataFromRepository(
-                              data,
-                              image,
-                              MySharedPrefencesSessionHandling.userId,
-                              context);
-                      print(("i m after fucntion calling"));
-                    } else {
-                      Utils.flushBarErrorMessage(
-                          "Image is not selected", context);
-                    }
-                  },
-                  icon: Icon(
-                    Icons.save,
-                    size: 50,
-                  ))
+              //   IconButton(
+              //       onPressed: () async {
+              //         // if (image != null) {
+              //         //   Map<String, String> data = {
+              //         //     '_method': "PUT",
+              //         //   };
+              //         //   print(("i m befor fucntion calling"));
+              //         //   await updateUserProfileImageViewModel
+              //         //       .getUpdateUserProfileImagedataFromRepository(
+              //         //           data,
+              //         //           image,
+              //         //           MySharedPrefencesSessionHandling.userId,
+              //         //           context);
+              //         //   print(("i m after fucntion calling"));
+              //         // } else {
+              //         //   Utils.flushBarErrorMessage(
+              //         //       "Image is not selected", context);
+              //         // }
+              //       },
+              //       icon: Icon(
+              //         Icons.save,
+              //         size: 50,
+              //       ))
             ],
           ),
           body: SingleChildScrollView(
@@ -104,9 +109,13 @@ class _EditProfileState extends State<EditProfile> {
                                         image != null ? true : false,
                                     pictureSrc: image != null
                                         ? image!.path
-                                        :MySharedPrefencesSessionHandling.user_image =='no'
-                                        ? "assets/images/pet.jpg"
-                                        : MySharedPrefencesSessionHandling.user_image.toString(),
+                                        : MySharedPrefencesSessionHandling
+                                                    .user_image ==
+                                                'no'
+                                            ? "assets/images/pet.jpg"
+                                            : MySharedPrefencesSessionHandling
+                                                .user_image
+                                                .toString(),
                                   )));
                         },
                         child: CircleAvatar(
@@ -116,9 +125,12 @@ class _EditProfileState extends State<EditProfile> {
                                   File(image!.path).absolute,
                                   fit: BoxFit.cover,
                                 ).image
-                              :MySharedPrefencesSessionHandling.user_image=='no'
-                              ?AssetImage('assets/images/pet.jpg')
-                              :Image.network('${MySharedPrefencesSessionHandling.user_image}').image,
+                              : MySharedPrefencesSessionHandling.user_image ==
+                                      'no'
+                                  ? AssetImage('assets/images/pet.jpg')
+                                  : Image.network(
+                                          '${MySharedPrefencesSessionHandling.user_image}')
+                                      .image,
                           child: Stack(children: [
                             Align(
                               alignment: Alignment.bottomRight,
@@ -459,53 +471,79 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               RoundButton(
                                 title: 'Update',
-                                onpress: () {
-                                  // GetUserByIdModel();
-                                  // nameTextControl.text.length < 1
-                                  //     ? Utils.flushBarErrorMessage(
-                                  //         "Name cannot be empty ", context)
-                                  //     : mobileNumberTextController
-                                  //             .text.isEmpty
-                                  //         ? Utils.flushBarErrorMessage(
-                                  //             "Please Enter Phone Number", context)
-                                  //         : mobileNumberTextController
-                                  //                     .text.length <
-                                  //                 11
-                                  //             ? Utils.flushBarErrorMessage(
-                                  //                 "Please Enter Full Phone Number", context)
-                                  //             : PasswordTextController
-                                  //                         .text.length ==
-                                  //                     0
-                                  //                 ? Utils.flushBarErrorMessage(
-                                  //                     "Please Enter Password",
-                                  //                     context)
-                                  //                 : PasswordTextController
-                                  //                             .text
-                                  //                             .length <
-                                  //                         6
-                                  //                     ? Utils.flushBarErrorMessage(
-                                  //                         "Please Enter Minimum of 6 Characters",
-                                  //                         context)
-                                  //                     :
-                                  ///////////////////
+                                onpress: () async {
+                                  if (nameTextControl.text.length < 1) {
+                                    Utils.flushBarErrorMessage(
+                                        "Name cannot be empty ", context);
+                                  } else if (mobileNumberTextController
+                                      .text.isEmpty) {
+                                    Utils.flushBarErrorMessage(
+                                        "Please Enter Phone Number", context);
+                                  } else if (mobileNumberTextController
+                                          .text.length <
+                                      11) {
+                                    Utils.flushBarErrorMessage(
+                                        "Please Enter Full Phone Number",
+                                        context);
+                                  } else if (PasswordTextController
+                                          .text.length ==
+                                      0) {
+                                    Utils.flushBarErrorMessage(
+                                        "Please Enter Password", context);
+                                  } else if (PasswordTextController
+                                          .text.length <
+                                      6) {
+                                    Utils.flushBarErrorMessage(
+                                        "Please Enter Minimum of 6 Characters",
+                                        context);
+                                  } else {
+                                    // ///////////////////////////////
+                                    // if (image != null) {
+                                    //   Map<String, String> data = {
+                                    //     '_method': "PUT",
+                                    //   };
+                                    //   print(("i m befor fucntion calling"));
+                                    //   await updateUserProfileImageViewModel
+                                    //       .getUpdateUserProfileImagedataFromRepository(
+                                    //           data,
+                                    //           image,
+                                    //           MySharedPrefencesSessionHandling
+                                    //               .userId,
+                                    //           context);
+                                    //   // final prefs = await SharedPreferences.getInstance();
+                                    //   // await prefs.setString('user_image', '${image.}');
 
-                                  Map data = {
-                                    'name': nameTextControl.text,
-                                    'mobile_no':
-                                        mobileNumberTextController.text,
-                                    'email': emailTextController.text,
-                                    'token': PasswordTextController.text
-                                  };
+                                    //   print(("i m after fucntion calling"));
+                                    // } else {
+                                    //   Utils.flushBarErrorMessage(
+                                    //       "Image is not selected", context);
+                                    // }
+                                    // //////////////////
 
-                                  // authViewModel.SignUpApi(
-                                  //     data, context);
-
-                                  //                         //////////////////
-
-                                  // SignUP(
-                                  //     nameTextControl.text,
-                                  //     mobileNumberTextController.text,
-                                  //     PasswordTextController.text);
+                                    Map<String, String> data = {
+                                      'name': nameTextControl.text,
+                                      'mobile_no':
+                                          mobileNumberTextController.text,
+                                      'email': emailTextController.text,
+                                      'token': PasswordTextController.text
+                                    };
+                                    await updateUserProfileImageViewModel
+                                        .getUpdateUserProfileInfodataFromRepository(
+                                            data,
+                                            MySharedPrefencesSessionHandling
+                                                .userId,
+                                            context);
+                                    MySharedPrefencesSessionHandling
+                                        .updateUserDataInSharedPreferences(
+                                            nameTextControl.text,
+                                            mobileNumberTextController.text,
+                                            emailTextController.text,
+                                            emailTextController.text);
+                                    if (kDebugMode) {
+                                      print(
+                                          ("i m after updating user daata calling"));
+                                    }
+                                  }
                                 },
                                 width: 140,
                               ),

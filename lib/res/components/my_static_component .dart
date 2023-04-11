@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -81,6 +82,24 @@ class MySharedPrefencesSessionHandling {
 
     user_image = user_image_passed;
     token = user_token_passed;
+  }  
+  // Update data{name,images etc} of loggedin user
+  static void updateUserDataInSharedPreferences(
+      var namepassed,
+      var mobile_no_passed,
+      var email_passed,
+      var user_token_passed) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('name', '$namepassed');
+    await prefs.setString('mobile_no', '$mobile_no_passed');
+    await prefs.setString('email', '$email_passed');
+    await prefs.setString('token', '$user_token_passed');
+    name = namepassed;
+
+    mobile_no = mobile_no_passed;
+    email = email_passed;
+
+    token = user_token_passed;
   }
 
   static getUserDataFromSharedPreferences() async {
@@ -99,6 +118,9 @@ class MySharedPrefencesSessionHandling {
     await prefs.remove('email');
     await prefs.remove('user_image');
     await prefs.remove('token');
+    If(kDebugMode){
+      print("User Data removed on logout");
+    }
   }
 }
 
