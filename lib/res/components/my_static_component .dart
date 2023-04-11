@@ -76,6 +76,7 @@ class MySharedPrefencesSessionHandling {
     await prefs.setString('user_image', '$user_image_passed');
     name = namepassed;
 
+<<<<<<< HEAD
     mobile_no = mobile_no_passed;
     email = email_passed;
 
@@ -83,12 +84,15 @@ class MySharedPrefencesSessionHandling {
     token = user_token_passed;
   }
 
+=======
+>>>>>>> 0368a40a7628edcac8722ca58630132c615dac9a
   static getUserDataFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     name = prefs.getString('name');
     mobile_no = prefs.getString('mobile_no');
     email = prefs.getString('email');
     user_image = prefs.getString('user_image');
+<<<<<<< HEAD
     token = prefs.getString('token');
   }
 
@@ -99,6 +103,8 @@ class MySharedPrefencesSessionHandling {
     await prefs.remove('email');
     await prefs.remove('user_image');
     await prefs.remove('token');
+=======
+>>>>>>> 0368a40a7628edcac8722ca58630132c615dac9a
   }
 }
 

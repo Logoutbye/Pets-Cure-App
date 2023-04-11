@@ -23,7 +23,7 @@ class UpdateUserProfileImageRepo {
     }
   }
 
-  // update user data
+  // update user profile info
   Future updateUserProfileInfo(dynamic data, int id) async {
     try {
       dynamic Response = await _apiServeces.getPutApiResponse(
