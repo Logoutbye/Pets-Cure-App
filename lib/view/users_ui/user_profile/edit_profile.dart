@@ -45,6 +45,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   @override
+  
   Widget build(BuildContext context) {
     final updateUserProfileImageViewModel =
         Provider.of<UpdateUserProfileImageViewModel>(context);
@@ -251,6 +252,7 @@ class _EditProfileState extends State<EditProfile> {
                   height: 0,
                 ),
 
+<<<<<<< HEAD
                 Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width / 1.2,
@@ -505,6 +507,61 @@ class _EditProfileState extends State<EditProfile> {
                                   //     nameTextControl.text,
                                   //     mobileNumberTextController.text,
                                   //     PasswordTextController.text);
+=======
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: MediaQuery.of(context).size.height / 1.55,
+                  decoration: BoxDecoration(
+                    color: MyColors.kSecondary,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: MyColors.kPrimary,
+                        // blurRadius: 15,
+                        // spreadRadius: 2,
+                        // offset: Offset(
+                        //   0,
+                        //   5,
+                        // ), // Shadow position
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Login Text
+                            Container(
+                              child: Text(
+                                'Hey,\n  ${MySharedPrefencesSessionHandling.name}',
+                                // 'Hey,\n Muhammad Bilal!',
+                                style: TextStyle(
+                                  color: MyColors.kPrimary,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            // Name  Textfield
+                            Container(
+                              // color: Colors.red,
+                              child: TextField(
+                                controller: nameTextControl,
+                                maxLength: 60,
+                                onTap: () {
+                                  // if(nameTextControl.text.isEmpty){
+                                  //   setState(() {
+                                  //     nameTextControl.text==MySharedPrefencesSessionHandling.name;
+                                  //   });
+                                  // }
+>>>>>>> ec61baf2141fd10939a9566d994d9ff61c1d5d49
                                 },
                                 width: 140,
                               ),
@@ -514,7 +571,11 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                 )
+=======
+                ),)
+>>>>>>> ec61baf2141fd10939a9566d994d9ff61c1d5d49
               ],
             ),
           )),
