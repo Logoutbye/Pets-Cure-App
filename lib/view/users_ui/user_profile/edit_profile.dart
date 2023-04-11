@@ -25,20 +25,10 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-<<<<<<< HEAD
   TextEditingController mobileNumberTextController = TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
   TextEditingController PasswordTextController = TextEditingController(text: MySharedPrefencesSessionHandling.token);
   TextEditingController nameTextControl = TextEditingController(text: MySharedPrefencesSessionHandling.name);
   TextEditingController emailTextController = TextEditingController(text: MySharedPrefencesSessionHandling.email);
-=======
-  TextEditingController mobileNumberTextController =
-      TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
-  TextEditingController PasswordTextController = TextEditingController();
-  TextEditingController nameTextControl =
-      TextEditingController(text: MySharedPrefencesSessionHandling.name);
-  TextEditingController emailTextController =
-      TextEditingController(text: MySharedPrefencesSessionHandling.email);
->>>>>>> 0368a40a7628edcac8722ca58630132c615dac9a
   bool _showSpinner = false;
 
   File? image = null;

@@ -53,15 +53,15 @@ class MyApp extends StatelessWidget {
   // final String? email;
   // final String? user_image;
 
-  const MyApp({
-    super.key,
-    required this.isUserLogedIn,
-    required this.userId,
-    // required this.name,
-    // required this.mobile_no,
-    // required this.email,
-    // required this.user_image
-  });
+  const MyApp(
+      {super.key,
+      required this.isUserLogedIn,
+      required this.userId,
+      // required this.name,
+      // required this.mobile_no,
+      // required this.email,
+      // required this.user_image
+      });
 
   // This widget is the root of your application.
   @override
@@ -77,8 +77,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => AllPetsMarketPostPetViewModel()),
-        ChangeNotifierProvider(
-            create: (_) => UpdateUserProfileImageViewModel()),
+        ChangeNotifierProvider(create: (_) => UpdateUserProfileImageViewModel()),
         ChangeNotifierProvider(create: (_) => GetUserByIdViewModel()),
       ],
       child: MaterialApp(
