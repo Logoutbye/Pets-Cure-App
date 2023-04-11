@@ -25,13 +25,10 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  TextEditingController mobileNumberTextController =
-      TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
-  TextEditingController PasswordTextController = TextEditingController();
-  TextEditingController nameTextControl =
-      TextEditingController(text: MySharedPrefencesSessionHandling.name);
-  TextEditingController emailTextController =
-      TextEditingController(text: MySharedPrefencesSessionHandling.email);
+  TextEditingController mobileNumberTextController = TextEditingController(text: MySharedPrefencesSessionHandling.mobile_no);
+  TextEditingController PasswordTextController = TextEditingController(text: MySharedPrefencesSessionHandling.token);
+  TextEditingController nameTextControl = TextEditingController(text: MySharedPrefencesSessionHandling.name);
+  TextEditingController emailTextController = TextEditingController(text: MySharedPrefencesSessionHandling.email);
   bool _showSpinner = false;
 
   File? image = null;
@@ -39,7 +36,7 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   void initState() {
-    MySharedPrefencesSessionHandling.getUserDataFromSharedPreferences();
+    // MySharedPrefencesSessionHandling.getUserDataFromSharedPreferences();
     // TODO: implement initState
     super.initState();
   }
@@ -107,7 +104,9 @@ class _EditProfileState extends State<EditProfile> {
                                         image != null ? true : false,
                                     pictureSrc: image != null
                                         ? image!.path
-                                        : "assets/images/pet.jpg",
+                                        :MySharedPrefencesSessionHandling.user_image =='no'
+                                        ? "assets/images/pet.jpg"
+                                        : MySharedPrefencesSessionHandling.user_image.toString(),
                                   )));
                         },
                         child: CircleAvatar(
@@ -117,7 +116,9 @@ class _EditProfileState extends State<EditProfile> {
                                   File(image!.path).absolute,
                                   fit: BoxFit.cover,
                                 ).image
-                              : AssetImage('assets/images/pet.jpg'),
+                              :MySharedPrefencesSessionHandling.user_image=='no'
+                              ?AssetImage('assets/images/pet.jpg')
+                              :Image.network('${MySharedPrefencesSessionHandling.user_image}').image,
                           child: Stack(children: [
                             Align(
                               alignment: Alignment.bottomRight,
