@@ -13,6 +13,7 @@ import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
+import 'package:mvvm_practice_app/view/users_ui/user_profile/user_posts_in_pets_market.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:mvvm_practice_app/view_model/get_user_by_id_view_model.dart';
@@ -53,15 +54,15 @@ class MyApp extends StatelessWidget {
   // final String? email;
   // final String? user_image;
 
-  const MyApp(
-      {super.key,
-      required this.isUserLogedIn,
-      required this.userId,
-      // required this.name,
-      // required this.mobile_no,
-      // required this.email,
-      // required this.user_image
-      });
+  const MyApp({
+    super.key,
+    required this.isUserLogedIn,
+    required this.userId,
+    // required this.name,
+    // required this.mobile_no,
+    // required this.email,
+    // required this.user_image
+  });
 
   // This widget is the root of your application.
   @override
@@ -77,7 +78,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => AllPetsMarketPostPetViewModel()),
-        ChangeNotifierProvider(create: (_) => UpdateUserProfileImageViewModel()),
+        ChangeNotifierProvider(
+            create: (_) => UpdateUserProfileImageViewModel()),
         ChangeNotifierProvider(create: (_) => GetUserByIdViewModel()),
       ],
       child: MaterialApp(
@@ -87,7 +89,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           // useMaterial3: true
         ),
-        home: HomeScreen(),
+        home: UserPostsInPetsMarket(),
         // it will be used later
         // initialRoute: RoutesName.splash,
         // onGenerateRoute: Routes.generateRoute,

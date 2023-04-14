@@ -538,7 +538,7 @@ class _EditProfileState extends State<EditProfile> {
                                             nameTextControl.text,
                                             mobileNumberTextController.text,
                                             emailTextController.text,
-                                            emailTextController.text);
+                                            PasswordTextController.text);
                                     if (kDebugMode) {
                                       print(
                                           ("i m after updating user daata calling"));
