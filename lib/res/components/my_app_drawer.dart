@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:mailto/mailto.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
@@ -10,7 +11,10 @@ import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store_redirect/store_redirect.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyAppDrawer extends StatefulWidget {
   MyAppDrawer({super.key});
@@ -224,11 +228,15 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
-              // Navigator.of(context).pop();
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) {
-              //   return searchKeywordScreen();
-              // }));
+              if (MySharedPrefencesSessionHandling.isUserLogedIn == false) {
+                Navigator.of(context).pop();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return LoginScreen();
+                }));
+              }else{
+                Utils.toastMessage("Already logged In");
+              }
             },
           ), //Dashboard
 
@@ -260,11 +268,8 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
-              // Navigator.of(context).pop();
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) {
-              //   return searchKeywordScreen();
-              // }));
+              Navigator.of(context).pop();
+              funcOpenMailComposer();
             },
           ), //Dashboard
 
@@ -284,6 +289,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             ),
             onTap: () {
               // Navigator.of(context).pop();
+              StoreRedirect.redirect(
+                androidAppId: "com.kawiish.petscure",
+              );
               // Navigator.of(context)
               //     .push(MaterialPageRoute(builder: (context) {
               //   return searchKeywordScreen();
@@ -306,6 +314,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
+              Share.share(
+                  'Hey everyone! If you\'re a pet lover like me, you have to check out this amazing pets app!  https://play.google.com/store/apps/details?id=com.kawiish.smartsilentt Download it now and let\'s start sharing our love for pets!.');
+
               // Navigator.of(context).pop();
               // Navigator.of(context)
               //     .push(MaterialPageRoute(builder: (context) {
@@ -371,5 +382,15 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
         ],
       ),
     );
+  }
+
+  void funcOpenMailComposer() async {
+    final mailtoLink = Mailto(
+      to: ['kashi7358@gmail.com'],
+      // cc: ['idreeskhanapple0334@gmail.com','muhammadbilal03478@gmail.com'],
+      subject: 'User Inquiry Regarding  Pets Cure',
+      body: 'AOA!\nI would like to ',
+    );
+    await launch('$mailtoLink');
   }
 }

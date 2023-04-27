@@ -431,6 +431,7 @@ class _EditProfileState extends State<EditProfile> {
                                 child: TextField(
                                   controller: PasswordTextController,
                                   obscureText: true,
+                                  onSubmitted: (value) =>_update() ,
                                   onTap: () {},
                                   style: TextStyle(
                                     color: MyColors.kBlack,
@@ -538,7 +539,7 @@ class _EditProfileState extends State<EditProfile> {
                                             nameTextControl.text,
                                             mobileNumberTextController.text,
                                             emailTextController.text,
-                                            emailTextController.text);
+                                            PasswordTextController.text);
                                     if (kDebugMode) {
                                       print(
                                           ("i m after updating user daata calling"));
@@ -553,6 +554,9 @@ class _EditProfileState extends State<EditProfile> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 10,
                 )
               ],
             ),
@@ -602,6 +606,64 @@ class _EditProfileState extends State<EditProfile> {
               data, image, MySharedPrefencesSessionHandling.userId, context);
     } else {
       Utils.flushBarErrorMessage("Image is not selected", context);
+    }
+  }
+
+  _update() async {
+    final updateUserProfileImageViewModel =
+        Provider.of<UpdateUserProfileImageViewModel>(context,listen: false);
+    if (nameTextControl.text.length < 1) {
+      Utils.flushBarErrorMessage("Name cannot be empty ", context);
+    } else if (mobileNumberTextController.text.isEmpty) {
+      Utils.flushBarErrorMessage("Please Enter Phone Number", context);
+    } else if (mobileNumberTextController.text.length < 11) {
+      Utils.flushBarErrorMessage("Please Enter Full Phone Number", context);
+    } else if (PasswordTextController.text.length == 0) {
+      Utils.flushBarErrorMessage("Please Enter Password", context);
+    } else if (PasswordTextController.text.length < 6) {
+      Utils.flushBarErrorMessage(
+          "Please Enter Minimum of 6 Characters", context);
+    } else {
+      // ///////////////////////////////
+      // if (image != null) {
+      //   Map<String, String> data = {
+      //     '_method': "PUT",
+      //   };
+      //   print(("i m befor fucntion calling"));
+      //   await updateUserProfileImageViewModel
+      //       .getUpdateUserProfileImagedataFromRepository(
+      //           data,
+      //           image,
+      //           MySharedPrefencesSessionHandling
+      //               .userId,
+      //           context);
+      //   // final prefs = await SharedPreferences.getInstance();
+      //   // await prefs.setString('user_image', '${image.}');
+
+      //   print(("i m after fucntion calling"));
+      // } else {
+      //   Utils.flushBarErrorMessage(
+      //       "Image is not selected", context);
+      // }
+      // //////////////////
+
+      Map<String, String> data = {
+        'name': nameTextControl.text,
+        'mobile_no': mobileNumberTextController.text,
+        'email': emailTextController.text,
+        'token': PasswordTextController.text
+      };
+      await updateUserProfileImageViewModel
+          .getUpdateUserProfileInfodataFromRepository(
+              data, MySharedPrefencesSessionHandling.userId, context);
+      MySharedPrefencesSessionHandling.updateUserDataInSharedPreferences(
+          nameTextControl.text,
+          mobileNumberTextController.text,
+          emailTextController.text,
+          PasswordTextController.text);
+      if (kDebugMode) {
+        print(("i m after updating user daata calling"));
+      }
     }
   }
 }

@@ -224,6 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           controller: Password,
                                           obscureText: true,
                                           onTap: () {},
+                                          onSubmitted: (value) => _login(),
                                           style: TextStyle(
                                             color: MyColors.kBlack,
                                             // fontSize: 18,
@@ -403,12 +404,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     // stroing true in static variable for session
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
-<<<<<<< HEAD
                                                     MySharedPrefencesSessionHandling
                                                             .userId =
                                                         userFetchedData.id!;
-=======
->>>>>>> b0e4a38765368bdcf24de6c59756e7f6de3b3190
                                                     //storing data of get data by user id
                                                     //MySharedPrefencesSessionHandling
                                                     //.userId;
@@ -673,5 +671,139 @@ class _LoginScreenState extends State<LoginScreen> {
     print("My json Response : $jsonResponse");
 
     return jsonResponse;
+  }
+
+  _login() async {
+    var authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+
+    // mobileNumber.text.isEmpty
+    //     ? Utils.flushBarErrorMessage(
+    //         "Please Enter Phone Number",
+    //         context)
+    //     : mobileNumber.text.length < 11
+    //         ? Utils.flushBarErrorMessage(
+    //             "Please Enter Full Phone Number",
+    //             context)
+    //         : Password.text.length == 0
+    //             ? Utils.flushBarErrorMessage(
+    //                 "Please Enter Password",
+    //                 context)
+    //             : Password.text.length < 6
+    //                 ? Utils.flushBarErrorMessage(
+    //                     "Please Enter Minimum of 6 Characters",
+    //                     context)
+    //                 :
+    //SignIn(mobileNumber, Password);
+    if (mobileNumber.text.isEmpty) {
+      Utils.flushBarErrorMessage('Pleas put your mobile number', context);
+    } else if (Password.text.isEmpty) {
+      Utils.flushBarErrorMessage('Pleas put your Password', context);
+    } else {
+      // start loading
+      setState(() {
+        islogedInbuttonPressed = true;
+      });
+      // hit login api
+      await authViewModel.getLoginDatafromAuthRepository(
+          //mobileNumber.text.trim(),
+          mobileNumber.text,
+          Password.text,
+          //Password.text.trim(),
+          context);
+      //hit get user by id api to store data in shared prefrences so that we can later get the user data where needed
+
+      Future.delayed(
+        Duration(seconds: 4),
+        () async {
+          if (kDebugMode) {
+            print("Print message after 4 sec");
+          }
+          if (authViewModel.isUserLoginDataFetched) {
+            var userFetchedData = await authViewModel.userDataForLogin.data![0];
+
+            if (mobileNumber.text == userFetchedData.mobileNo &&
+                Password.text == userFetchedData.token) {
+              // Shared prefrences code
+              var prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isLogedIn', true);
+              await prefs.setInt('userId', userFetchedData.id!);
+
+              // stroing true in static variable for session
+              MySharedPrefencesSessionHandling.isUserLogedIn = true;
+              MySharedPrefencesSessionHandling.userId = userFetchedData.id!;
+              //storing data of get data by user id
+              //MySharedPrefencesSessionHandling
+              //.userId;
+
+              var id = userFetchedData.id;
+              print("check::${id}");
+
+              // await getUserByIdViewModel
+              //     .getUserByIdDatafromRepository(
+              //         id, context);
+              MySharedPrefencesSessionHandling.setUserDataInSharedPreferences(
+                  userFetchedData.name,
+                  userFetchedData.mobileNo,
+                  userFetchedData.email,
+                  userFetchedData.userImage,
+                  userFetchedData.token);
+              // MySharedPrefencesSessionHandling
+              //         .name =
+              //     getUserByIdViewModel
+              //         .getUSerDataById
+              //         .data?[0]
+              //         .name;
+              // MySharedPrefencesSessionHandling
+              //         .mobile_no =
+              //     getUserByIdViewModel
+              //         .getUSerDataById
+              //         .data?[0]
+              //         .mobileNo;
+              // MySharedPrefencesSessionHandling
+              //         .email =
+              //     getUserByIdViewModel
+              //         .getUSerDataById
+              //         .data?[0]
+              //         .email;
+              // MySharedPrefencesSessionHandling
+              //         .user_image =
+              //     getUserByIdViewModel
+              //         .getUSerDataById
+              //         .data?[0]
+              //         .userImage;
+              if (kDebugMode) {
+                print(
+                    "storing User data by id ::${MySharedPrefencesSessionHandling.name}");
+                print(
+                    "User data by id stored in sharedPrefrences successfulyy");
+              }
+
+              //Navigator.of(context).pop();
+              String navigateToPage =
+                  MySharedPrefencesSessionHandling.navigateToPage;
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                return navigateToPage == "HomeScreen"
+                    ? HomeScreen()
+                    : navigateToPage == "PetsRegistration"
+                        ? PetsRegistration()
+                        : HomeScreen();
+              }));
+              setState(() {
+                islogedInbuttonPressed = false;
+              });
+            }
+          }
+          // else {
+          //   Utils.flushBarErrorMessage(
+          //       "Invilid Credentials",
+          //       context);
+          // }
+        },
+      );
+      setState(() {
+        islogedInbuttonPressed = false;
+      });
+    }
   }
 }
