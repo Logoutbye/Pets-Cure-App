@@ -135,7 +135,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      // Book title Container
+                      // Pet Name Container
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(29),
@@ -146,7 +146,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                         child: TextFormField(
                           controller: petsNameController,
                           decoration: InputDecoration(
-                              labelText: 'Enter Pet\'s Name',
+                              labelText: 'Pet\'s Name',
                               border: InputBorder.none),
                           keyboardType: TextInputType.name,
                           onFieldSubmitted: (value) {
@@ -176,7 +176,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                         child: TextFormField(
                           controller: petsPriceController,
                           decoration: InputDecoration(
-                              labelText: 'Enter Price',
+                              labelText: 'Pet\'s Price',
                               border: InputBorder.none),
                           keyboardType: TextInputType.number,
                           onFieldSubmitted: (value) {
@@ -257,7 +257,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                           maxLength: 430,
                           maxLines: 5,
                           decoration: InputDecoration(
-                              labelText: 'Enter Description',
+                              labelText: 'Pet\'s Description',
                               border: InputBorder.none),
                           keyboardType: TextInputType.text,
                           //obscureText: true,
@@ -315,7 +315,7 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height / 15,
-                          width: MediaQuery.of(context).size.height / 4,
+                          width: MediaQuery.of(context).size.width / 1.5,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(29),
                             color: MyColors.kPrimary,

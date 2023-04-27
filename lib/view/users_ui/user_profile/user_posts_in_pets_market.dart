@@ -70,13 +70,14 @@ class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OnBoardScreen(
                             petimage: itemIndex.petImage.toString(),
-                            username: 'Ali',
+                            username: MySharedPrefencesSessionHandling.name,
                             petname: itemIndex.petName,
                             petDescription: itemIndex.petDescription,
                             petAvalability: itemIndex.petStatus!.toString(),
                             price: itemIndex.petPrice!,
                             userId: itemIndex.userId!,
-                            userImage: "no"
+                            userImage:
+                                MySharedPrefencesSessionHandling.user_image!
                             //itemIndex.userImage!,
                             ))),
                     child: Container(
