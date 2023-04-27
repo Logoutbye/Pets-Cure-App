@@ -11,6 +11,7 @@ import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
+import 'package:mvvm_practice_app/view/users_ui/user_profile/user_posts_in_pets_market.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_redirect/store_redirect.dart';
@@ -121,7 +122,57 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               ),
             ),
           ),
-          // Divider(),
+
+          // my Chats screen
+          // ListTile(
+          //   focusColor: Colors.red,
+          //   hoverColor: Colors.amberAccent,
+          //   selectedColor: Colors.white,
+          //   selectedTileColor: Colors.green,
+          //   leading: ImageIcon(
+          //     AssetImage("assets/images/pets-market.png"),
+          //     size: 30,
+          //     color: MyColors.kPrimary,
+          //   ),
+          //   title: Text(
+          //     "My Chats",
+          //     style: TextStyle(color: Colors.black, fontSize: 16),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context).pop();
+          //     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          //       return EditProfile();
+          //     }));
+          //   },
+          // ), //Dashboard
+
+          // My Posts
+          ListTile(
+            focusColor: Colors.red,
+            hoverColor: Colors.amberAccent,
+            selectedColor: Colors.white,
+            selectedTileColor: Colors.green,
+            leading: ImageIcon(
+              AssetImage("assets/images/pets-market.png"),
+              size: 30,
+              color: MyColors.kPrimary,
+            ),
+            title: Text(
+              "My Posts",
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return UserPostsInPetsMarket();
+              }));
+            },
+          ), //Dashboard
+
+          Divider(
+            thickness: 1,
+            color: MyColors.kPrimary,
+          ),
           // Dashboard
           ListTile(
             focusColor: Colors.red,
@@ -214,32 +265,34 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             },
           ), //Dashboard
           // logout / Login
-          ListTile(
-            focusColor: Colors.red,
-            hoverColor: Colors.amberAccent,
-            selectedColor: Colors.white,
-            selectedTileColor: Colors.green,
-            leading: Icon(
-              Icons.login,
-              color: MyColors.myButtonsBackgroundColor,
-            ),
-            title: Text(
-              "Login",
-              style: TextStyle(color: Colors.black, fontSize: 16),
-            ),
-            onTap: () {
-              if (MySharedPrefencesSessionHandling.isUserLogedIn == false) {
-                Navigator.of(context).pop();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
-                }));
-              }else{
-                Utils.toastMessage("Already logged In");
-              }
-            },
-          ), //Dashboard
-
+          MySharedPrefencesSessionHandling.isUserLogedIn == false
+              ? ListTile(
+                  focusColor: Colors.red,
+                  hoverColor: Colors.amberAccent,
+                  selectedColor: Colors.white,
+                  selectedTileColor: Colors.green,
+                  leading: Icon(
+                    Icons.login,
+                    color: MyColors.myButtonsBackgroundColor,
+                  ),
+                  title: Text(
+                    "Login",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  onTap: () async {
+                    var prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('isLogedIn', false);
+                    await prefs.setInt('userId', 0);
+                    Navigator.of(context).pop();
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return LoginScreen();
+                    }));
+                  },
+                )
+              : SizedBox(
+                  height: 0,
+                ), //Dashboard
           SizedBox(
             height: 10,
           ),

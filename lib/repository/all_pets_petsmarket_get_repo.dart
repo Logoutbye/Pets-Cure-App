@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:mvvm_practice_app/data/network/BaseApiService.dart';
 import 'package:mvvm_practice_app/data/network/NetworkApiService.dart';
 import 'package:mvvm_practice_app/model/all_pets_petsmarket_data_model.dart';
@@ -14,6 +15,22 @@ class AllPetsMarketRepository {
           await _apiServeces.getGetApiResponse(AppUrl.allPetsMarketUrl);
 
       // print('$response');
+      return response.map((e) => PetsMarketModel.fromJson(e)).toList();
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  //  function to hit all pets data api
+  Future<List<PetsMarketModel>> fetchAllPetsPostOfUserFromFetchMarketApiList(
+      int id) async {
+    try {
+      List<dynamic> response = await _apiServeces
+          .getGetApiResponse("${AppUrl.getAllPetsByUserId}$id");
+
+      if (kDebugMode) {
+        print("my data in repository : $response");
+      }
       return response.map((e) => PetsMarketModel.fromJson(e)).toList();
     } catch (e) {
       throw e;

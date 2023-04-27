@@ -404,9 +404,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     // stroing true in static variable for session
                                                     MySharedPrefencesSessionHandling
                                                         .isUserLogedIn = true;
-                                                    MySharedPrefencesSessionHandling
-                                                            .userId =
-                                                        userFetchedData.id!;
                                                     //storing data of get data by user id
                                                     //MySharedPrefencesSessionHandling
                                                     //.userId;
