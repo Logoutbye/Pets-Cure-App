@@ -11,6 +11,7 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view/chats/chat_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AllDoctors extends StatefulWidget {
   const AllDoctors({super.key});
@@ -22,10 +23,6 @@ class AllDoctors extends StatefulWidget {
 class _AllDoctorsState extends State<AllDoctors> {
   // creating object of viewmodel class to then fetch all the doctors from api
   AllDoctorsViewModel allDoctorsViewModel = AllDoctorsViewModel();
-
-
-
-  
 
   @override
   void initState() {
@@ -387,28 +384,62 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      RoundButton(
-                                                          title:
-                                                              'Contact Doctor',
-                                                          onpress: () {
-                                                            MyStaticComponents
-                                                                .myAppDialogBox(
-                                                                    context,
-                                                                    'Mobile Number',
-                                                                    indexItem
-                                                                        .doctorMobileNo!
-                                                                        .toLowerCase());
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            _openPhoneDialer(
+                                                                indexItem
+                                                                    .doctorMobileNo!);
                                                           },
-                                                          width: 150),
-                                                          SizedBox(width: 10,),
-                                                      RoundButton(
-                                                          title: 'Chat',
-                                                          onpress: () {
-                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChatScreen(
-                                                              Name:indexItem.doctorName!,
-                                                              Pic:indexItem.doctorImage!,)));
+                                                          icon: Icon(
+                                                            Icons.call,
+                                                            size: 40,
+                                                            color: MyColors
+                                                                .kPrimary,
+                                                          )),
+                                                      // RoundButton(
+                                                      //     title:
+                                                      //         'Contact Doctor',
+                                                      //     onpress: () {
+                                                      //       _openWhatsApp(indexItem
+                                                      //           .doctorMobileNo!);
+                                                      //       // MyStaticComponents
+                                                      //       //     .myAppDialogBox(
+                                                      //       //         context,
+                                                      //       //         'Mobile Number',
+                                                      //       //         indexItem
+                                                      //       //             .doctorMobileNo!
+                                                      //       //             .toLowerCase());
+                                                      //     },
+                                                      //     width: 150),
+
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            _openWhatsApp(indexItem
+                                                                .doctorMobileNo!);
                                                           },
-                                                          width: 50),
+                                                          icon: Icon(
+                                                            Icons.whatsapp,
+                                                            size: 40,
+                                                            color: MyColors
+                                                                .kPrimary,
+                                                          )),
+                                                      // RoundButton(
+                                                      //     title: 'Chat',
+                                                      //     onpress: () {
+                                                      //       Navigator.of(context).push(
+                                                      //           MaterialPageRoute(
+                                                      //               builder:
+                                                      //                   (context) =>
+                                                      //                       ChatScreen(
+                                                      //                         Name: indexItem.doctorName!,
+                                                      //                         Pic: indexItem.doctorImage!,
+                                                      //                       )));
+                                                      //     },
+                                                      //     width: 50),
                                                     ],
                                                   ),
                                                 ],
@@ -470,5 +501,23 @@ class _AllDoctorsState extends State<AllDoctors> {
         }),
       ),
     );
+  }
+
+  void _openWhatsApp(String phoneNumber) async {
+    String url = 'https://wa.me/$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void _openPhoneDialer(String phoneNumber) async {
+    String url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

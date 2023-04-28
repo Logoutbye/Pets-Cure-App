@@ -136,7 +136,7 @@ class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
                                           Spacer(),
                                           Text(
                                               itemIndex.petStatus!.toString() ==
-                                                      '1'
+                                                      'Yes'
                                                   ? "Available"
                                                   : "Not Available",
                                               style: Theme.of(context)
