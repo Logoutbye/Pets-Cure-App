@@ -195,9 +195,9 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                                       )),
                                   Spacer(),
                                   Text(
-                                      widget.petAvalability == '1'
+                                      widget.petAvalability == 'Yes'
                                           ? "Available"
-                                          : "Not Available",
+                                          : "Sold Out",
                                       style:
                                           Theme.of(context).textTheme.subtitle1)
                                 ],

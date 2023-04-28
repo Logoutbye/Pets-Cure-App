@@ -141,9 +141,9 @@ class _PetsMarketState extends State<PetsMarket> {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: itemIndex.petStatus!.toString() == '1'
-                                      ? Text('Availible')
-                                      : Text('Not-Availible'),
+                                  child: itemIndex.petStatus!.toString() == 'Yes'
+                                      ? Text('Available')
+                                      : Text('Sold Out'),
                                 ),
                               ),
                             ),

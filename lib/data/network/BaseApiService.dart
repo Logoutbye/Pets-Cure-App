@@ -6,4 +6,5 @@ abstract class BaseApiServeces {
   Future<dynamic> getPostApiResponseWithFile(
       String Url, dynamic data, File? file);
   Future<dynamic> getPutApiResponse(String Url, dynamic data);
+  Future<dynamic> deleteApi(String Url);
 }

@@ -151,9 +151,9 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                             Spacer(),
                                             Text(
                                                 itemIndex.petStatus!.toString() ==
-                                                        '1'
+                                                        'Yes'
                                                     ? "Available"
-                                                    : "Not Available",
+                                                    : "Sold Out",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .caption)

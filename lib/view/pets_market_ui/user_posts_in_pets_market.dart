@@ -6,18 +6,19 @@ import 'package:mvvm_practice_app/data/response/status.dart';
 import 'package:mvvm_practice_app/res/components/my_app_drawer.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/my_post_update_delete_screen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/onBoard_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_view_model.dart';
 import 'package:provider/provider.dart';
 
-class UserPostsInPetsMarket extends StatefulWidget {
-  const UserPostsInPetsMarket({super.key});
+class MyPostsInPetsMarket extends StatefulWidget {
+  const MyPostsInPetsMarket({super.key});
 
   @override
-  State<UserPostsInPetsMarket> createState() => _UserPostsInPetsMarketState();
+  State<MyPostsInPetsMarket> createState() => _MyPostsInPetsMarketState();
 }
 
-class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
+class _MyPostsInPetsMarketState extends State<MyPostsInPetsMarket> {
   AllPetsMarketViewModel allPetsMarketViewModel = AllPetsMarketViewModel();
 
   @override
@@ -35,7 +36,7 @@ class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
         foregroundColor: MyColors.KWhite,
         backgroundColor: MyColors.kPrimary,
         title: Text(
-          'Pets Market',
+          'My Posts in Pets Market',
         ),
         titleTextStyle: TextStyle(
           fontSize: 20,
@@ -67,8 +68,10 @@ class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
                   final itemIndex =
                       allPetsMarketViewModel.allMarketPets.data![index];
                   return GestureDetector(
+                    
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OnBoardScreen(
+                        builder: (context) => MyPostUpdateDeleteScreen(
+                          postId:itemIndex.id ,
                             petimage: itemIndex.petImage.toString(),
                             username: MySharedPrefencesSessionHandling.name,
                             petname: itemIndex.petName,
@@ -136,7 +139,7 @@ class _UserPostsInPetsMarketState extends State<UserPostsInPetsMarket> {
                                           Spacer(),
                                           Text(
                                               itemIndex.petStatus!.toString() ==
-                                                      '1'
+                                                      'Yes'
                                                   ? "Available"
                                                   : "Not Available",
                                               style: Theme.of(context)
