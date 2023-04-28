@@ -162,8 +162,8 @@ class NetworkApiServece extends BaseApiServeces {
       case 404:
         throw UnAuthorizedException(response.body.toString());
       case 500:
-        throw InvalidConfigException(
-            'Mobile number is already resgistered! please use other');
+        throw InvalidConfigException(response.body.toString());
+      //'Mobile number is already resgistered! please use other');
       default:
         throw FetchDataException(
             ' Error Occured while Comunicating with server with Status Code ${response.statusCode.toString()}');
