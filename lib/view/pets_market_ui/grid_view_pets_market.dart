@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -91,6 +89,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                               price: itemIndex.petPrice!,
                               userId: itemIndex.userId!,
                               userImage: itemIndex.userImage!,
+                              contact_no: itemIndex.petPrice.toString(),
                             ))),
                     child: Container(
                       // color: MyColors.kSecondary,

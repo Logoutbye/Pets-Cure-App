@@ -431,7 +431,7 @@ class _EditProfileState extends State<EditProfile> {
                                 child: TextField(
                                   controller: PasswordTextController,
                                   obscureText: true,
-                                  onSubmitted: (value) =>_update() ,
+                                  onSubmitted: (value) => _update(),
                                   onTap: () {},
                                   style: TextStyle(
                                     color: MyColors.kBlack,
@@ -611,7 +611,7 @@ class _EditProfileState extends State<EditProfile> {
 
   _update() async {
     final updateUserProfileImageViewModel =
-        Provider.of<UpdateUserProfileImageViewModel>(context,listen: false);
+        Provider.of<UpdateUserProfileImageViewModel>(context, listen: false);
     if (nameTextControl.text.length < 1) {
       Utils.flushBarErrorMessage("Name cannot be empty ", context);
     } else if (mobileNumberTextController.text.isEmpty) {

@@ -3,12 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:mvvm_practice_app/res/components/contact.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnBoardScreen extends StatefulWidget {
   final petimage;
 
   var username;
+  String contact_no;
   var petname;
   var petDescription;
   var petAvalability;
@@ -25,6 +28,7 @@ class OnBoardScreen extends StatefulWidget {
       required this.price,
       required this.userId,
       required this.userImage,
+      required this.contact_no,
       super.key});
 
   @override
@@ -40,6 +44,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   var price;
   var userImage;
   var userid;
+  var contact_no;
 
   @override
   void initState() {
@@ -51,6 +56,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
     price = widget.price;
     userid = widget.userId;
     userImage = widget.userImage;
+    contact_no = widget.contact_no;
     // TODO: implement initState
     super.initState();
   }
@@ -251,40 +257,56 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 30,
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height / 15,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(29),
-                          ),
-                          color: MyColors.KWhite),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text("Take me home",
-                                        style: TextStyle(
-                                          color: MyColors.kPrimary,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      size: 30,
-                                      color: MyColors.kPrimary,
-                                    )
-                                  ],
-                                ),
-                              ],
+                    InkWell(
+                      onTap: () {
+                        _openWhatsApp('03478188144');
+                        // showModalBottomSheet(
+                        //     shape: RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.vertical(
+                        //             top: Radius.circular(25))),
+                        //     context: context,
+                        //     builder: (context) => ContactBottomModel(
+                        //           buttonOneTitle: 'Whats App',
+                        //           whatsapp_no: contact_no,
+                        //           buttonTwoTitle: 'Phone Call',
+                        //           phone_no: contact_no,
+                        //         ));
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 15,
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(29),
+                            ),
+                            color: MyColors.KWhite),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text("Take me home",
+                                          style: TextStyle(
+                                            color: MyColors.kPrimary,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      Spacer(),
+                                      Icon(
+                                        Icons.arrow_forward,
+                                        size: 30,
+                                        color: MyColors.kPrimary,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -296,5 +318,23 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
         ],
       ),
     );
+  }
+
+  void _openWhatsApp(String phoneNumber) async {
+    String url = 'https://wa.me/$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void _openPhoneDialer(String phoneNumber) async {
+    String url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
