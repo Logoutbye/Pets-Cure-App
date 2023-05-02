@@ -42,4 +42,22 @@ class AllPetsMarketPostPetViewModel with ChangeNotifier {
       //getAllPetsMarketPostResult(ApiResponse.error(error.toString()));
     });
   }
+
+  // function to update post
+
+  Future<void> getPetMarketPostResultFromUpdatePostApi(
+      dynamic data, File? file, BuildContext context) async {
+    setLoading(true);
+    //getAllPetsMarketPostResult(ApiResponse.loading());
+
+    _myRepo.UpdateSinglePetDataUsingPostApi(data, file).then((value) {
+      setLoading(false);
+      Utils.flushBarErrorMessage('Success', context);
+      //getAllPetsMarketPostResult(ApiResponse.completed(value));
+    }).onError((error, stackTrace) {
+      setLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      //getAllPetsMarketPostResult(ApiResponse.error(error.toString()));
+    });
+  }
 }
