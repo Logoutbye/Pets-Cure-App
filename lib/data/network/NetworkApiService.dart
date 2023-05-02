@@ -12,6 +12,25 @@ import 'package:mvvm_practice_app/data/network/BaseApiService.dart';
 import 'package:http/http.dart' as http;
 
 class NetworkApiServece extends BaseApiServeces {
+  @override
+  Future deleteApi(String Url) async {
+      dynamic responseJson;
+
+    try {
+      final response =
+          await http.get(Uri.parse(Url)).timeout(Duration(seconds: 10));
+      responseJson = returnResponse(response);
+      //print("type of response : " + responseJson[0]);
+    } on SocketException {
+      throw FetchDataException(
+          ' No Internet Connection \n Check your connection, then refresh the page.');
+    }
+
+    return responseJson;
+    // TODO: implement deletePetPostByUser
+    throw UnimplementedError();
+  }
+
   // function for get api response and will return the json body of the api
   @override
   Future getGetApiResponse(String Url) async {

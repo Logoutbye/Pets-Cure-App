@@ -7,11 +7,12 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/grid_view_pets_market.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
 import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
 import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
-import 'package:mvvm_practice_app/view/users_ui/user_profile/user_posts_in_pets_market.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/user_posts_in_pets_market.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_redirect/store_redirect.dart';
@@ -164,7 +165,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return UserPostsInPetsMarket();
+                return MyPostsInPetsMarket();
               }));
             },
           ), //Dashboard
@@ -260,7 +261,8 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return PetsMarket();
+                return GridViewPetsMarket();
+                //  PetsMarket();
               }));
             },
           ), //Dashboard
