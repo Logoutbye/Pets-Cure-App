@@ -259,18 +259,17 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        _openWhatsApp('03478188144');
-                        // showModalBottomSheet(
-                        //     shape: RoundedRectangleBorder(
-                        //         borderRadius: BorderRadius.vertical(
-                        //             top: Radius.circular(25))),
-                        //     context: context,
-                        //     builder: (context) => ContactBottomModel(
-                        //           buttonOneTitle: 'Whats App',
-                        //           whatsapp_no: contact_no,
-                        //           buttonTwoTitle: 'Phone Call',
-                        //           phone_no: contact_no,
-                        //         ));
+                        showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(25))),
+                            context: context,
+                            builder: (context) => ContactBottomModel(
+                                  buttonOneTitle: 'Whats App',
+                                  whatsapp_no: contact_no,
+                                  buttonTwoTitle: 'Phone Call',
+                                  phone_no: contact_no,
+                                ));
                       },
                       child: Container(
                         height: MediaQuery.of(context).size.height / 15,
