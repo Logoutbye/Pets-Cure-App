@@ -1,19 +1,7 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
-import 'package:mvvm_practice_app/utils/routes/routes.dart';
-import 'package:mvvm_practice_app/utils/routes/routes_names.dart';
-import 'package:mvvm_practice_app/view/auth_ui/LoginScreen.dart';
-import 'package:mvvm_practice_app/view/chats/all_chats_screen.dart';
-import 'package:mvvm_practice_app/view/pets_market_ui/PetsMarket.dart';
-import 'package:mvvm_practice_app/view/pets_market_ui/grid_view_pets_market.dart';
-import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
-import 'package:mvvm_practice_app/view/users_ui/all_doctors.dart';
-import 'package:mvvm_practice_app/view/users_ui/all_hospitals.dart';
-import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
-import 'package:mvvm_practice_app/view/pets_market_ui/user_posts_in_pets_market.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:mvvm_practice_app/view_model/delete_post_by_id_view_model.dart';
@@ -37,6 +25,7 @@ void main() async {
   await MySharedPrefencesSessionHandling.getUserDataFromSharedPreferences();
   //this will check if user is logged in so that in drawer we can handle it easily
   await MySharedPrefencesSessionHandling.isUserLogedIn;
+
   runApp(MyApp(
     isUserLogedIn: showHome,
     userId: userId,

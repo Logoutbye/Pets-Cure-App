@@ -13,7 +13,9 @@ import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/user_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class  AuthViewModel with ChangeNotifier {
+import '../res/components/my_static_component .dart';
+
+class AuthViewModel with ChangeNotifier {
   final _myRepo = AuthRepository();
 
   // for login
@@ -87,10 +89,11 @@ class  AuthViewModel with ChangeNotifier {
 
     _myRepo.signUpApi(data).then((value) {
       // store signup data into share prefrences to handle session
-
+      MySharedPrefencesSessionHandling.navigateToPage = "Home";
       Navigator.of(context).pop();
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return LoginScreen();
+        return LoginScreen(
+        );
       }));
       Utils.flushBarErrorMessage("Signup Success, Please Login ", context);
 

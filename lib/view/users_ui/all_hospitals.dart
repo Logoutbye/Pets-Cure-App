@@ -10,7 +10,9 @@ import 'package:mvvm_practice_app/res/components/round_button.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/view_model/all_doctors_view_model.dart';
 import 'package:mvvm_practice_app/view_model/all_hospitals_view_model.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //import 'package:dropdown_formfield/dropdown_formfield.dart';
 
@@ -56,7 +58,7 @@ class _AllHospitalsState extends State<AllHospitals> {
         child: Consumer<AllHospitalViewModel>(builder: (context, value, child) {
           switch (value.allHospitals.status!) {
             case Status.LOADING:
-              return  Center(
+              return Center(
                 child: Lottie.asset(
                   'assets/lottie/loading.json',
                   width: 100,
@@ -406,14 +408,82 @@ class _AllHospitalsState extends State<AllHospitals> {
                                                   // call helpline button
                                                   RoundButton(
                                                       title: 'Helpline',
-                                                      onpress: () {
-                                                        MyStaticComponents
-                                                            .myAppDialogBox(
-                                                                context,
-                                                                'Helpline Number',
-                                                                itemIndex
-                                                                    .hospitalHelpLine!
-                                                                    .toString());
+                                                      onpress: () async {
+                                                        var status =
+                                                            await Permission
+                                                                .phone
+                                                                .request();
+
+                                                        if (status.isGranted) {
+                                                          _openPhoneDialer(itemIndex
+                                                              .hospitalHelpLine!);
+                                                          print(
+                                                              'Permission granted, you can now make phone calls');
+                                                        } else if (status
+                                                            .isDenied) {
+                                                          // If the user denied the permission, show a dialog box
+                                                          // with a button to open the app settings and allow the user
+                                                          // to grant the permission manually.
+                                                          showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Permission denied'),
+                                                                content: Text(
+                                                                    'Please allow access to make phone calls in App Settings to use this feature.'),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  TextButton(
+                                                                    child: Text(
+                                                                        'OK'),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      Permission
+                                                                          .storage
+                                                                          .request();
+                                                                    },
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        } else if (status
+                                                            .isPermanentlyDenied) {
+                                                          // If the user denied the permission permanently, show a dialog box
+                                                          // with a button to open the app settings and allow the user
+                                                          // to grant the permission manually.
+                                                          showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Permission permanently denied'),
+                                                                content: Text(
+                                                                    'Please allow access to make phone calls in App Settings to use this feature.'),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  TextButton(
+                                                                    child: Text(
+                                                                        'OK'),
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      openAppSettings();
+                                                                    },
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                        }
                                                       },
                                                       width: 150),
                                                 ],
@@ -449,5 +519,14 @@ class _AllHospitalsState extends State<AllHospitals> {
         }),
       ),
     );
+  }
+
+  void _openPhoneDialer(String phoneNumber) async {
+    String url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

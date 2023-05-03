@@ -13,6 +13,7 @@ import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
 import 'package:mvvm_practice_app/view_model/all_pets_petsmarket_post_view_model.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -311,7 +312,59 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                       InkWell(
                         //splashColor: Colors.red,
                         onTap: () async {
-                          getImage();
+                           var status = await Permission.storage.request();
+
+                      if (status.isGranted) {
+                        getImage();
+                        print(
+                            'Permission granted, you can now access external storage');
+                      } else if (status.isDenied) {
+                        // If the user denied the permission, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission denied'),
+                              content: Text(
+                                  'Please allow access to external storage in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Permission.storage.request();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else if (status.isPermanentlyDenied) {
+                        // If the user denied the permission permanently, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission permanently denied'),
+                              content: Text(
+                                  'Please allow access to external storage in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    openAppSettings();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height / 15,

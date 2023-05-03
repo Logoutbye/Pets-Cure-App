@@ -39,6 +39,8 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                 if (MySharedPrefencesSessionHandling.name == null) {
                   Utils.flushBarErrorMessageWithAction(
                       "Please log in to continue", () {
+                         MySharedPrefencesSessionHandling
+                                        .navigateToPage = "Profile";
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                     print("object");
@@ -164,9 +166,16 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             ),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return MyPostsInPetsMarket();
-              }));
+
+              if (MySharedPrefencesSessionHandling.isUserLogedIn) {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => MyPostsInPetsMarket()));
+              } else {
+                MySharedPrefencesSessionHandling.navigateToPage =
+                    "My Posts";
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              }
             },
           ), //Dashboard
 
@@ -285,6 +294,8 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                     var prefs = await SharedPreferences.getInstance();
                     await prefs.setBool('isLogedIn', false);
                     await prefs.setInt('userId', 0);
+                     MySharedPrefencesSessionHandling
+                                        .navigateToPage = "Home";
                     Navigator.of(context).pop();
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
@@ -426,6 +437,9 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               MySharedPrefencesSessionHandling.userId = 0;
               await MySharedPrefencesSessionHandling
                   .removeUserDataFromSharedPreferences();
+
+                   MySharedPrefencesSessionHandling
+                                        .navigateToPage = "Home";
               // Navigating to loginscreen
               Navigator.of(context).pop();
               Navigator.of(context)

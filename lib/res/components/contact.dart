@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../my_app_colors.dart';
@@ -32,8 +33,62 @@ class ContactBottomModel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {
-                      _openWhatsApp(whatsapp_no);
+                    onPressed: () async {
+                      // Request permission to access external storage
+                      var status = await Permission.storage.request();
+
+                      if (status.isGranted) {
+                        
+                        _openWhatsApp(whatsapp_no);
+                        print(
+                            'Permission granted, you can now make phone calls');
+                      } else if (status.isDenied) {
+                        // If the user denied the permission, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission denied'),
+                              content: Text(
+                                  'Please allow access to make phone calls in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Permission.storage.request();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else if (status.isPermanentlyDenied) {
+                        // If the user denied the permission permanently, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission permanently denied'),
+                              content: Text(
+                                  'Please allow access to make phone calls in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    openAppSettings();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                     },
                     icon: Icon(
                       Icons.whatsapp,
@@ -52,8 +107,64 @@ class ContactBottomModel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {
-                      _openPhoneDialer(phone_no);
+                    onPressed: () async {
+// Request permission to access external storage
+                      var status = await Permission.storage.request();
+
+                      if (status.isGranted) {
+                        _openPhoneDialer(phone_no);
+
+                        print(
+                            'Permission granted, you can now make phone calls');
+                      } else if (status.isDenied) {
+                        // If the user denied the permission, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission denied'),
+                              content: Text(
+                                  'Please allow access to make phone calls in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Permission.storage.request();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else if (status.isPermanentlyDenied) {
+                        // If the user denied the permission permanently, show a dialog box
+                        // with a button to open the app settings and allow the user
+                        // to grant the permission manually.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Permission permanently denied'),
+                              content: Text(
+                                  'Please allow access to make phone calls in App Settings to use this feature.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('OK'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    openAppSettings();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+
+                      //////////////////////////
                     },
                     icon: Icon(
                       Icons.call,
@@ -95,8 +206,7 @@ class ContactBottomModel extends StatelessWidget {
   }
 
   void _openWhatsApp(String phoneNumber) async {
-    String _url = 'https://wa.me/$phoneNumber';
-    String url = 'whatsapp://send?phone=$phoneNumber';
+    String url = 'https://wa.me/$phoneNumber';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

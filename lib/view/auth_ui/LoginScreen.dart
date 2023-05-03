@@ -11,20 +11,40 @@ import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
 import 'package:mvvm_practice_app/view/auth_ui/RegistrationScreen.dart';
 import 'package:mvvm_practice_app/view/pets_market_ui/pets_registration.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/user_posts_in_pets_market.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
+import 'package:mvvm_practice_app/view/users_ui/user_profile/edit_profile.dart';
 import 'package:mvvm_practice_app/view_model/auth_view_model.dart';
 import 'package:mvvm_practice_app/view_model/get_user_by_id_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  // var whichScreen;
+
+  //these are the what we have passed where we needed the refrence for navigation after login is successful
+  //Pets Registration
+  //Home
+  //Profile
+  //My Posts
+  LoginScreen(
+      {
+      // required this.whichScreen,
+      super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // var whichScreen;
+  @override
+  void initState() {
+    // whichScreen = widget.whichScreen;
+    // TODO: implement initState
+    super.initState();
+  }
+
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController Password = TextEditingController();
   bool _showSpinner = false;
@@ -379,6 +399,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   print(
                                                       "Print message after 4 sec");
                                                 }
+
                                                 if (authViewModel
                                                     .isUserLoginDataFetched) {
                                                   var userFetchedData =
@@ -458,21 +479,58 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     }
 
                                                     //Navigator.of(context).pop();
+
+                                                    //these are the what we have passed where we needed the refrence for navigation after login is successful
+                                                    //Pets Registration
+                                                    //Home
+                                                    //Profile
+                                                    //My Posts
+
                                                     String navigateToPage =
                                                         MySharedPrefencesSessionHandling
                                                             .navigateToPage;
+                                                    // print(
+                                                    // 'checking where is should navigate after login${whichScreen}');
+                                                    // if (whichScreen ==
+                                                    //     'Profile') {
+                                                    //   Navigator.of(context).push(
+                                                    //       MaterialPageRoute(
+                                                    //           builder: (context) =>
+                                                    //               EditProfile()));
+                                                    // } else if (whichScreen ==
+                                                    //     'Pets Registration') {
+                                                    //   Navigator.of(context).push(
+                                                    //       MaterialPageRoute(
+                                                    //           builder: (context) =>
+                                                    //               PetsRegistration()));
+                                                    // } else if (whichScreen ==
+                                                    //     'My Posts') {
+                                                    //   Navigator.of(context).push(
+                                                    //       MaterialPageRoute(
+                                                    //           builder: (context) =>
+                                                    //               MyPostsInPetsMarket()));
+                                                    // } else {
+                                                    //   Navigator.of(context).push(
+                                                    //       MaterialPageRoute(
+                                                    //           builder: (context) =>
+                                                    //               HomeScreen()));
+                                                    // }
+
                                                     Navigator.of(context)
                                                         .pushReplacement(
                                                             MaterialPageRoute(
                                                                 builder:
                                                                     (context) {
                                                       return navigateToPage ==
-                                                              "HomeScreen"
-                                                          ? HomeScreen()
+                                                              "My Posts"
+                                                          ? MyPostsInPetsMarket()
                                                           : navigateToPage ==
                                                                   "PetsRegistration"
                                                               ? PetsRegistration()
-                                                              : HomeScreen();
+                                                              : navigateToPage ==
+                                                                      "Profile"
+                                                                  ? EditProfile()
+                                                                  : HomeScreen();
                                                     }));
                                                     setState(() {
                                                       islogedInbuttonPressed =
@@ -784,7 +842,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ? HomeScreen()
                     : navigateToPage == "PetsRegistration"
                         ? PetsRegistration()
-                        : HomeScreen();
+                        : navigateToPage == "My Posts"
+                            ? MyPostsInPetsMarket()
+                            : navigateToPage == 'Profile'
+                                ? EditProfile()
+                                : HomeScreen();
               }));
               setState(() {
                 islogedInbuttonPressed = false;

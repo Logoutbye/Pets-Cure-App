@@ -18,7 +18,7 @@ class NetworkApiServece extends BaseApiServeces {
 
     try {
       final response =
-          await http.get(Uri.parse(Url)).timeout(Duration(seconds: 10));
+          await http.delete(Uri.parse(Url)).timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);
       //print("type of response : " + responseJson[0]);
     } on SocketException {
