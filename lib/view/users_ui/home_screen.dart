@@ -40,17 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
           fontSize: 20,
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AllChatScreen()));
-                },
-                icon: Icon(Icons.chat)),
-          )
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 8.0),
+        //     child: IconButton(
+        //         onPressed: () {
+        //           Navigator.of(context).push(
+        //               MaterialPageRoute(builder: (context) => AllChatScreen()));
+        //         },
+        //         icon: Icon(Icons.chat)),
+        //   )
+        // ],
       ),
       drawer: MyAppDrawer(),
       body: Container(

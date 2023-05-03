@@ -494,11 +494,11 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                       ),
 
                                                       IconButton(
-                                                       onPressed: () {
-                                                            _openWhatsApp(
-                                                                  indexItem
-                                                                      .doctorMobileNo!);
-                                                       },   icon: Icon(
+                                                          onPressed: () {
+                                                            _openWhatsApp(indexItem
+                                                                .doctorMobileNo!);
+                                                          },
+                                                          icon: Icon(
                                                             Icons.whatsapp,
                                                             size: 40,
                                                             color: MyColors
