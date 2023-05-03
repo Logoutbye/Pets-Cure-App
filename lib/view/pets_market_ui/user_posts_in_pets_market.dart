@@ -68,10 +68,9 @@ class _MyPostsInPetsMarketState extends State<MyPostsInPetsMarket> {
                   final itemIndex =
                       allPetsMarketViewModel.allMarketPets.data![index];
                   return GestureDetector(
-                    
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => MyPostUpdateDeleteScreen(
-                          postId:itemIndex.id ,
+                            postId: itemIndex.id,
                             petimage: itemIndex.petImage.toString(),
                             username: MySharedPrefencesSessionHandling.name,
                             petname: itemIndex.petName,
