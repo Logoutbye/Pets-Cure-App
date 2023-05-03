@@ -312,59 +312,59 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                       InkWell(
                         //splashColor: Colors.red,
                         onTap: () async {
-                           var status = await Permission.storage.request();
+                          var status = await Permission.storage.request();
 
-                      if (status.isGranted) {
-                        getImage();
-                        print(
-                            'Permission granted, you can now access external storage');
-                      } else if (status.isDenied) {
-                        // If the user denied the permission, show a dialog box
-                        // with a button to open the app settings and allow the user
-                        // to grant the permission manually.
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Permission denied'),
-                              content: Text(
-                                  'Please allow access to external storage in App Settings to use this feature.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Permission.storage.request();
-                                  },
-                                ),
-                              ],
+                          if (status.isGranted) {
+                            getImage();
+                            print(
+                                'Permission granted, you can now access external storage');
+                          } else if (status.isDenied) {
+                            // If the user denied the permission, show a dialog box
+                            // with a button to open the app settings and allow the user
+                            // to grant the permission manually.
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Permission denied'),
+                                  content: Text(
+                                      'Please allow access to external storage in App Settings to use this feature.'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Permission.storage.request();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
                             );
-                          },
-                        );
-                      } else if (status.isPermanentlyDenied) {
-                        // If the user denied the permission permanently, show a dialog box
-                        // with a button to open the app settings and allow the user
-                        // to grant the permission manually.
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Permission permanently denied'),
-                              content: Text(
-                                  'Please allow access to external storage in App Settings to use this feature.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    openAppSettings();
-                                  },
-                                ),
-                              ],
+                          } else if (status.isPermanentlyDenied) {
+                            // If the user denied the permission permanently, show a dialog box
+                            // with a button to open the app settings and allow the user
+                            // to grant the permission manually.
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Permission permanently denied'),
+                                  content: Text(
+                                      'Please allow access to external storage in App Settings to use this feature.'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('OK'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        openAppSettings();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
                             );
-                          },
-                        );
-                      }
+                          }
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height / 15,
@@ -498,6 +498,8 @@ class _PetsRegistrationState extends State<PetsRegistration> {
                                   image,
                                   context,
                                 );
+                                //Navigator.pop(context);
+
                               }
 
                               print(
