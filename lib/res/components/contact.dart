@@ -95,7 +95,8 @@ class ContactBottomModel extends StatelessWidget {
   }
 
   void _openWhatsApp(String phoneNumber) async {
-    String url = 'https://wa.me/$phoneNumber';
+    String _url = 'https://wa.me/$phoneNumber';
+    String url = 'whatsapp://send?phone=$phoneNumber';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
