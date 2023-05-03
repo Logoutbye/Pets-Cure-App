@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/data/response/api_response.dart';
+import 'package:mvvm_practice_app/main.dart';
 import 'package:mvvm_practice_app/model/all_post_api_response_data_model.dart';
 import 'package:mvvm_practice_app/repository/all_pets_petsmarket_post_repo.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
+import 'package:mvvm_practice_app/view/pets_market_ui/user_posts_in_pets_market.dart';
 
 class AllPetsMarketPostPetViewModel with ChangeNotifier {
   final _myRepo = AllPetsMarketPostRepository();
@@ -35,6 +38,12 @@ class AllPetsMarketPostPetViewModel with ChangeNotifier {
     _myRepo.InsertSinglePetDataUsingPostApi(data, file).then((value) {
       setLoading(false);
       Utils.flushBarErrorMessage('Success', context);
+      //navigatorKey.currentState!.popUntil((route) => route.isFirst);
+      //final navigatorKey = GlobalKey<NavigatorState>();
+      //Navigator.pop(context);
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        return MyPostsInPetsMarket();
+      }));
       //getAllPetsMarketPostResult(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
       setLoading(false);

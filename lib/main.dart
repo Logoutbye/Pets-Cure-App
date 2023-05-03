@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/view/users_ui/home_screen.dart';
@@ -35,6 +34,8 @@ void main() async {
     // user_image: user_image,
   ));
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   final bool isUserLogedIn;
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
         title: 'Pets Cure',
         theme: ThemeData(
           primarySwatch: Colors.teal,

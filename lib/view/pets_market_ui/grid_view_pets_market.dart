@@ -72,7 +72,7 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
               return GridView.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
-                mainAxisSpacing:10,
+                mainAxisSpacing: 10,
                 padding: EdgeInsets.all(8),
                 children: List.generate(
                     allPetsMarketViewModel.allMarketPets.data!.length, (index) {
@@ -110,98 +110,112 @@ class _GridViewPetsMarketState extends State<GridViewPetsMarket> {
                                   color: MyColors.kSecondary),
                               child: Padding(
                                 padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 1,
-                                      height:
-                                          MediaQuery.of(context).size.height / 11,
-                                      child: Image.network(
-                                        itemIndex.petImage.toString(),
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Icon(
-                                            Icons.error,
-                                            color: Colors.red,
-                                            size: 50,
-                                          );
-                                        },
+                                child: SingleChildScrollView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                11,
+                                        child: Image.network(
+                                          itemIndex.petImage.toString(),
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Icon(
+                                              Icons.error,
+                                              color: Colors.red,
+                                              size: 50,
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height:
-                                              MediaQuery.of(context).size.height /
-                                                  99,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text('${itemIndex.petName}',
-                                                style: TextStyle(
-                                                  color: MyColors.kPrimary,
-                                                  fontWeight: FontWeight.bold,
-                                                )),
-                                            Spacer(),
-                                            Text(
-                                                itemIndex.petStatus!.toString() ==
-                                                        'Yes'
-                                                    ? "Available"
-                                                    : "Sold Out",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .caption)
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height:
-                                              MediaQuery.of(context).size.height /
-                                                  95,
-                                        ),
-                                        Text(
-                                          '${itemIndex.petDescription}'
-                                              .toString(),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style:
-                                              Theme.of(context).textTheme.caption,
-                                        ),
-                                        SizedBox(
-                                          height:
-                                              MediaQuery.of(context).size.height /
-                                                  70,
-                                        ),
-                                        Row(
-                                          children: [
-                                            ImageIcon(
-                                              AssetImage(
-                                                'assets/images/rupee-sign.png',
-                                              ),
-                                              color: MyColors.kPrimary,
-                                              size: 10,
-                                            ),
-                                            SizedBox(
-                                              width: 8,
-                                            ),
-                                            SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: Text(
-                                                  itemIndex.petPrice.toString(),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                99,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text('${itemIndex.petName}',
                                                   style: TextStyle(
                                                     color: MyColors.kPrimary,
                                                     fontWeight: FontWeight.bold,
-                                                  ),
-                                                )),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                                  )),
+                                              Spacer(),
+                                              Text(
+                                                  itemIndex.petStatus!
+                                                              .toString() ==
+                                                          'Yes'
+                                                      ? "Available"
+                                                      : "Sold Out",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .caption)
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                95,
+                                          ),
+                                          Text(
+                                            '${itemIndex.petDescription}'
+                                                .toString(),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                70,
+                                          ),
+                                          Row(
+                                            children: [
+                                              ImageIcon(
+                                                AssetImage(
+                                                  'assets/images/rupee-sign.png',
+                                                ),
+                                                color: MyColors.kPrimary,
+                                                size: 10,
+                                              ),
+                                              SizedBox(
+                                                width: 8,
+                                              ),
+                                              SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  child: Text(
+                                                    itemIndex.petPrice
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: MyColors.kPrimary,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  )),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

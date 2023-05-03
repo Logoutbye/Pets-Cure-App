@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mailto/mailto.dart';
+import 'package:mvvm_practice_app/main.dart';
 import 'package:mvvm_practice_app/res/components/my_static_component%20.dart';
 import 'package:mvvm_practice_app/res/my_app_colors.dart';
 import 'package:mvvm_practice_app/utils/utils.dart';
@@ -39,8 +40,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                 if (MySharedPrefencesSessionHandling.name == null) {
                   Utils.flushBarErrorMessageWithAction(
                       "Please log in to continue", () {
-                         MySharedPrefencesSessionHandling
-                                        .navigateToPage = "Profile";
+                    MySharedPrefencesSessionHandling.navigateToPage = "Profile";
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                     print("object");
@@ -171,8 +171,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => MyPostsInPetsMarket()));
               } else {
-                MySharedPrefencesSessionHandling.navigateToPage =
-                    "My Posts";
+                MySharedPrefencesSessionHandling.navigateToPage = "My Posts";
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               }
@@ -198,8 +197,11 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             onTap: () {
-              Navigator.of(context).pop();
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              navigatorKey.currentState!.popUntil((route) => route.isFirst);
+
+              // Navigator.of(context).pop();
+              // Navigator.of(context)
+              //     .push(MaterialPageRoute(builder: (context) {
               //   return HomeScreen();
               // }));
             },
@@ -294,8 +296,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
                     var prefs = await SharedPreferences.getInstance();
                     await prefs.setBool('isLogedIn', false);
                     await prefs.setInt('userId', 0);
-                     MySharedPrefencesSessionHandling
-                                        .navigateToPage = "Home";
+                    MySharedPrefencesSessionHandling.navigateToPage = "Home";
                     Navigator.of(context).pop();
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
@@ -438,8 +439,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
               await MySharedPrefencesSessionHandling
                   .removeUserDataFromSharedPreferences();
 
-                   MySharedPrefencesSessionHandling
-                                        .navigateToPage = "Home";
+              MySharedPrefencesSessionHandling.navigateToPage = "Home";
               // Navigating to loginscreen
               Navigator.of(context).pop();
               Navigator.of(context)
