@@ -494,88 +494,11 @@ class _AllDoctorsState extends State<AllDoctors> {
                                                       ),
 
                                                       IconButton(
-                                                          onPressed: () async {
-                                                            var status =
-                                                                await Permission
-                                                                    .storage
-                                                                    .request();
-
-                                                            if (status
-                                                                .isGranted) {
-                                                              _openWhatsApp(
+                                                       onPressed: () {
+                                                            _openWhatsApp(
                                                                   indexItem
                                                                       .doctorMobileNo!);
-                                                              print(
-                                                                  'Permission granted, you can now access external storage');
-                                                            } else if (status
-                                                                .isDenied) {
-                                                              // If the user denied the permission, show a dialog box
-                                                              // with a button to open the app settings and allow the user
-                                                              // to grant the permission manually.
-                                                              showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Permission denied'),
-                                                                    content: Text(
-                                                                        'Please allow access to external storage in App Settings to use this feature.'),
-                                                                    actions: <
-                                                                        Widget>[
-                                                                      TextButton(
-                                                                        child: Text(
-                                                                            'OK'),
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          Permission
-                                                                              .storage
-                                                                              .request();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            } else if (status
-                                                                .isPermanentlyDenied) {
-                                                              // If the user denied the permission permanently, show a dialog box
-                                                              // with a button to open the app settings and allow the user
-                                                              // to grant the permission manually.
-                                                              showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Permission permanently denied'),
-                                                                    content: Text(
-                                                                        'Please allow access to external storage in App Settings to use this feature.'),
-                                                                    actions: <
-                                                                        Widget>[
-                                                                      TextButton(
-                                                                        child: Text(
-                                                                            'OK'),
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          openAppSettings();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            }
-                                                          },
-                                                          icon: Icon(
+                                                       },   icon: Icon(
                                                             Icons.whatsapp,
                                                             size: 40,
                                                             color: MyColors
