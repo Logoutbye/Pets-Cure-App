@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 class NetworkApiServece extends BaseApiServeces {
   @override
   Future deleteApi(String Url) async {
-      dynamic responseJson;
+    dynamic responseJson;
 
     try {
       final response =
@@ -154,16 +154,19 @@ class NetworkApiServece extends BaseApiServeces {
   Future getPostApiResponseWithFileandData(String Url, data, File? file) async {
     dynamic responseJson;
 
+    var length;
+    var stream;
+
     try {
       if (file != null) {
-        var stream = new http.ByteStream(file.openRead());
+        stream = new http.ByteStream(file.openRead());
 
         stream.cast();
 
-        var length = await file.length();
+        length = await file.length();
       }
 
-      //var uri = Uri.parse('https://kawiishapps.com/api/postpets');
+      //ar uri = Uri.parse('https://kawiishapps.com/api/updatepets/1');
       var uri = Uri.parse(Url);
 
       var request = new http.MultipartRequest('POST', uri);
@@ -173,9 +176,10 @@ class NetworkApiServece extends BaseApiServeces {
       if (file != null) {
         request.files
             .add(await http.MultipartFile.fromPath('file', '${file.path}'));
-      } else {
-        request.files.add(await http.MultipartFile.fromPath('file', '${null}'));
       }
+      //else {
+      //   request.files.add(await http.MultipartFile.fromPath('file', 'null'));
+      // }
 
       var response = await request.send();
 

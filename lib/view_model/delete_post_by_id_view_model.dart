@@ -16,17 +16,18 @@ class DeletePostByIdViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  
   Future<void> getUserByIdDatafromRepository(
       var id, BuildContext context) async {
+    setLoading(true);
     _myRepo.DeleteUserByIdApi(id).then((value) {
+      setLoading(false);
       print("i am in view model ad i am successful");
       if (kDebugMode) {
-        Utils.flushBarErrorMessage(
-            "i am in view model ad i am successful", context);
+        Utils.flushBarErrorMessage("Deleted", context);
         print('my value in View Model is : $value');
       }
     }).onError((error, stackTrace) {
+      setLoading(false);
       Utils.flushBarErrorMessage(error.toString(), context);
       print('i am in view model and the error is: ${error.toString()}');
     });

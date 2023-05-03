@@ -46,16 +46,17 @@ class AllPetsMarketPostPetViewModel with ChangeNotifier {
   // function to update post
 
   Future<void> getPetMarketPostResultFromUpdatePostApi(
-      dynamic data, File? file, BuildContext context) async {
+      dynamic data, File? file, BuildContext context, int postId) async {
     setLoading(true);
     //getAllPetsMarketPostResult(ApiResponse.loading());
 
-    _myRepo.UpdateSinglePetDataUsingPostApi(data, file).then((value) {
+    _myRepo.UpdateSinglePetDataUsingPostApi(data, file, postId).then((value) {
       setLoading(false);
       Utils.flushBarErrorMessage('Success', context);
       //getAllPetsMarketPostResult(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
       setLoading(false);
+      print("Erorr : $error");
       Utils.flushBarErrorMessage(error.toString(), context);
       //getAllPetsMarketPostResult(ApiResponse.error(error.toString()));
     });

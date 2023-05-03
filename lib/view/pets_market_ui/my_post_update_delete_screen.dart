@@ -141,7 +141,8 @@ class _MyPostUpdateDeleteScreenState extends State<MyPostUpdateDeleteScreen> {
         Provider.of<AllPetsMarketPostPetViewModel>(context);
 
     return ModalProgressHUD(
-      inAsyncCall: allPetsMarketPostPetViewModel.loading,
+      inAsyncCall: allPetsMarketPostPetViewModel.loading ||
+          deleteUserByIdProvider.loading,
       progressIndicator: Lottie.asset(
         "assets/lottie/loading.json",
         width: 100,
@@ -522,11 +523,13 @@ class _MyPostUpdateDeleteScreenState extends State<MyPostUpdateDeleteScreen> {
                                   Utils.flushBarErrorMessage(
                                       "Pet's description field cannot be empty",
                                       context);
-                                } else if (image == null) {
-                                  Utils.flushBarErrorMessage(
-                                      "pleas select pet image to post",
-                                      context);
-                                } else {
+                                }
+                                //else if (image == null) {
+                                //   Utils.flushBarErrorMessage(
+                                //       "pleas select pet image to post",
+                                //       context);
+                                // }
+                                else {
                                   Map<String, String> data = {
                                     'pet_name': petsNameController.text,
                                     'pet_status': selectedAvalability,
@@ -536,12 +539,14 @@ class _MyPostUpdateDeleteScreenState extends State<MyPostUpdateDeleteScreen> {
                                     'user_id': MySharedPrefencesSessionHandling
                                         .userId
                                         .toString(),
+                                    '_method': "PUT",
                                   };
                                   allPetsMarketPostPetViewModel
-                                      .getPetMarketPostResultFromApi(
+                                      .getPetMarketPostResultFromUpdatePostApi(
                                     data,
                                     image,
                                     context,
+                                    postId,
                                   );
                                 }
 
