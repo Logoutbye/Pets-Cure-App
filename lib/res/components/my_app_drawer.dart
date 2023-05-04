@@ -382,7 +382,7 @@ class _MyAppDrawerState extends State<MyAppDrawer> {
             ),
             onTap: () {
               Share.share(
-                  'Hey everyone! If you\'re a pet lover like me, you have to check out this amazing pets app!  https://play.google.com/store/apps/details?id=com.kawiish.smartsilentt Download it now and let\'s start sharing our love for pets!.');
+                  'Hey everyone! If you\'re a pet lover like me, you have to check out this amazing pets app!  https://play.google.com/store/apps/details?id=com.kawiish.petscure Download it now and let\'s start sharing our love for pets!.');
 
               // Navigator.of(context).pop();
               // Navigator.of(context)
